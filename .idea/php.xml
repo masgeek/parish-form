@@ -8,6 +8,7 @@
       <path value="$PROJECT_DIR$/vendor/yarn-asset/bootstrap" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/popper.js" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/mdbootstrap" />
+      <path value="$PROJECT_DIR$/vendor/yarn-asset/gijgo" />
     </include_path>
   </component>
 </project>

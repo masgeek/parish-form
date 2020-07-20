@@ -7,7 +7,14 @@ bootstrap@^4.5.0:
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.5.0.tgz#97d9dbcb5a8972f8722c9962483543b907d9b9ec"
   integrity sha512-Z93QoXvodoVslA+PWNdk23Hze4RBYIkpb5h8I2HY2Tu2h7A0LpAgLcyrhrSUyo2/Oxm2l1fRZPs1e5hnxnliXA==
 
-jquery@^3.5.1:
+gijgo@^1.9.13:
+  version "1.9.13"
+  resolved "https://registry.yarnpkg.com/gijgo/-/gijgo-1.9.13.tgz#22c6186252369de3a618e1e6369a923849128b6e"
+  integrity sha512-VxUzueysKaSRpjNM6jiMdoTJuUEWiPJNir5PCVKat6uA1R6vH7crKyFnR/Ey1k2r0i1yvYeJ3QKsPFkTB7aZxg==
+  dependencies:
+    jquery "^3.2.1"
+
+jquery@^3.2.1, jquery@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"
   integrity sha512-XwIBPqcMn57FxfT+Go5pzySnm4KWkT1Tv7gjrpT1srtf8Weynl6R273VJ5GjkRb51IzMp5nbaPjJXMWeju2MKg==
