@@ -1,0 +1,15 @@
+{
+  "name": "parish",
+  "version": "1.0.0",
+  "description": "Parish data collection form",
+  "main": "inde.php",
+  "author": "Sammy Barasa",
+  "license": "MIT",
+  "private": null,
+  "dependencies": {
+    "bootstrap": "^4.5.0",
+    "jquery": "^3.5.1",
+    "mdbootstrap": "^4.19.1",
+    "popper.js": "^1.16.1"
+  }
+}

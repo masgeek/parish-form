@@ -1,0 +1,16 @@
+{
+  "name": "masgeek/parish",
+  "description": "Parish data collection form",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sammy Barasa",
+      "email": "barsamms@gmail.com"
+    }
+  ],
+  "require": {
+    "catfan/medoo": "^1.7",
+    "ext-json": "^7.4"
+  }
+}
