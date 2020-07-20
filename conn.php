@@ -9,10 +9,10 @@ class conn
     {
         $this->database = new Medoo\Medoo([
             'database_type' => 'mysql',
-            'database_name' => 'parish',
-            'server' => 'localhost',
-            'username' => 'root',
-            'password' => 'root'
+            'database_name' => DB_NAME,
+            'server' => DB_URL,
+            'username' => DB_USER,
+            'password' => DB_PASS
         ]);
 
     }
