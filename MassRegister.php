@@ -63,14 +63,14 @@ if ($isPost) {
         ];
 
         $jsonResp['mass_schedule_id'] = $massId;
-        $jsonResp['seatsLeft'] = "{$seatsLeft} seats";
+        $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
 
         if ($seatsLeft > 0) {
             $resp = $conn->insertIntoDatabase($data, 'mass_registration');
             if ($resp['hasError'] === false) {
                 $jsonResp['valid'] = true;
                 $left = $seatsLeft - 1;
-                $jsonResp['seatsLeft'] = "{$left} seats";
+                $jsonResp['seatsLeft'] = "{$left} seats left";
                 $jsonResp['data'] = [
                     'message' => [
                         'title' => 'Registration completed successfully',

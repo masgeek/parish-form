@@ -42,14 +42,13 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 <div class="container-fluid h-100">
 
     <!-- success banner -->
-    <div class="row h-100 justify-content-center align-items-center hidden">
+    <div class="row h-100 justify-content-center align-items-center hidden" id="success-card">
         <div class="col-10 col-md-8 col-lg-6">
-            <div class="card" id="success-card">
+            <div class="card">
                 <div class="thank-you-pop card-body">
                     <img src="img/green-tick.png" alt="">
                     <h1>Thank You!</h1>
                     <h3 class="cupon-pop">Your Mass registration has been received successfully</h3>
-
                     <br/>
                     <a href="index.php" class="btn btn-success btn-lg">Finish</a>
                 </div>
@@ -59,9 +58,9 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     <!-- end success banner-->
 
     <!-- input form -->
-    <div class="row h-100 justify-content-center align-items-center">
+    <div class="row h-100 justify-content-center align-items-center" id="mass-card">
         <div class="col-12 col-md-12 col-lg-10">
-            <div class="card" id="mass-card">
+            <div class="card" >
 
                 <h5 class="card-header text-center text-white bg-primary">
                     <strong>Register</strong>
@@ -189,7 +188,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                                                 <?= trim($value['mass_title']) ?>
                                             </label>
                                             <span class="float-right mx-1 badge badge-info"
-                                                  id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats</span>
+                                                  id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats left</span>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                     <?php endforeach; ?>
