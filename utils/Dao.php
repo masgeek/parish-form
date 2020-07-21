@@ -1,6 +1,9 @@
 <?php
-require_once 'vendor/autoload.php';
-require_once 'config/config.php';
+$root_dir = dirname(dirname(__FILE__));
+
+require_once $root_dir . '/vendor/autoload.php';
+
+require_once $root_dir . '/config/config.php';
 
 if (!defined('MyConst')) {
     die('Direct access not permitted');

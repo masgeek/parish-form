@@ -55,7 +55,7 @@ jQuery(document).ready(function () {
         jQuery('#estate_name').val(null);
         if (!isEmpty(estateId)) {
             console.log("Estate id is", estateId)
-            jQuery.getJSON('get-estates.php', {
+            jQuery.getJSON('utils/get-estates.php', {
                 group_id: groupId,
                 estate_id: estateId
             }, function (data, testStatus, jqXHR) {
@@ -85,7 +85,7 @@ jQuery(document).ready(function () {
 
         jQuery.ajax({
             type: 'POST',
-            url: 'MassRegister.php',
+            url: 'utils/MassRegister.php',
             dataType: "json",
             data: formData,
             success: function (resp, textStatus, XMLHttpRequest) {

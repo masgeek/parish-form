@@ -2,10 +2,14 @@
 
 use cse\helpers\Request;
 
+$root_dir = dirname(dirname(__FILE__));
 define('MyConst', TRUE);
 
-require_once 'vendor/autoload.php';
+require_once $root_dir . '/vendor/autoload.php';
 require_once 'Dao.php';
+
+
+
 
 $phoneUtil = libphonenumber\PhoneNumberUtil::getInstance();
 
