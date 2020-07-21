@@ -165,9 +165,9 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                                 $id = $value['id'];
                                 $capacity = $value['capacity'];
                                 ?>
-                                <input type="text" id="mass-capacity-<?= $id ?>" value="<?= $capacity ?>" readonly>
+                                <input type="hidden" id="mass-capacity-<?= $id ?>" value="<?= $capacity ?>" readonly>
                             <?php endforeach; ?>
-                            <input type="text" id="mass-capacity" name="mass_capacity" readonly>
+                            <input type="hidden" id="mass-capacity" name="mass_capacity" readonly>
                         </div>
                     </div>
                 </div>
