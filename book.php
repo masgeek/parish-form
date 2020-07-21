@@ -42,14 +42,14 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 <div class="container-fluid h-100">
 
     <!-- success banner -->
-    <div class="row h-100 justify-content-center align-items-center hidden">
+    <div class="row h-100 justify-content-center align-items-center hiddens">
         <div class="col-10 col-md-8 col-lg-6">
             <div class="card" id="success-card">
                 <div class="thank-you-pop card-body">
-                    <img src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png" alt="">
+                    <img src="img/green-tick.png" alt="">
                     <h1>Thank You!</h1>
-                    <p>Your submission is received and we will contact you soon</p>
-                    <h3 class="cupon-pop">Your Id: <span>12345</span></h3>
+                    <h3 class="cupon-pop">Your mass registration has been received successfully</h3>
+                    <!--                    <h3 class="cupon-pop">Mass time: <span>12345</span></h3>-->
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     <!-- end success banner-->
 
     <!-- input form -->
-    <div class="card hiddens" id="mass-card">
+    <div class="card hidden" id="mass-card">
 
         <h5 class="card-header text-center text-white bg-primary">
             <strong>Register</strong>
@@ -184,8 +184,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                                     <label for="defaultChecked-<?= $key ?>">
                                         <?= trim($value['mass_title']) ?>
                                     </label>
-                                    <p class="float-right mx-1 badge badge-info"
-                                       id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats</p>
+                                    <span class="float-right mx-1 badge badge-info"
+                                          id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats</span>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             <?php endforeach; ?>
