@@ -88,7 +88,7 @@ $groups = $conn->getGroups($station_id);
 
                 <div class="row">
                     <div class="col-md">
-                        <h5>Are you an adult?</h5>
+                        <h5>Are you over 18?</h5>
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" class="custom-control-input" id="rdYes"
                                    name="rdNo">
@@ -134,7 +134,7 @@ $groups = $conn->getGroups($station_id);
                             <?php foreach ($groups as $key => $value):
                                 $groupId = $value['group_id'];
                                 $estateId = $value['estate_id'];
-                                $groupName = $value['group_name'].'--'.$value['estate_id'];
+                                $groupName = $value['group_name'] . '--' . $value['estate_id'];
                                 ?>
                                 <input type="hidden" id="estate-<?= $groupId ?>" value="<?= $estateId ?>"
                                        class="form-control" readonly>
@@ -154,7 +154,7 @@ $groups = $conn->getGroups($station_id);
 
                 <!-- Sign in button -->
                 <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">
-                   Register
+                    Register
                 </button>
 
             </form>
