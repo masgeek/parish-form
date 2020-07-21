@@ -154,7 +154,7 @@ $groups = $conn->getGroups($station_id);
 
                 <!-- Sign in button -->
                 <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">
-                    Sign in
+                   Register
                 </button>
 
             </form>
