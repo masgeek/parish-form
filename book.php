@@ -3,12 +3,13 @@ require_once 'conn.php';
 
 $conn = new conn();
 
-$id = $_GET['id'];
-$name = $_GET['name'];
+$station_id = isset($_GET['station_id']) ? $_GET['station_id'] : 0;
+$schedule_id = isset($_GET['schedule_id']) ? $_GET['schedule_id'] : 0;
+
 $date = date('d D M, Y');
 
-$data = $conn->getBookingDetails($id, $name);
-$groups = $conn->getGroups($id);
+//$data = $conn->getBookingDetails($station_id, $name);
+$groups = $conn->getGroups($station_id);
 
 ?>
 
@@ -65,7 +66,7 @@ $groups = $conn->getGroups($id);
             <!-- Form -->
             <form style="color: #757575;" action="#!">
 
-                <input type="text" id="outstation_id" name="outstation_id" value="<?= $id ?>"
+                <input type="text" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"
                        class="form-control" readonly>
 
                 <!-- Email -->

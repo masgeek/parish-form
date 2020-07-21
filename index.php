@@ -52,14 +52,15 @@ $massDates = $conn->getActiveMassDates();
                 <th>&nbsp;</th>
                 <!-- nested table -->
                 <?php foreach ($massStations as $stationKey => $stationValue):
-                    $id = $stationValue['id'];
+                    $scheduleID = $stationValue['id'];
+                    $stationID = $stationValue['outstation_id'];
                     ?>
                     <table class="table table-striped">
                         <tr>
                             <td class="col-sm-12"><?= $stationValue['outstation_name'] ?></td>
                             <td>
                                 <a class="btn btn-outline-success btn-sm"
-                                   href="book.php?station_id=<?= $id ?>">
+                                   href="book.php?schedule_id=<?= $scheduleID ?>&station_id=<?= $stationID ?>">
                                     <i class="fas fa-clone left"></i> Register</a>
                             </td>
                         </tr>
