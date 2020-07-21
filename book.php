@@ -151,14 +151,6 @@ $groups = $conn->getGroups($station_id);
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md">
-                        <div class="md-form">
-                            <h5>Select mass date?</h5>
-                            <input type="text" id="mass_date" class="form-control datepicker">
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Sign in button -->
                 <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">
