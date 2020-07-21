@@ -36,7 +36,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                     <h1>Thank You!</h1>
                     <h3 class="cupon-pop">Your Mass registration has been received successfully</h3>
                     <br/>
-                    <a href="index.php" class="btn btn-success btn-lg">Finish</a>
+                    <a href="index-old-a.php" class="btn btn-success btn-lg">Finish</a>
                 </div>
             </div>
         </div>
