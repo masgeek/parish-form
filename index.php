@@ -1,7 +1,6 @@
 <?php
 define('MyConst', TRUE);
 define('PAGE_TITLE', 'REGISTER TO ATTEND MASS');
-require_once 'vendor/autoload.php';
 require_once 'utils/Dao.php';
 
 
@@ -9,7 +8,8 @@ $conn = new Dao();
 
 $massDates = $conn->getActiveMassDates();
 
-$currentDate = Carbon\Carbon::now()->isoFormat('dddd, Do MMMM YYYY');
+$currentDate = date('l, jS F Y');
+
 ?>
 
 <!DOCTYPE html>
@@ -52,7 +52,10 @@ $currentDate = Carbon\Carbon::now()->isoFormat('dddd, Do MMMM YYYY');
                 <tbody>
                 <?php foreach ($massDates as $key => $value):
                     $massDate = $value['mass_schedule_date'];
-                    $displayDate = \Carbon\Carbon::parse($massDate)->isoFormat('dddd, Do MMMM YYYY');
+
+
+                    $displayDate = date('l, jS F Y', strtotime($massDate));
+
                     $massStations = $conn->getMassStations($massDate);
                     ?>
                     <tr>
