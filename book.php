@@ -204,7 +204,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                             </div>
                         </div>
                         <!-- Register button -->
-                        <button class="btn btn-outline-success btn-rounded btn-block waves-effect" type="button"
+                        <button class="btn btn-outline-success btn-rounded btn-block waves-effect btn-lg" type="button"
                                 id="btn-register">
                             Register
                         </button>
