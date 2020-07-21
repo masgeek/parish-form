@@ -58,7 +58,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 
     <!-- input form -->
     <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-10 col-md-8 col-lg-6">
+        <div class="col-10 col-md-10 col-lg-10">
             <div class="card hiddens" id="mass-card">
 
                 <h5 class="card-header text-center text-white bg-primary">
@@ -186,7 +186,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                                             <label for="defaultChecked-<?= $key ?>">
                                                 <?= $value['mass_title'] ?>
                                                 <span class="float-right mx-1"
-                                                      id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats left</span>
+                                                      id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats</span>
                                             </label>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
