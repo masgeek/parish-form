@@ -182,10 +182,10 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                                            id="defaultChecked-<?= $key ?>"
                                            value="<?= $value['id'] ?>" required <?= $disabled ?>/>
                                     <label for="defaultChecked-<?= $key ?>">
-                                        <?= $value['mass_title'] ?>
-                                        <span class="float-right mx-1"
-                                              id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats</span>
+                                        <?= trim($value['mass_title']) ?>
                                     </label>
+                                    <p class="float-right mx-1 badge badge-info"
+                                       id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats</p>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             <?php endforeach; ?>
