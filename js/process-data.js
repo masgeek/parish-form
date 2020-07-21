@@ -49,7 +49,7 @@ jQuery(document).ready(function () {
     //     return false;
     // });
 
-    jQuery('#group').on('change', function () {
+    jQuery('#group-id').on('change', function () {
         const groupId = this.value;
         const estateId = jQuery("#estate-" + groupId).val();
         jQuery('#estate_name').val(null);
@@ -73,15 +73,6 @@ jQuery(document).ready(function () {
         console.log(scheduleID);
     });
 
-    jQuery('#btn-register-old').on('click', function () {
-        if ($('#mass-reg-form').smkValidate()) {
-            // Code here
-            $.smkAlert({
-                text: 'Validate!',
-                type: 'success'
-            });
-        }
-    });
     jQuery('#btn-register').on('click', function () {
 
         const myform = jQuery('#mass-reg-form');
