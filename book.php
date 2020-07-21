@@ -1,5 +1,6 @@
 <?php
 define('MyConst', TRUE);
+define('PAGE_TITLE', 'Mass Registration');
 
 require_once 'vendor/autoload.php';
 require_once 'utils/Dao.php';
@@ -20,22 +21,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 
 <!DOCTYPE html>
 <html lang="en" class="h-100">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Book mass</title>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/yarn-asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/yarn-asset/smokejs/dist/css/smoke.css" rel="stylesheet">
-
-    <!-- Your custom styles (optional) -->
-    <link href="css/style.css?random=<?php echo uniqid("custom_"); ?>" rel="stylesheet">
-    <link href="css/fancy-radio-buttons.css?random=<?php echo uniqid("custom_"); ?>" rel="stylesheet">
-</head>
+<?php require_once 'includes/header.php'; ?>
 
 <body class="h-100">
 <!-- Start your project here-->
@@ -219,18 +205,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     </div>
     <!-- end of input form -->
 </div>
-<!-- /Start your project here-->
-
-<!-- SCRIPTS -->
-<!-- JQuery -->
-<script type="text/javascript" src="vendor/yarn-asset/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap tooltips -->
-<script type="text/javascript" src="vendor/yarn-asset/popper.js/dist/popper.min.js"></script>
-<!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="vendor/yarn-asset/bootstrap/dist/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="vendor/yarn-asset/smokejs/dist/js/smoke.js"></script>
-<script type="text/javascript" src="vendor/yarn-asset/sweetalert/dist/sweetalert.min.js"></script>
-<script type="text/javascript" src="js/process-data.js?random=<?php echo uniqid("custom_"); ?>"></script>
 </body>
-
+<?php require_once 'includes/footer.php'; ?>
 </html>
