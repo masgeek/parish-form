@@ -33,8 +33,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     <link href="vendor/yarn-asset/smokejs/dist/css/smoke.css" rel="stylesheet">
 
     <!-- Your custom styles (optional) -->
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/fancy-radio-buttons.css" rel="stylesheet">
+    <link href="css/style.css?random=<?php echo uniqid("custom_"); ?>" rel="stylesheet">
+    <link href="css/fancy-radio-buttons.css?random=<?php echo uniqid("custom_"); ?>" rel="stylesheet">
 </head>
 
 <body class="h-100">
