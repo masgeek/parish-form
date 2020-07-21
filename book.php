@@ -1,10 +1,15 @@
 <?php
-require_once 'conn.php';
+define('MyConst', TRUE);
 
-$conn = new conn();
+require_once 'vendor/autoload.php';
+require_once 'Dao.php';
 
-$station_id = isset($_GET['station_id']) ? $_GET['station_id'] : 0;
-$schedule_id = isset($_GET['schedule_id']) ? $_GET['schedule_id'] : 0;
+$conn = new Dao();
+
+$cleaner = new \voku\helper\AntiXSS();
+
+$station_id = isset($_GET['station_id']) ? $cleaner->xss_clean($_GET['station_id']) : 0;
+$schedule_id = isset($_GET['schedule_id']) ? $cleaner->xss_clean($_GET['schedule_id']) : 0;
 
 $date = date('d D M, Y');
 
@@ -46,12 +51,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 
         <!--Card content-->
         <div class="card-body">
-            <div class="bs-callout bs-callout-warning hidden">
-                <h4>Oh snap!</h4>
-                <p>This form seems to be invalid :(</p>
-            </div>
             <!-- Form -->
-            <form action="#" id="mass-reg-form" class="was-validated-here" data-parsley-validate="">
+            <form action="#" id="mass-reg-form" class="needs-validation" data-parsley-validate="">
 
                 <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
                 <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>" readonly>
@@ -61,7 +62,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                     <div class="col-md">
                         <div class="form-group">
                             <label for="surname">Surname</label>
-                            <input type="text" id="surname" class="form-control" required>
+                            <input type="text" id="surname" name="surname" class="form-control" required>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
@@ -69,7 +70,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                     <div class="col-md">
                         <div class="form-group">
                             <label for="other_names">Other names</label>
-                            <input type="text" id="other_names" class="form-control" required>
+                            <input type="text" id="other_names" name="other_names" class="form-control" required>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
@@ -81,13 +82,13 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                         <div class="form-group">
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="adultFlag" required>Yes
+                                    <input type="radio" class="form-check-input" name="adultFlag" value="1" required>Yes
                                 </label>
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="adultFlag" required>No
+                                    <input type="radio" class="form-check-input" name="adultFlag" value="0" required>No
                                 </label>
                                 <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
@@ -98,7 +99,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                     <div class="col-md">
                         <div class="form-group">
                             <label for="age">What is your age?</label>
-                            <input type="number" id="age" class="form-control" required>
+                            <input type="number" id="age" name="age" class="form-control" required>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
@@ -108,7 +109,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                     <div class="col-md">
                         <div class="form-group">
                             <label for="mobile">What is your mobile number?</label>
-                            <input type="text" id="mobile" class="form-control" required>
+                            <input type="text" id="mobile" name="mobile" class="form-control" required>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
@@ -117,18 +118,18 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                 <div class="row">
                     <div class="col-md">
                         <div class="form-group">
-                            <label for="group">What is the name of your jumuia?</label>
-                            <select class="form-control" id="group" name="group" required>
+                            <label for="group-id">What is the name of your jumuia?</label>
+                            <select class="form-control" id="group-id" name="group_id" required>
                                 <option value="" selected>Select your jumuia</option>
                                 <?php foreach ($groups as $key => $value): ?>
                                     <option value="<?= $value['group_id'] ?>"><?= $value['group_name'] ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <?php foreach ($groups as $key => $value):
-                                $groupId = $value['group_id'];
-                                $estateId = $value['estate_id'];
+                                $id = $value['group_id'];
+                                $capacity = $value['estate_id'];
                                 ?>
-                                <input type="hidden" id="estate-<?= $groupId ?>" value="<?= $estateId ?>"
+                                <input type="hidden" id="estate-<?= $id ?>" value="<?= $capacity ?>"
                                        class="form-control" readonly>
                             <?php endforeach; ?>
                         </div>
@@ -139,7 +140,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                     <div class="col-md">
                         <div class="form-group">
                             <label for="estate-name">What is your estate name?</label>
-                            <input type="text" id="estate-name" name="estate-name" class="form-control" required>
+                            <input type="text" id="estate_name" name="estate_name" class="form-control" required>
                             <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
@@ -151,7 +152,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                         <div class="funkyradio form-group">
                             <?php foreach ($scheduledMasses as $key => $value): ?>
                                 <div class="funkyradio-success">
-                                    <input type="radio" name="mass_schedule" id="defaultChecked-<?= $key ?>"
+                                    <input type="radio" name="mass_schedule" class="mass_schedule"
+                                           id="defaultChecked-<?= $key ?>"
                                            value="<?= $value['id'] ?>" required/>
                                     <label for="defaultChecked-<?= $key ?>">
                                         <?= $value['mass_title'] ?>
@@ -159,6 +161,13 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             <?php endforeach; ?>
+                            <?php foreach ($scheduledMasses as $key => $value):
+                                $id = $value['id'];
+                                $capacity = $value['capacity'];
+                                ?>
+                                <input type="text" id="mass-capacity-<?= $id ?>" value="<?= $capacity ?>" readonly>
+                            <?php endforeach; ?>
+                            <input type="text" id="mass-capacity" name="mass_capacity" readonly>
                         </div>
                     </div>
                 </div>

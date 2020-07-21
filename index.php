@@ -1,7 +1,9 @@
 <?php
-require_once 'conn.php';
+define('MyConst', TRUE);
 
-$conn = new conn();
+require_once 'Dao.php';
+
+$conn = new Dao();
 
 
 $massDates = $conn->getActiveMassDates();
@@ -15,7 +17,7 @@ $massDates = $conn->getActiveMassDates();
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Material Design Bootstrap</title>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="vendor/yarn-asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
@@ -26,8 +28,18 @@ $massDates = $conn->getActiveMassDates();
 
 <body>
 
+<noscript>
+    <style type="text/css">
+        .pagecontainer {
+            display: none;
+        }
+    </style>
+    <div class="noscriptmsg">
+        <h1>You don't have javascript enabled. Good luck with that.</h1>
+    </div>
+</noscript>
 <!-- Start your project here-->
-<div class="container-fluid">
+<div class="container-fluid pagecontainer">
     <div class="jumbotron card card-image"
          style="background-image: url(img/gradient1.jpg);">
         <div class="text-white text-center py-5 px-4">

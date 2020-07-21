@@ -12,6 +12,18 @@
       <path value="$PROJECT_DIR$/vendor/yarn-asset/flatpickr" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/parsleyjs" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/smokejs" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-normalizer" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-grapheme" />
+      <path value="$PROJECT_DIR$/vendor/voku/portable-ascii" />
+      <path value="$PROJECT_DIR$/vendor/voku/anti-xss" />
+      <path value="$PROJECT_DIR$/vendor/voku/portable-utf8" />
+      <path value="$PROJECT_DIR$/vendor/lbdawkes/request-helper" />
+      <path value="$PROJECT_DIR$/vendor/cse/helpers-request" />
+      <path value="$PROJECT_DIR$/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
     </include_path>
   </component>
 </project>

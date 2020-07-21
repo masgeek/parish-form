@@ -1,7 +1,7 @@
 <?php
-require_once 'conn.php';
+require_once 'Dao.php';
 
-$conn = new conn();
+$conn = new Dao();
 
 
 echo json_encode($conn->getOutStations());

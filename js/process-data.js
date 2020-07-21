@@ -52,7 +52,7 @@ jQuery(document).ready(function () {
     jQuery('#group').on('change', function () {
         const groupId = this.value;
         const estateId = jQuery("#estate-" + groupId).val();
-        jQuery('#estate-name').val(null);
+        jQuery('#estate_name').val(null);
         if (!isEmpty(estateId)) {
             console.log("Estate id is", estateId)
             jQuery.getJSON('get-estates.php', {
@@ -60,17 +60,20 @@ jQuery(document).ready(function () {
                 estate_id: estateId
             }, function (data, testStatus, jqXHR) {
                 console.log("Estate data is", data);
-                jQuery('#estate-name').val(data[0].estate_name);
+                jQuery('#estate_name').val(data[0].estate_name);
             });
         }
     });
 
-    jQuery('#mass_date').on('change', function () {
-        const massDate = this.value;
-        console.log(massDate);
+    jQuery('.mass_schedule').on('change', function () {
+        const scheduleID = this.value;
+        const massCapacity = jQuery("#mass-capacity-" + scheduleID).val();
+        jQuery('#mass-capacity').val(massCapacity);
+        //check for available spaces
+        console.log(scheduleID);
     });
 
-    jQuery('#btn-register').on('click', function () {
+    jQuery('#btn-register-old').on('click', function () {
         if ($('#mass-reg-form').smkValidate()) {
             // Code here
             $.smkAlert({
@@ -79,9 +82,35 @@ jQuery(document).ready(function () {
             });
         }
     });
-    jQuery('#btn-register2').on('click', function () {
-        const formData = jQuery('#mass-reg-form').serialize();
-        console.log(formData);
+    jQuery('#btn-register').on('click', function () {
+        const form = jQuery('#mass-reg-form');
+        if (form[0].checkValidity() === false) {
+            form.addClass('was-validated');
+            return;
+        }
+        //proceed with normal operations
+        const formData = form.serialize();
+        jQuery.ajax({
+            type: 'POST',
+            url: 'MassRegister.php',
+            dataType: "json",
+            data: formData,
+            success: function (data, textStatus, XMLHttpRequest) {
+
+                console.log(data);
+                // const arr = data.map(function (item) {
+                //
+                //     console.log(item);
+                //     return item;
+                // })
+
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest.responseText);
+                // console.log(textStatus);
+                //console.log(errorThrown);
+            }
+        });
     });
 });
 

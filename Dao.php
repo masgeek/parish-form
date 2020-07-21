@@ -2,7 +2,11 @@
 require_once 'vendor/autoload.php';
 require_once 'config.php';
 
-class conn
+if (!defined('MyConst')) {
+    die('Direct access not permitted');
+}
+
+class Dao
 {
     // [>] == LEFT JOIN
 // [<] == RIGH JOIN
@@ -108,6 +112,10 @@ class conn
         return $data;
     }
 
+    /**
+     * @param $schedule_id
+     * @return array|bool
+     */
     public function getActiveScheduledMasses($schedule_id)
     {
         $data = $this->database->select('mass_schedule', [
@@ -122,11 +130,39 @@ class conn
             'masses.time_from',
             'masses.time_to'
         ],
-        [
-            'mass_schedule.schedule_master_id' => $schedule_id,
-            "ORDER" => ["masses.time_from" => 'ASC'],
-        ]);
+            [
+                'mass_schedule.schedule_master_id' => $schedule_id,
+                "ORDER" => ["masses.time_from" => 'ASC'],
+            ]);
 
         return $data;
     }
+
+    public function getAllocatedSeatCount($massId)
+    {
+        $count = $this->database->count("mass_registration", [
+            'mass_id' => $massId
+        ]);
+
+        return $count;
+    }
+
+    /**
+     * @param array $data
+     * @param $tableName
+     * @return int|mixed|string|null
+     */
+    public function insertIntoDatabase(array $data, $tableName)
+    {
+        $data = $this->database->insert($tableName, $data);
+
+        $code = (int)$data->errorCode();
+
+        $message = isset($data->errorInfo()[2]) ? $data->errorInfo()[2] : "Unable to save data";
+        return [
+            'hasError' => $code != 0,
+            'errors' => $message
+        ];
+    }
+
 }
