@@ -150,13 +150,21 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                     <div class="col-md">
                         <h5>Choose your preferred mass</h5>
                         <div class="funkyradio form-group">
-                            <?php foreach ($scheduledMasses as $key => $value): ?>
+                            <?php foreach ($scheduledMasses as $key => $value):
+                                $id = $value['id'];
+                                $massId = $value['mass_id'];
+                                $capacity = $value['capacity'];
+                                $seatsLeft = $conn->getSeatsLeft($massId, $capacity);
+
+                                $disabled = $seatsLeft <= 0 ? 'disabled' : '';
+                                ?>
                                 <div class="funkyradio-success">
                                     <input type="radio" name="mass_schedule" class="mass_schedule"
                                            id="defaultChecked-<?= $key ?>"
-                                           value="<?= $value['id'] ?>" required/>
+                                           value="<?= $value['id'] ?>" required <?= $disabled ?>/>
                                     <label for="defaultChecked-<?= $key ?>">
                                         <?= $value['mass_title'] ?>
+                                        <span class="float-right mx-1" id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats left</span>
                                     </label>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
@@ -196,6 +204,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="vendor/yarn-asset/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="vendor/yarn-asset/smokejs/dist/js/smoke.js"></script>
+<script type="text/javascript" src="vendor/yarn-asset/sweetalert/dist/sweetalert.min.js"></script>
 <script type="text/javascript" src="js/process-data.js?random=<?php echo uniqid("custom_"); ?>"></script>
 </body>
 

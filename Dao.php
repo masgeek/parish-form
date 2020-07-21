@@ -138,13 +138,20 @@ class Dao
         return $data;
     }
 
-    public function getAllocatedSeatCount($massId)
+    /**
+     * @param $massId
+     * @param $capacity
+     * @return bool|int|mixed|string
+     */
+    public function getSeatsLeft($massId, $capacity)
     {
-        $count = $this->database->count("mass_registration", [
+        $seatCount = $this->database->count("mass_registration", [
             'mass_id' => $massId
         ]);
 
-        return $count;
+        $seatsLeft = $capacity - $seatCount;
+
+        return $seatsLeft;
     }
 
     /**

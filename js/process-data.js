@@ -83,6 +83,7 @@ jQuery(document).ready(function () {
         }
     });
     jQuery('#btn-register').on('click', function () {
+
         const form = jQuery('#mass-reg-form');
         if (form[0].checkValidity() === false) {
             form.addClass('was-validated');
@@ -90,20 +91,24 @@ jQuery(document).ready(function () {
         }
         //proceed with normal operations
         const formData = form.serialize();
+
         jQuery.ajax({
             type: 'POST',
             url: 'MassRegister.php',
             dataType: "json",
             data: formData,
             success: function (data, textStatus, XMLHttpRequest) {
-
                 console.log(data);
-                // const arr = data.map(function (item) {
-                //
-                //     console.log(item);
-                //     return item;
-                // })
+                const scheduleId = data.mass_schedule_id;
+                if (data.valid === true) {
+                    swal({
+                        title: "Good job!",
+                        text: "You clicked the button!",
+                        icon: "success",
+                    });
+                }
 
+                jQuery('#seats-left-' + scheduleId).html(data.seatsLeft);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest.responseText);

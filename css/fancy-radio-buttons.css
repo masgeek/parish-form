@@ -46,6 +46,7 @@
     color: #888;
 }
 
+
 .funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
 .funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
     content: '\2714';

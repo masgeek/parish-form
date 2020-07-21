@@ -46,11 +46,9 @@ if ($isPost) {
         $estateName = Request::post('estate_name');
         $massId = Request::post('mass_schedule');
         $capacity = Request::post('mass_capacity');
+        $massSchedule = Request::post('schedule_id');
 
-        $seatCount = $conn->getAllocatedSeatCount($massId);
-
-        $seatsLeft = $capacity - $seatCount;
-
+        $seatsLeft = $conn->getSeatsLeft($massId, $capacity);
         $seatNo = $seatsLeft;
         $data = [
             'seat_no' => $seatNo,
@@ -64,10 +62,16 @@ if ($isPost) {
             'mass_id' => $massId,
         ];
 
+        $jsonResp['mass_schedule_id'] = $massId;
+        $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
+
         if ($seatsLeft > 0) {
             $resp = $conn->insertIntoDatabase($data, 'mass_registration');
             if ($resp['hasError'] === false) {
                 $jsonResp['valid'] = true;
+                $left = $seatsLeft - 1;
+                $jsonResp['left'] = $left;
+                $jsonResp['seatsLeft'] = "{$left} seats left";
                 $jsonResp['data'] = [
                     'message' => 'Registration completed successfully'
                 ];
