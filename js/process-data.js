@@ -80,7 +80,6 @@ jQuery(document).ready(function () {
         }
     });
     jQuery('#btn-register2').on('click', function () {
-        $('#mass-reg-form').parsley();
         const formData = jQuery('#mass-reg-form').serialize();
         console.log(formData);
     });
