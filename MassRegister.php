@@ -7,6 +7,8 @@ define('MyConst', TRUE);
 require_once 'vendor/autoload.php';
 require_once 'Dao.php';
 
+$phoneUtil = libphonenumber\PhoneNumberUtil::getInstance();
+
 $whoops = new Whoops\Run();
 $whoops->pushHandler(new \Whoops\Handler\JsonResponseHandler());
 $whoops->register();
@@ -25,7 +27,12 @@ $rules = [
 
 $jsonResp = [
     'valid' => false,
-    'data' => [],
+    'data' => [
+        'message' => [
+            'title' => '',
+            'text' => ''
+        ]
+    ],
     'errors' => [
         new Exception("Invalid request", 500)
     ]
@@ -37,62 +44,97 @@ if ($isPost) {
     $conn = new Dao();
     if ($helper === true) {
         $seatNo = 0;
+        $countryCode = '254';
         $surname = Request::post('surname');
         $otherNames = Request::post('other_names');
         $groupId = Request::post('group_id');
         $adult = Request::post('adultFlag');
         $age = Request::post('age');
-        $mobileNo = Request::post('mobile');
+        $mobileNo = Request::post('mobile', 0);
         $estateName = Request::post('estate_name');
-        $massId = Request::post('mass_schedule');
+        $massScheduleId = Request::post('mass_schedule');
         $capacity = Request::post('mass_capacity');
-        $massSchedule = Request::post('schedule_id');
+        $scheduleId = Request::post('schedule_id');
 
-        $seatsLeft = $conn->getSeatsLeft($massId, $capacity);
+        $surname = preg_replace('/\s+/', '', $surname);
+        $trimmedNames = preg_replace('/\s+/', ' ', $otherNames);
+
+        $isValid = false;
+        //validate phone number
+        try {
+            $swissNumberProto = $phoneUtil->parse($mobileNo, "KE");
+            $isValid = $phoneUtil->isValidNumber($swissNumberProto);
+            $countryCode = $swissNumberProto->getCountryCode();
+            $mobileNo = $swissNumberProto->getNationalNumber();
+            $mobileNo = "$countryCode$mobileNo";
+        } catch (\libphonenumber\NumberParseException $e) {
+            $isValid = false;
+            $jsonResp['data'] = [
+                'message' => [
+                    'title' => $e->getMessage(),
+                    'text' => 'Mass registration was not successful'
+                ]
+            ];
+        }
+        if ($isValid === false) {
+            $jsonResp['data'] = [
+                'message' => [
+                    'title' => "Invalid phone number",
+                    'text' => "Your phone number '${mobileNo}' appears to be invalid"
+                ]
+            ];
+        }
+        $jsonResp['valid'] = $isValid;
+
+        $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity);
         $seatNo = $seatsLeft;
         $data = [
             'seat_no' => $seatNo,
             'surname' => strtoupper($surname),
-            'othernames' => strtoupper($otherNames),
-            'adult' => $adult == 1 ? 'Yes' : 'No',
+            'other_names' => strtoupper($trimmedNames),
+            'adult' => $adult,
             'age' => $age,
             'group_id' => $groupId,
-            'estate' => $estateName,
+            'estate_name' => $estateName,
             'mobile' => $mobileNo,
-            'mass_id' => $massId,
+            'mass_schedule_id' => $massScheduleId,
+            'attended' => false
         ];
 
-        $jsonResp['mass_schedule_id'] = $massId;
+        $jsonResp['mass_schedule_id'] = $massScheduleId;
         $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
 
-        if ($seatsLeft > 0) {
-            $resp = $conn->insertIntoDatabase($data, 'mass_registration');
-            if ($resp['hasError'] === false) {
-                $jsonResp['valid'] = true;
-                $left = $seatsLeft - 1;
-                $jsonResp['seatsLeft'] = "{$left} seats left";
-                $jsonResp['data'] = [
-                    'message' => [
-                        'title' => 'Registration completed successfully',
-                        'text' => 'Registration completed successfully'
-                    ]
-                ];
+        if ($isValid == true) {
+            if ($seatsLeft > 0) {
+                $resp = $conn->insertIntoDatabase($data, 'mass_registration');
+                if ($resp['hasError'] === false) {
+                    $jsonResp['valid'] = true;
+                    $left = $seatsLeft - 1;
+                    $jsonResp['seatsLeft'] = "{$left} seats left";
+                    $jsonResp['data'] = [
+                        'message' => [
+                            'title' => 'Registration completed successfully',
+                            'text' => 'Registration completed successfully'
+                        ]
+                    ];
+                } else {
+                    $jsonResp['valid'] = false;
+                    $jsonResp['errors'] = $resp['errors'];
+                    $jsonResp['data'] = [
+                        'message' => [
+                            'title' => 'Mass registration failed',
+                            'text' => 'Mass registration was not successful'
+                        ]
+                    ];
+                }
             } else {
-                $jsonResp['errors'] = $resp['errors'];
                 $jsonResp['data'] = [
                     'message' => [
-                        'title' => 'Mass registration failed',
-                        'text' => 'Mas registration was not successful'
+                        'title' => 'The mass is already full',
+                        'text' => 'It appears this mass is already full, please choose another one'
                     ]
                 ];
             }
-        } else {
-            $jsonResp['data'] = [
-                'message' => [
-                    'title' => 'The mass is already full',
-                    'text' => 'It appears this mass is already full, please choose another one'
-                ]
-            ];
         }
     } else {
         $jsonResp['errors'] = $helper;

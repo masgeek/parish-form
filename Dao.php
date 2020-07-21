@@ -146,7 +146,7 @@ class Dao
     public function getSeatsLeft($massId, $capacity)
     {
         $seatCount = $this->database->count("mass_registration", [
-            'mass_id' => $massId
+            'mass_schedule_id' => $massId
         ]);
 
         $seatsLeft = $capacity - $seatCount;

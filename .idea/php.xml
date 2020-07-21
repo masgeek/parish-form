@@ -27,6 +27,8 @@
       <path value="$PROJECT_DIR$/vendor/yarn-asset/es6-object-assign" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/sweetalert" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/promise-polyfill" />
+      <path value="$PROJECT_DIR$/vendor/giggsey/locale" />
+      <path value="$PROJECT_DIR$/vendor/giggsey/libphonenumber-for-php" />
     </include_path>
   </component>
 </project>

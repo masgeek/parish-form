@@ -45,9 +45,9 @@ jQuery(document).ready(function () {
     //     });
     // });
 
-    // jQuery("#mass-reg-form").submit(function (e) {
-    //     return false;
-    // });
+    jQuery("#mass-reg-form").submit(function (e) {
+        return false;
+    });
 
     jQuery('#group-id').on('change', function () {
         const groupId = this.value;
@@ -99,7 +99,9 @@ jQuery(document).ready(function () {
                         text: resp.data.message['text'],
                         icon: "success",
                     });
-                    myform.trigger('reset'); //clear the form
+                    //myform.trigger('reset'); //clear the form
+                    jQuery('#mass-card').addClass('hidden');
+                    jQuery('#success-card').removeClass('hidden');
                     //show a banner
                 } else {
                     swal({
