@@ -71,6 +71,16 @@ jQuery(document).ready(function () {
     });
 
     jQuery('#btn-register').on('click', function () {
+        if ($('#mass-reg-form').smkValidate()) {
+            // Code here
+            $.smkAlert({
+                text: 'Validate!',
+                type: 'success'
+            });
+        }
+    });
+    jQuery('#btn-register2').on('click', function () {
+        $('#mass-reg-form').parsley();
         const formData = jQuery('#mass-reg-form').serialize();
         console.log(formData);
     });

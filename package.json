@@ -12,6 +12,8 @@
     "gijgo": "^1.9.13",
     "jquery": "^3.5.1",
     "mdbootstrap": "^4.19.1",
-    "popper.js": "^1.16.1"
+    "parsleyjs": "^2.9.2",
+    "popper.js": "^1.16.1",
+    "smokejs": "^3.1.0"
   }
 }

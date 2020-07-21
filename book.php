@@ -25,6 +25,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="vendor/yarn-asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/yarn-asset/smokejs/dist/css/smoke.css" rel="stylesheet">
 
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
@@ -45,8 +46,12 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 
         <!--Card content-->
         <div class="card-body">
+            <div class="bs-callout bs-callout-warning hidden">
+                <h4>Oh snap!</h4>
+                <p>This form seems to be invalid :(</p>
+            </div>
             <!-- Form -->
-            <form action="#" id="mass-reg-form" class="was-validated">
+            <form action="#" id="mass-reg-form" class="was-validated-here" data-parsley-validate="">
 
                 <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
                 <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>" readonly>
@@ -181,7 +186,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 <script type="text/javascript" src="vendor/yarn-asset/popper.js/dist/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="vendor/yarn-asset/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
+<script type="text/javascript" src="vendor/yarn-asset/smokejs/dist/js/smoke.js"></script>
 <script type="text/javascript" src="js/process-data.js?random=<?php echo uniqid("custom_"); ?>"></script>
 </body>
 

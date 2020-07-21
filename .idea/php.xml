@@ -10,6 +10,8 @@
       <path value="$PROJECT_DIR$/vendor/yarn-asset/mdbootstrap" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/gijgo" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/flatpickr" />
+      <path value="$PROJECT_DIR$/vendor/yarn-asset/parsleyjs" />
+      <path value="$PROJECT_DIR$/vendor/yarn-asset/smokejs" />
     </include_path>
   </component>
 </project>
