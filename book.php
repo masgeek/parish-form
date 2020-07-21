@@ -67,8 +67,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
             <!-- Form -->
             <form style="color: #757575;" action="#" id="mass-reg-form">
 
-                <input type="text" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
-                <input type="text" id="outstation_id" name="outstation_id" value="<?= $station_id ?>" readonly>
+                <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
+                <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>" readonly>
 
                 <!-- Email -->
                 <div class="row">
@@ -155,16 +155,17 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 
                 <div class="row">
                     <div class="col-md">
+                        <h5>Choose your preferred mass</h5>
                         <div class="funkyradio">
-                        <?php foreach ($scheduledMasses as $key => $value): ?>
-                            <div class="funkyradio-success">
-                                <input type="radio" name="mass" id="defaultChecked-<?= $key ?>"/>
-                                <label for="defaultChecked-<?= $key ?>">
-                                    <?= $value['mass_title'] ?>
-                                </label>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
+                            <?php foreach ($scheduledMasses as $key => $value): ?>
+                                <div class="funkyradio-success">
+                                    <input type="radio" name="mass" id="defaultChecked-<?= $key ?>"/>
+                                    <label for="defaultChecked-<?= $key ?>">
+                                        <?= $value['mass_title'] ?>
+                                    </label>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
                     </div>
                 </div>
                 <!-- Register button -->
@@ -193,8 +194,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 <script type="text/javascript" src="vendor/yarn-asset/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="vendor/yarn-asset/mdbootstrap/js/mdb.min.js"></script>
-<!--<script type="text/javascript" src="vendor/yarn-asset/gijgo/js/gijgo.min.js"></script>-->
-<script type="text/javascript" src="vendor/yarn-asset/flatpickr/dist/flatpickr.min.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
 <script type="text/javascript" src="js/process-data.js"></script>
