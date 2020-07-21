@@ -26,7 +26,8 @@ $groups = $conn->getGroups($id);
     <link href="vendor/yarn-asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="vendor/yarn-asset/mdbootstrap/css/mdb.min.css" rel="stylesheet">
-    <link href="vendor/yarn-asset/gijgo/css/gijgo.min.css" rel="stylesheet">
+    <!--    <link href="vendor/yarn-asset/gijgo/css/gijgo.min.css" rel="stylesheet">-->
+    <link href="vendor/yarn-asset/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
@@ -181,7 +182,8 @@ $groups = $conn->getGroups($id);
 <script type="text/javascript" src="vendor/yarn-asset/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- MDB core JavaScript -->
 <script type="text/javascript" src="vendor/yarn-asset/mdbootstrap/js/mdb.min.js"></script>
-<script type="text/javascript" src="vendor/yarn-asset/gijgo/js/gijgo.min.js"></script>
+<!--<script type="text/javascript" src="vendor/yarn-asset/gijgo/js/gijgo.min.js"></script>-->
+<script type="text/javascript" src="vendor/yarn-asset/flatpickr/dist/flatpickr.min.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
 <script type="text/javascript" src="js/process-data.js"></script>

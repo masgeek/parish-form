@@ -6,14 +6,22 @@ jQuery(document).ready(function () {
     const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     const yyyy = today.getFullYear();
 
-    today = mm + '/' + dd + '/' + yyyy;
-    jQuery('.datepicker').datepicker({
-        modal: true,
-        showOnFocus: false,
-        value: today,
-        minDate: today,
-        // disableDaysOfWeek: [1,2,3,4,5,6]
-    });
+    today = yyyy + '-' + mm + '-' + dd;
+    const config = {
+        altInput: true,
+        altFormat: "F j, Y",
+        dateFormat: "Y-m-d",
+        minDate: "today"
+        // minDate: today
+    };
+    $(".datepicker").flatpickr(config);
+    // jQuery('.datepicker').datepicker({
+    //     modal: true,
+    //     showOnFocus: false,
+    //     value: today,
+    //     minDate: today,
+    //     // disableDaysOfWeek: [1,2,3,4,5,6]
+    // });
 
     // jQuery(function ($) {
     //     //let us call the table data
