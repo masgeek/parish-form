@@ -122,7 +122,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                             <?php foreach ($groups as $key => $value):
                                 $groupId = $value['group_id'];
                                 $estateId = $value['estate_id'];
-                                $groupName = $value['group_name'] . '--' . $value['estate_id'];
                                 ?>
                                 <input type="hidden" id="estate-<?= $groupId ?>" value="<?= $estateId ?>"
                                        class="form-control" readonly>
@@ -182,7 +181,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="vendor/yarn-asset/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
-<script type="text/javascript" src="js/process-data.js"></script>
+<script type="text/javascript" src="js/process-data.js?random=<?php echo uniqid("custom_"); ?>"></script>
 </body>
 
 </html>
