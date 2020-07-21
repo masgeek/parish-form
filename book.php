@@ -117,7 +117,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                         <div class="form-group">
                             <label for="group">What is the name of your jumuia?</label>
                             <select class="form-control" id="group" name="group" required>
-                                <option selected>Select your jumuia</option>
+                                <option value="" selected>Select your jumuia</option>
                                 <?php foreach ($groups as $key => $value): ?>
                                     <option value="<?= $value['group_id'] ?>"><?= $value['group_name'] ?></option>
                                 <?php endforeach; ?>
