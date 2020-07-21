@@ -64,10 +64,10 @@ $groups = $conn->getGroups($station_id);
         <div class="card-body px-lg-5 pt-0">
 
             <!-- Form -->
-            <form style="color: #757575;" action="#!">
+            <form style="color: #757575;" action="#" id="mass-reg-form">
 
-                <input type="text" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"
-                       class="form-control" readonly>
+                <input type="text" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
+                <input type="text" id="outstation_id" name="outstation_id" value="<?= $station_id ?>" readonly>
 
                 <!-- Email -->
                 <div class="row">
@@ -88,7 +88,7 @@ $groups = $conn->getGroups($station_id);
 
                 <div class="row">
                     <div class="col-md">
-                        <h5>Are you over 18?</h5>
+                        <h5>Are you an adult?</h5>
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" class="custom-control-input" id="rdYes"
                                    name="rdNo">
@@ -107,7 +107,7 @@ $groups = $conn->getGroups($station_id);
                     <div class="col-md">
                         <div class="md-form">
                             <input type="text" id="age" class="form-control">
-                            <label for="age">What is your age?</label>
+                            <label for="age" class="h5">What is your age?</label>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,8 @@ $groups = $conn->getGroups($station_id);
                 </div>
 
                 <!-- Sign in button -->
-                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">
+                <button class="btn btn-outline-success btn-rounded btn-block waves-effect" type="button"
+                        id="btn-register">
                     Register
                 </button>
 

@@ -45,6 +45,10 @@ jQuery(document).ready(function () {
     //     });
     // });
 
+    jQuery("#mass-reg-form").submit(function (e) {
+        return false;
+    });
+
     jQuery('#group').on('change', function () {
         const groupId = this.value;
         const estateId = jQuery("#estate-" + groupId).val();
@@ -59,5 +63,11 @@ jQuery(document).ready(function () {
     jQuery('#mass_date').on('change', function () {
         const massDate = this.value;
         console.log(massDate);
+    });
+
+    jQuery('#btn-register').on('click', function () {
+        const formData = jQuery('#mass-reg-form').serialize();
+
+        console.log(formData);
     });
 });
