@@ -12,7 +12,9 @@ $cleaner = new \voku\helper\AntiXSS();
 $station_id = isset($_GET['station_id']) ? $cleaner->xss_clean($_GET['station_id']) : 0;
 $schedule_id = isset($_GET['schedule_id']) ? $cleaner->xss_clean($_GET['schedule_id']) : 0;
 
-$date = date('d D M, Y');
+$timeStamp = isset($_GET['ts']) ? $cleaner->xss_clean($_GET['ts']) : 0;
+
+$displayDate = date('l, jS F Y', $timeStamp);
 
 $groups = $conn->getGroups($station_id);
 
@@ -36,7 +38,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                     <h1>Thank You!</h1>
                     <h3 class="cupon-pop">Your Mass registration has been received successfully</h3>
                     <br/>
-                    <a href="index-old-a.php" class="btn btn-success btn-lg">Finish</a>
+                    <a href="index.php" class="btn btn-success btn-lg">Finish</a>
                 </div>
             </div>
         </div>
@@ -47,10 +49,11 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     <div class="row h-100 justify-content-center align-items-center" id="mass-card">
         <div class="col-12 col-md-12 col-lg-10">
             <div class="card">
-
-                <h5 class="card-header text-center text-white bg-primary">
-                    <strong>Register</strong>
-                </h5>
+                <div class="card-header text-center text-white bg-primary">
+                    <strong>Register for mas on</strong>
+                    <strong><?= $displayDate ?></strong>
+                    <a href="index.php" class="btn btn-dark float-left">return</a>
+                </div>
 
                 <!--Card content-->
                 <div class="card-body">

@@ -7,7 +7,6 @@
       <path value="$PROJECT_DIR$/vendor/yarn-asset/jquery" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/bootstrap" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/popper.js" />
-      <path value="$PROJECT_DIR$/vendor/yarn-asset/mdbootstrap" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/gijgo" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/flatpickr" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/parsleyjs" />

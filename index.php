@@ -53,8 +53,8 @@ $currentDate = date('l, jS F Y');
                 <?php foreach ($massDates as $key => $value):
                     $massDate = $value['mass_schedule_date'];
 
-
-                    $displayDate = date('l, jS F Y', strtotime($massDate));
+                    $timeStamp = strtotime($massDate);
+                    $displayDate = date('l, jS F Y', $timeStamp);
 
                     $massStations = $conn->getMassStations($massDate);
                     ?>
@@ -76,7 +76,7 @@ $currentDate = date('l, jS F Y');
                                         <td><strong><?= $stationName ?></strong></td>
                                         <td class="text-center">
                                             <a class="btn btn-primary"
-                                               href="book.php?schedule_id=<?= $scheduleID ?>&station_id=<?= $stationID ?>">
+                                               href="book.php?schedule_id=<?= $scheduleID ?>&station_id=<?= $stationID ?>&ts=<?= $timeStamp ?>">
                                                 <i class="fas fa-clone left"></i> Register</a>
                                         </td>
                                     </tr>
