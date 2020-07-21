@@ -1,7 +1,7 @@
 <?php
 define('MyConst', TRUE);
 
-require_once 'Dao.php';
+require_once 'utils/Dao.php';
 
 $conn = new Dao();
 

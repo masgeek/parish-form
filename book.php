@@ -2,7 +2,7 @@
 define('MyConst', TRUE);
 
 require_once 'vendor/autoload.php';
-require_once 'Dao.php';
+require_once 'utils/Dao.php';
 
 $conn = new Dao();
 
@@ -60,7 +60,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     <!-- input form -->
     <div class="row h-100 justify-content-center align-items-center" id="mass-card">
         <div class="col-12 col-md-12 col-lg-10">
-            <div class="card" >
+            <div class="card">
 
                 <h5 class="card-header text-center text-white bg-primary">
                     <strong>Register</strong>
