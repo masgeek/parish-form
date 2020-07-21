@@ -48,7 +48,7 @@ jQuery(document).ready(function () {
     jQuery('#group').on('change', function () {
         const groupId = this.value;
         const estateId = jQuery("#estate-" + groupId).val();
-        console.log(estateId);
+        console.log(groupId);
         jQuery.getJSON('get-estates.php', {group_id: groupId, estate_id: estateId}, function (data, testStatus, jqXHR) {
             jQuery('#estate')
                 .val(data[0].estate_name)
