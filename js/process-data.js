@@ -14,7 +14,7 @@ jQuery(document).ready(function () {
         minDate: "today"
         // minDate: today
     };
-    $(".datepicker").flatpickr(config);
+    // $(".datepicker").flatpickr(config);
     // jQuery('.datepicker').datepicker({
     //     modal: true,
     //     showOnFocus: false,

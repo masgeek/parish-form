@@ -4,6 +4,11 @@ require_once 'config.php';
 
 class conn
 {
+    // [>] == LEFT JOIN
+// [<] == RIGH JOIN
+// [<>] == FULL JOIN
+// [><] == INNER JOIN
+
     public $database;
 
     public function __construct()
@@ -15,7 +20,6 @@ class conn
             'username' => DB_USER,
             'password' => DB_PASS
         ]);
-
     }
 
     public function getOutStations()
@@ -69,6 +73,36 @@ class conn
             'estate_id'
         ], [
             'outstation_id' => $outstation_id
+        ]);
+
+        return $data;
+    }
+
+    public function getActiveMassDates()
+    {
+        $data = $this->database->select('mass_schedule_master', [
+            'mass_schedule_date',
+        ], [
+            'mass_schedule_date[>=]' => Medoo\Medoo::raw('CURDATE()'),
+            "ORDER" => ["mass_schedule_date" => 'ASC'],
+            "GROUP" => ["mass_schedule_date"],
+        ]);
+
+        return $data;
+    }
+
+    public function getMassStations($massDate)
+    {
+        $data = $this->database->select('mass_schedule_master', [
+            '[><]outstations' => ['outstation_id' => 'outstation_id']
+        ], [
+            'mass_schedule_master.id',
+            'mass_schedule_master.mass_schedule_date',
+            'outstations.outstation_name',
+            'outstations.outstation_id'
+        ], [
+            'mass_schedule_date[>=]' => $massDate,
+            "ORDER" => ["outstations.outstation_name" => 'ASC'],
         ]);
 
         return $data;

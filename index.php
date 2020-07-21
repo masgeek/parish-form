@@ -4,7 +4,7 @@ require_once 'conn.php';
 $conn = new conn();
 
 
-$data = $conn->getOutStations();
+$massDates = $conn->getActiveMassDates();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,46 +27,49 @@ $data = $conn->getOutStations();
 <body>
 
 <!-- Start your project here-->
-
-<div class="jumbotron card card-image"
-     style="background-image: url(img/gradient1.jpg);">
-    <div class="text-white text-center py-5 px-4">
-        <div>
-            <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Register for sunday Mass</strong></h2>
-            <p class="mx-5 mb-5">Select your out below to continue
-            </p>
-            <!--            <a class="btn btn-outline-white btn-md"><i class="fas fa-clone left"></i> View project</a>-->
+<div class="container-fluid">
+    <div class="jumbotron card card-image"
+         style="background-image: url(img/gradient1.jpg);">
+        <div class="text-white text-center py-5 px-4">
+            <div>
+                <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Kindly Register for Mass at the
+                        outsation of your choice </strong></h2>
+            </div>
         </div>
     </div>
+
+
+    <h2 class='mb-3'>Outstations</h2>
+    <table class="table table-bordered">
+        <tbody>
+        <?php foreach ($massDates as $key => $value):
+            $massDate = $value['mass_schedule_date'];
+            $massStations = $conn->getMassStations($massDate);
+
+            ?>
+            <tr>
+                <th><h2><?= $massDate ?></h2></th>
+                <th>&nbsp;</th>
+                <!-- nested table -->
+                <?php foreach ($massStations as $stationKey => $stationValue):
+                    $id = $stationValue['id'];
+                    ?>
+                    <table class="table table-striped">
+                        <tr>
+                            <td class="col-sm-12"><?= $stationValue['outstation_name'] ?></td>
+                            <td>
+                                <a class="btn btn-outline-success btn-sm"
+                                   href="book.php?station_id=<?= $id ?>">
+                                    <i class="fas fa-clone left"></i> Register</a>
+                            </td>
+                        </tr>
+                    </table>
+                <?php endforeach; ?>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>
-
-
-<h2 class='mb-3'>Outstations</h2>
-<table id="dtBasicExample" class="table table-bordered table-hover">
-    <thead>
-    <tr>
-        <th>Outstation name</th>
-        <th>Description</th>
-        <th>#</th>
-    </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($data as $key => $value):
-        $name = $value['outstation_name'];
-        $id = $value['outstation_id'];
-        ?>
-        <tr>
-            <td><?= $value['outstation_name'] ?></td>
-            <td><?= $value['description'] ?></td>
-            <td>
-                <a class="btn btn-outline-success btn-md btn-block" href="book.php?id=<?= $id ?>&name=<?= $name ?>"><i
-                            class="fas fa-clone left"></i> Book</a>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
-
 <!-- /Start your project here-->
 
 <!-- SCRIPTS -->

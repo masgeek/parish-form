@@ -132,8 +132,9 @@ $groups = $conn->getGroups($id);
                             </select>
                             <?php foreach ($groups as $key => $value):
                                 $estateId = $value['estate_id'];
+                                $grp = $value['group_name']
                                 ?>
-                                <input type="hidden" id="estate-<?= $estateId ?>" value="<?= $estateId ?>"
+                                <input type="text" id="estate-<?= $estateId ?>" value="<?= $grp ?>"
                                        class="form-control" readonly>
                             <?php endforeach; ?>
                         </div>
