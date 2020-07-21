@@ -8,9 +8,9 @@ $schedule_id = isset($_GET['schedule_id']) ? $_GET['schedule_id'] : 0;
 
 $date = date('d D M, Y');
 
-//$data = $conn->getBookingDetails($station_id, $name);
 $groups = $conn->getGroups($station_id);
 
+$scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +32,7 @@ $groups = $conn->getGroups($station_id);
 
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/fancy-radio-buttons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -152,7 +153,21 @@ $groups = $conn->getGroups($station_id);
                     </div>
                 </div>
 
-                <!-- Sign in button -->
+                <div class="row">
+                    <div class="col-md">
+                        <div class="funkyradio">
+                        <?php foreach ($scheduledMasses as $key => $value): ?>
+                            <div class="funkyradio-success">
+                                <input type="radio" name="mass" id="defaultChecked-<?= $key ?>"/>
+                                <label for="defaultChecked-<?= $key ?>">
+                                    <?= $value['mass_title'] ?>
+                                </label>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    </div>
+                </div>
+                <!-- Register button -->
                 <button class="btn btn-outline-success btn-rounded btn-block waves-effect" type="button"
                         id="btn-register">
                     Register

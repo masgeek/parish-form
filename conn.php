@@ -107,4 +107,25 @@ class conn
 
         return $data;
     }
+
+    public function getActiveScheduledMasses($schedule_id)
+    {
+        $data = $this->database->select('mass_schedule', [
+            '[><]masses' => ['mass_id' => 'mass_id']
+        ], [
+            'mass_schedule.id',
+            'mass_schedule.mass_id',
+            'mass_schedule.schedule_master_id',
+            'mass_schedule.mass_status_id',
+            'mass_schedule.capacity',
+            'masses.mass_title',
+            'masses.time_from',
+            'masses.time_to'
+        ], [
+            'mass_schedule.schedule_master_id' => $schedule_id,
+            "ORDER" => ["masses.time_from" => 'ASC'],
+        ]);
+
+        return $data;
+    }
 }
