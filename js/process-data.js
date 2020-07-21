@@ -84,36 +84,55 @@ jQuery(document).ready(function () {
     });
     jQuery('#btn-register').on('click', function () {
 
-        const form = jQuery('#mass-reg-form');
-        if (form[0].checkValidity() === false) {
-            form.addClass('was-validated');
+        const myform = jQuery('#mass-reg-form');
+        if (myform[0].checkValidity() === false) {
+            myform.addClass('was-validated');
             return;
         }
         //proceed with normal operations
-        const formData = form.serialize();
+        const formData = myform.serialize();
 
         jQuery.ajax({
             type: 'POST',
             url: 'MassRegister.php',
             dataType: "json",
             data: formData,
-            success: function (data, textStatus, XMLHttpRequest) {
-                console.log(data);
-                const scheduleId = data.mass_schedule_id;
-                if (data.valid === true) {
+            success: function (resp, textStatus, XMLHttpRequest) {
+                console.log(resp);
+                const scheduleId = resp.mass_schedule_id;
+                if (resp.valid === true) {
                     swal({
-                        title: "Good job!",
-                        text: "You clicked the button!",
+                        closeOnClickOutside: false,
+                        closeOnEsc: false,
+                        title: resp.data.message['title'],
+                        text: resp.data.message['text'],
                         icon: "success",
+                    });
+                    myform.trigger('reset'); //clear the form
+                    //show a banner
+                } else {
+                    swal({
+                        closeOnClickOutside: false,
+                        closeOnEsc: false,
+                        title: resp.data.message['title'],
+                        text: resp.data.message['text'],
+                        icon: "error",
+                        button: "Retry",
                     });
                 }
 
-                jQuery('#seats-left-' + scheduleId).html(data.seatsLeft);
+                jQuery('#seats-left-' + scheduleId).html(resp.seatsLeft);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest.responseText);
-                // console.log(textStatus);
-                //console.log(errorThrown);
+                swal({
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    title: "Mass Registration not successful",
+                    text: "Your mass registration was not successful, please try again",
+                    icon: "danger",
+                    button: "Retry",
+                });
             }
         });
     });

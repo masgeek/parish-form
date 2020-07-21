@@ -70,20 +70,28 @@ if ($isPost) {
             if ($resp['hasError'] === false) {
                 $jsonResp['valid'] = true;
                 $left = $seatsLeft - 1;
-                $jsonResp['left'] = $left;
                 $jsonResp['seatsLeft'] = "{$left} seats left";
                 $jsonResp['data'] = [
-                    'message' => 'Registration completed successfully'
+                    'message' => [
+                        'title' => 'Registration completed successfully',
+                        'text' => 'Registration completed successfully'
+                    ]
                 ];
             } else {
                 $jsonResp['errors'] = $resp['errors'];
                 $jsonResp['data'] = [
-                    'message' => 'Registration completed successfully'
+                    'message' => [
+                        'title' => 'Mass registration failed',
+                        'text' => 'Mas registration was not successful'
+                    ]
                 ];
             }
         } else {
             $jsonResp['data'] = [
-                'message' => 'The mass is already full'
+                'message' => [
+                    'title' => 'The mass is already full',
+                    'text' => 'It appears this mass is already full, please choose another one'
+                ]
             ];
         }
     } else {
