@@ -36,7 +36,7 @@ $groups = $conn->getGroups($station_id);
 
 <body>
 <!-- Start your project here-->
-<div class="col-md-8 offset-2">
+<div class="container-fluid">
     <!--    <div class="jumbotron card card-image"-->
     <!--         style="background-image: url(img/gradient1.jpg);">-->
     <!--        <div class="text-white text-center py-5 px-4">-->
