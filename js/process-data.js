@@ -52,12 +52,17 @@ jQuery(document).ready(function () {
     jQuery('#group').on('change', function () {
         const groupId = this.value;
         const estateId = jQuery("#estate-" + groupId).val();
-        console.log(groupId);
-        jQuery.getJSON('get-estates.php', {group_id: groupId, estate_id: estateId}, function (data, testStatus, jqXHR) {
-            jQuery('#estate')
-                .val(data[0].estate_name)
-                .trigger('focus');
-        });
+        jQuery('#estate-name').val(null);
+        if (!isEmpty(estateId)) {
+            console.log("Estate id is", estateId)
+            jQuery.getJSON('get-estates.php', {
+                group_id: groupId,
+                estate_id: estateId
+            }, function (data, testStatus, jqXHR) {
+                console.log("Estate data is", data);
+                jQuery('#estate-name').val(data[0].estate_name);
+            });
+        }
     });
 
     jQuery('#mass_date').on('change', function () {
@@ -71,3 +76,7 @@ jQuery(document).ready(function () {
         console.log(formData);
     });
 });
+
+function isEmpty(val) {
+    return (val === undefined || val == null || val.length <= 0);
+}

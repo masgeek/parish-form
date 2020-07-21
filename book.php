@@ -25,8 +25,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="vendor/yarn-asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="vendor/yarn-asset/mdbootstrap/css/mdb.min.css" rel="stylesheet">
+
     <!--    <link href="vendor/yarn-asset/gijgo/css/gijgo.min.css" rel="stylesheet">-->
     <link href="vendor/yarn-asset/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
 
@@ -38,34 +37,19 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 <body>
 <!-- Start your project here-->
 <div class="container-fluid">
-    <!--    <div class="jumbotron card card-image"-->
-    <!--         style="background-image: url(img/gradient1.jpg);">-->
-    <!--        <div class="text-white text-center py-5 px-4">-->
-    <!--            <div>-->
-    <!--                <h1 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>-->
-    <? //= $name ?><!--</strong></h1>-->
-    <!--                <h3 class="card-subtitle h2-responsive pt-3 mb-5 font-bold"><strong>-->
-    <? //= $date ?><!--</strong></h3>-->
-    <!--                <p class="mx-5 mb-5">Please provide details below to continue-->
-    <!--                </p>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
 
 
     <!-- input form -->
-    <!-- Material form login -->
     <div class="card">
 
-        <h5 class="card-header info-color white-text text-center py-4">
+        <h5 class="card-header text-center text-white bg-primary">
             <strong>Register</strong>
         </h5>
 
         <!--Card content-->
-        <div class="card-body px-lg-5 pt-0">
-
+        <div class="card-body">
             <!-- Form -->
-            <form style="color: #757575;" action="#" id="mass-reg-form">
+            <form action="#" id="mass-reg-form" class="was-validated">
 
                 <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
                 <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>" readonly>
@@ -73,60 +57,66 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                 <!-- Email -->
                 <div class="row">
                     <div class="col-md">
-                        <div class="md-form">
-                            <input type="text" id="surname" class="form-control">
+                        <div class="form-group">
                             <label for="surname">Surname</label>
+                            <input type="text" id="surname" class="form-control" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
                     <!-- Password -->
                     <div class="col-md">
-                        <div class="md-form">
-                            <input type="text" id="other_names" class="form-control">
+                        <div class="form-group">
                             <label for="other_names">Other names</label>
+                            <input type="text" id="other_names" class="form-control" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md">
-                        <h5>Are you an adult?</h5>
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="rdYes"
-                                   name="rdNo">
-                            <label class="custom-control-label" for="rdYes">YES</label>
-                        </div>
-
-                        <!-- Default inline 2-->
-                        <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="rdNo"
-                                   name="rdNo">
-                            <label class="custom-control-label" for="rdNo">NO</label>
+                        <label>Are you an adult?</label>
+                        <div class="form-group">
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="adultFlag" required>Yes
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="adultFlag" required>No
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md">
-                        <div class="md-form">
-                            <input type="text" id="age" class="form-control">
-                            <label for="age" class="h5">What is your age?</label>
+                        <div class="form-group">
+                            <label for="age">What is your age?</label>
+                            <input type="number" id="age" class="form-control" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md">
-                        <div class="md-form">
-                            <input type="text" id="mobile" class="form-control">
+                        <div class="form-group">
                             <label for="mobile">What is your mobile number?</label>
+                            <input type="text" id="mobile" class="form-control" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md">
-                        <div class="md-form">
-                            <h5>What is the name of your jumuia?</h5>
-                            <select class="browser-default custom-select custom-select-md mb-3" id="group" name="group">
+                        <div class="form-group">
+                            <label for="group">What is the name of your jumuia?</label>
+                            <select class="form-control" id="group" name="group" required>
                                 <option selected>Select your jumuia</option>
                                 <?php foreach ($groups as $key => $value): ?>
                                     <option value="<?= $value['group_id'] ?>"><?= $value['group_name'] ?></option>
@@ -146,28 +136,29 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 
                 <div class="row">
                     <div class="col-md">
-                        <div class="md-form">
-                            <input type="text" id="estate" class="form-control">
-                            <label for="estate">What is your estate name?</label>
+                        <div class="form-group">
+                            <label for="estate-name">What is your estate name?</label>
+                            <input type="text" id="estate-name" name="estate-name" class="form-control" required>
+                            <div class="invalid-feedback">Please fill out this field.</div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md">
-                        <h5>Choose your preferred mass</h5>
-                        <div class="funkyradio">
-                            <?php foreach ($scheduledMasses as $key => $value): ?>
-                                <div class="funkyradio-success">
-                                    <input type="radio" name="mass" id="defaultChecked-<?= $key ?>"/>
-                                    <label for="defaultChecked-<?= $key ?>">
-                                        <?= $value['mass_title'] ?>
-                                    </label>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="row">-->
+<!--                    <div class="col-md">-->
+<!--                        <h5>Choose your preferred mass</h5>-->
+<!--                        <div class="funkyradio form-group">-->
+<!--                            --><?php //foreach ($scheduledMasses as $key => $value): ?>
+<!--                                <div class="funkyradio-success">-->
+<!--                                    <input type="radio" name="mass" id="defaultChecked---><?//= $key ?><!--"/>-->
+<!--                                    <label for="defaultChecked---><?//= $key ?><!--">-->
+<!--                                        --><?//= $value['mass_title'] ?>
+<!--                                    </label>-->
+<!--                                </div>-->
+<!--                            --><?php //endforeach; ?>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <!-- Register button -->
                 <button class="btn btn-outline-success btn-rounded btn-block waves-effect" type="button"
                         id="btn-register">
@@ -192,9 +183,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 <script type="text/javascript" src="vendor/yarn-asset/popper.js/dist/popper.min.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script type="text/javascript" src="vendor/yarn-asset/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- MDB core JavaScript -->
-<script type="text/javascript" src="vendor/yarn-asset/mdbootstrap/js/mdb.min.js"></script>
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/validate.js/0.13.1/validate.min.js"></script>
 <script type="text/javascript" src="js/process-data.js"></script>
 </body>

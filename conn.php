@@ -124,7 +124,7 @@ class conn
         ],
         [
             'mass_schedule.schedule_master_id' => $schedule_id,
-            "ORDER" => ["masses.time_from" => 'ASC'],s
+            "ORDER" => ["masses.time_from" => 'ASC'],
         ]);
 
         return $data;
