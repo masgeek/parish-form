@@ -26,9 +26,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     <!-- Bootstrap core CSS -->
     <link href="vendor/yarn-asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--    <link href="vendor/yarn-asset/gijgo/css/gijgo.min.css" rel="stylesheet">-->
-    <link href="vendor/yarn-asset/flatpickr/dist/flatpickr.min.css" rel="stylesheet">
-
     <!-- Your custom styles (optional) -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/fancy-radio-buttons.css" rel="stylesheet">
