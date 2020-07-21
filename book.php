@@ -60,7 +60,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
 
     <!-- input form -->
     <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-10 col-md-12 col-lg-10">
+        <div class="col-12 col-md-12 col-lg-10">
             <div class="card" id="mass-card">
 
                 <h5 class="card-header text-center text-white bg-primary">
