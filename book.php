@@ -48,7 +48,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                 <div class="thank-you-pop card-body">
                     <img src="img/green-tick.png" alt="">
                     <h1>Thank You!</h1>
-                    <h3 class="cupon-pop">Your mass registration has been received successfully</h3>
+                    <h3 class="cupon-pop">Your Mass registration has been received successfully</h3>
                     <!--                    <h3 class="cupon-pop">Mass time: <span>12345</span></h3>-->
                 </div>
             </div>
