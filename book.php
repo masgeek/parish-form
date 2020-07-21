@@ -146,7 +146,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                         <div class="funkyradio form-group">
                             <?php foreach ($scheduledMasses as $key => $value): ?>
                                 <div class="funkyradio-success">
-                                    <input type="radio" name="mass" id="defaultChecked-<?= $key ?>" required/>
+                                    <input type="radio" name="mass_schedule" id="defaultChecked-<?= $key ?>"
+                                           value="<?= $value['id'] ?>" required/>
                                     <label for="defaultChecked-<?= $key ?>">
                                         <?= $value['mass_title'] ?>
                                     </label>
