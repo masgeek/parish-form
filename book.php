@@ -80,14 +80,14 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                             <div class="form-check-inline">
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" name="adultFlag" required>Yes
-                                    <div class="invalid-feedback">Please fill out this field.</div>
                                 </label>
+                                <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
                             <div class="form-check-inline">
                                 <label class="form-check-label">
                                     <input type="radio" class="form-check-input" name="adultFlag" required>No
-                                    <div class="invalid-feedback">Please fill out this field.</div>
                                 </label>
+                                <div class="invalid-feedback">Please fill out this field.</div>
                             </div>
                         </div>
                     </div>
@@ -144,21 +144,22 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                     </div>
                 </div>
 
-<!--                <div class="row">-->
-<!--                    <div class="col-md">-->
-<!--                        <h5>Choose your preferred mass</h5>-->
-<!--                        <div class="funkyradio form-group">-->
-<!--                            --><?php //foreach ($scheduledMasses as $key => $value): ?>
-<!--                                <div class="funkyradio-success">-->
-<!--                                    <input type="radio" name="mass" id="defaultChecked---><?//= $key ?><!--"/>-->
-<!--                                    <label for="defaultChecked---><?//= $key ?><!--">-->
-<!--                                        --><?//= $value['mass_title'] ?>
-<!--                                    </label>-->
-<!--                                </div>-->
-<!--                            --><?php //endforeach; ?>
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="row">
+                    <div class="col-md">
+                        <h5>Choose your preferred mass</h5>
+                        <div class="funkyradio form-group">
+                            <?php foreach ($scheduledMasses as $key => $value): ?>
+                                <div class="funkyradio-success">
+                                    <input type="radio" name="mass" id="defaultChecked-<?= $key ?>" required/>
+                                    <label for="defaultChecked-<?= $key ?>">
+                                        <?= $value['mass_title'] ?>
+                                    </label>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
                 <!-- Register button -->
                 <button class="btn btn-outline-success btn-rounded btn-block waves-effect" type="button"
                         id="btn-register">

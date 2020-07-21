@@ -1,4 +1,4 @@
-"use strict"
+'use strict'
 
 jQuery(document).ready(function () {
     let today = new Date();
@@ -45,9 +45,9 @@ jQuery(document).ready(function () {
     //     });
     // });
 
-    jQuery("#mass-reg-form").submit(function (e) {
-        return false;
-    });
+    // jQuery("#mass-reg-form").submit(function (e) {
+    //     return false;
+    // });
 
     jQuery('#group').on('change', function () {
         const groupId = this.value;
@@ -72,7 +72,6 @@ jQuery(document).ready(function () {
 
     jQuery('#btn-register').on('click', function () {
         const formData = jQuery('#mass-reg-form').serialize();
-
         console.log(formData);
     });
 });
