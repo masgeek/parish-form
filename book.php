@@ -49,7 +49,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 
     <!-- input form -->
     <div class="row mt-3" id="mass-card">
-        <div class="col-12">
+        <div class="col-12 col-md-12 col-lg-8 offset-2">
             <div class="card">
                 <div class="card-header text-center">
                     <h3>Register for mass on <span class="text-info"><?= $displayDate ?></span> at <span class="text-success"><?= $station_name ?></span></h3>
