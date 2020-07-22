@@ -41,9 +41,9 @@ $currentDate = date('l, jS F Y');
                 </div>
             </div>
 
-            <table class="table table-bordered">
+            <table class="table">
                 <thead>
-                <tr>
+                <tr class="bg-success text-white">
                     <th>Outstation</th>
                     <th class="text-right">Action</th>
                 </tr>
@@ -58,7 +58,7 @@ $currentDate = date('l, jS F Y');
                     $massStations = $conn->getMassStations($massDate);
                     ?>
                     <tr>
-                        <td colspan="2" class="text-center">
+                        <td colspan="2" class="text-center bg-info text-white">
                             <strong><?= $displayDate ?></strong>
                         </td>
                     </tr>
@@ -69,12 +69,12 @@ $currentDate = date('l, jS F Y');
                                 $stationID = $stationValue['outstation_id'];
                                 $stationName = $stationValue['outstation_name'];
                                 ?>
-                                <table class="table table-bordered table-sm">
+                                <table class="table table-sm table-hover">
                                     <tr>
-                                        <td><strong><?= $stationName ?></strong></td>
-                                        <td class="text-center">
-                                            <a class="btn btn-primary float-right"
-                                               href="book.php?station_id=<?= $stationID ?>&ts=<?= $timeStamp ?>">
+                                        <td class="description"><?= $stationName ?></td>
+                                        <td>
+                                            <a class="btn btn-primary btn-block"
+                                               href="book.php?id=<?= $stationID ?>&ts=<?= $timeStamp ?>&sn=<?=$stationName?>">
                                                 <i class="fas fa-clipboard-list left"></i> Register</a>
                                         </td>
                                     </tr>

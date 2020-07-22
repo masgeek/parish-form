@@ -9,7 +9,8 @@ $conn = new Dao();
 
 $cleaner = new \voku\helper\AntiXSS();
 
-$station_id = isset($_GET['station_id']) ? $cleaner->xss_clean($_GET['station_id']) : 0;
+$station_id = isset($_GET['id']) ? $cleaner->xss_clean($_GET['id']) : 0;
+$station_name = isset($_GET['sn']) ? $cleaner->xss_clean($_GET['sn']) : '';
 $schedule_id = isset($_GET['schedule_id']) ? $cleaner->xss_clean($_GET['schedule_id']) : 0;
 
 $timeStamp = isset($_GET['ts']) ? $cleaner->xss_clean($_GET['ts']) : 0;
@@ -51,8 +52,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
         <div class="col-12">
             <div class="card">
                 <div class="card-header text-center text-white bg-primary">
-                    <strong>Register for mas on</strong>
-                    <strong><?= $displayDate ?></strong>
+                    <strong>Register for mass on <?= $displayDate ?> at <?= $station_name ?></strong>
                     <a href="index.php" class="btn btn-dark float-left">return</a>
                 </div>
 
