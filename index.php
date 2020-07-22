@@ -41,10 +41,10 @@ $currentDate = date('l, jS F Y');
                 </div>
             </div>
 
-            <table class="table table-sm">
+            <table class="table table-bordered">
                 <thead>
                 <tr class="bg-success text-white">
-                    <th><h3>Scheduled mass and services</h3></th>
+                    <th><h3>Scheduled Mass Services</h3></th>
                 </tr>
                 </thead>
                 <tbody>
