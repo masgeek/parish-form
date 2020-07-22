@@ -25,7 +25,7 @@ $rules = [
     "adultFlag" => "required|numeric",
     "schedule_id" => "required|numeric",
     "age" => "required|numeric",
-    "mass_schedule" => "required|numeric",
+    "mass_schedule_id" => "required|numeric",
     "mass_capacity" => "numeric:required",
 ];
 
@@ -56,7 +56,7 @@ if ($isPost) {
         $age = Request::post('age');
         $mobileNo = Request::post('mobile', 0);
         $estateName = Request::post('estate_name');
-        $massScheduleId = Request::post('mass_schedule');
+        $massScheduleId = Request::post('mass_schedule_id');
         $capacity = Request::post('mass_capacity');
         $scheduleId = Request::post('schedule_id');
 
@@ -90,9 +90,8 @@ if ($isPost) {
         }
         $jsonResp['valid'] = $isValid;
 
-        $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity,true);
+        $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity,false);
 
-        die;
         $seatNo = $seatsLeft;
         $data = [
             'seat_no' => $seatNo,

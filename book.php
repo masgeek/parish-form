@@ -170,9 +170,9 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                                         $disabled = $seatsLeft <= 0 ? 'disabled' : '';
                                         ?>
                                         <div class="funkyradio-success">
-                                            <input type="radio" name="mass_schedule" class="mass_schedule"
+                                            <input type="radio" name="mass_schedule_id" class="mass_schedule"
                                                    id="defaultChecked-<?= $key ?>"
-                                                   value="<?= $value['id'] ?>" required <?= $disabled ?>/>
+                                                   value="<?= $id ?>" required <?= $disabled ?>/>
                                             <label for="defaultChecked-<?= $key ?>">
                                                 <?= trim($value['mass_title']) ?>
                                             </label>
