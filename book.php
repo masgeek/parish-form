@@ -24,10 +24,10 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <?php require_once 'includes/header.php'; ?>
 
-<body>
+<body class="h-100">
 <!-- Start your project here-->
 <div class="container-fluid">
 
@@ -48,8 +48,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
     <!-- end success banner-->
 
     <!-- input form -->
-    <div class="row mt-3" id="mass-card">
-        <div class="col-12 col-md-12 col-lg-8 offset-2">
+    <div class="row h-100 justify-content-center mt-3" id="mass-card">
+        <div class="col-12 col-md-12 col-lg-8">
             <div class="card">
                 <div class="card-header text-center">
                     <h3>Register for mass on <span class="text-info"><?= $displayDate ?></span> at <span class="text-success"><?= $station_name ?></span></h3>
