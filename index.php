@@ -75,7 +75,7 @@ $currentDate = date('l, jS F Y');
                                         <td class="text-center">
                                             <a class="btn btn-primary float-right"
                                                href="book.php?station_id=<?= $stationID ?>&ts=<?= $timeStamp ?>">
-                                                <i class="fas fa-clone left"></i> Register</a>
+                                                <i class="fas fa-clipboard-list left"></i> Register</a>
                                         </td>
                                     </tr>
                                 </table>
