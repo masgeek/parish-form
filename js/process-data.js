@@ -100,8 +100,8 @@ jQuery(document).ready(function () {
                         icon: "success",
                     });
                     //myform.trigger('reset'); //clear the form
-                    jQuery('#mass-card').addClass('hidden');
-                    jQuery('#success-card').removeClass('hidden');
+                    // jQuery('#mass-card').addClass('hidden');
+                    // jQuery('#success-card').removeClass('hidden');
                     //show a banner
                 } else {
                     swal({

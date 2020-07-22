@@ -192,17 +192,25 @@ SQL;
         return $seatsLeft;
     }
 
-    public function isAlreadyRegistered($surname, $otherNames, $phoneNumber)
+    /**
+     * @param $scheduleId
+     * @param $surname
+     * @param $otherNames
+     * @param $phoneNumber
+     * @return array|bool
+     */
+    public function isAlreadyRegistered($scheduleId, $surname, $otherNames, $phoneNumber)
     {
-        $data = $this->database->select('mass_schedule_master', [
-            'mass_schedule_date',
+        $regCount = $this->database->count('mass_registration', [
+            'id',
         ], [
-            'mass_schedule_date[>=]' => Medoo\Medoo::raw('CURDATE()'),
-            "GROUP" => ["mass_schedule_date"],
-            "ORDER" => ["mass_schedule_date" => 'ASC'],
+            'mass_schedule_id' => $scheduleId,
+            'surname' => $surname,
+            'other_names' => $otherNames,
+            'mobile' => $phoneNumber,
         ]);
 
-        return $data;
+        return $regCount > 0;
 
     }
 

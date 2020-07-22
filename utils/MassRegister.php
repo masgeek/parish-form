@@ -9,8 +9,6 @@ require_once $root_dir . '/vendor/autoload.php';
 require_once 'Dao.php';
 
 
-
-
 $phoneUtil = libphonenumber\PhoneNumberUtil::getInstance();
 
 $whoops = new Whoops\Run();
@@ -92,7 +90,7 @@ if ($isPost) {
         }
         $jsonResp['valid'] = $isValid;
 
-        $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity,false);
+        $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity, false);
 
         $seatNo = $seatsLeft;
         $data = [
@@ -111,6 +109,20 @@ if ($isPost) {
 
         $jsonResp['mass_schedule_id'] = $massScheduleId;
         $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
+
+        $isRegistered = $conn->isAlreadyRegistered($data['mass_schedule_id'],$data['surname'], $data['other_names'], $data['mobile']);
+
+        if ($isRegistered) {
+            $jsonResp['valid'] = false;
+            $jsonResp['data'] = [
+                'message' => [
+                    'title' => 'Already registered',
+                    'text' => 'It appears you have already registered for this mass, please try another one'
+                ]
+            ];
+            echo json_encode($jsonResp);
+            exit();
+        }
 
         if ($isValid == true) {
             if ($seatsLeft > 0) {
