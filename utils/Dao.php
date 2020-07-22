@@ -146,11 +146,17 @@ class Dao
      * @param $capacity
      * @return bool|int|mixed|string
      */
-    public function getSeatsLeft($massId, $capacity)
+    public function getSeatsLeft($massId, $capacity, $debug = false)
     {
-        $seatCount = $this->database->count("mass_registration", [
-            'mass_schedule_id' => $massId
-        ]);
+        if ($debug) {
+            $seatCount = $this->database->debug()->count("mass_registration", [
+                'mass_schedule_id' => $massId
+            ]);
+        } else {
+            $seatCount = $this->database->count("mass_registration", [
+                'mass_schedule_id' => $massId
+            ]);
+        }
 
         $seatsLeft = $capacity - $seatCount;
 

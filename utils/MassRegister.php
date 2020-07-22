@@ -90,7 +90,7 @@ if ($isPost) {
         }
         $jsonResp['valid'] = $isValid;
 
-        $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity);
+        $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity,true);
 
         die;
         $seatNo = $seatsLeft;
