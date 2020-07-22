@@ -91,6 +91,8 @@ if ($isPost) {
         $jsonResp['valid'] = $isValid;
 
         $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity);
+
+        die;
         $seatNo = $seatsLeft;
         $data = [
             'seat_no' => $seatNo,
