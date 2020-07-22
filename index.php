@@ -45,7 +45,7 @@ $currentDate = date('l, jS F Y');
                 <thead>
                 <tr>
                     <th>Outstation</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-right">Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,24 +58,23 @@ $currentDate = date('l, jS F Y');
                     $massStations = $conn->getMassStations($massDate);
                     ?>
                     <tr>
+                        <td colspan="2" class="text-center">
+                            <strong><?= $displayDate ?></strong>
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan="2">
                             <!-- nested table -->
                             <?php foreach ($massStations as $stationKey => $stationValue):
-                                $scheduleID = $stationValue['id'];
                                 $stationID = $stationValue['outstation_id'];
                                 $stationName = $stationValue['outstation_name'];
                                 ?>
                                 <table class="table table-bordered table-sm">
                                     <tr>
-                                        <td colspan="2" class="text-center">
-                                            <strong><?= $displayDate ?></strong>
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td><strong><?= $stationName ?></strong></td>
                                         <td class="text-center">
-                                            <a class="btn btn-primary"
-                                               href="book.php?schedule_id=<?= $scheduleID ?>&station_id=<?= $stationID ?>&ts=<?= $timeStamp ?>">
+                                            <a class="btn btn-primary float-right"
+                                               href="book.php?station_id=<?= $stationID ?>&ts=<?= $timeStamp ?>">
                                                 <i class="fas fa-clone left"></i> Register</a>
                                         </td>
                                     </tr>

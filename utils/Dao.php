@@ -91,8 +91,8 @@ class Dao
             'mass_schedule_date',
         ], [
             'mass_schedule_date[>=]' => Medoo\Medoo::raw('CURDATE()'),
-            "ORDER" => ["mass_schedule_date" => 'ASC'],
             "GROUP" => ["mass_schedule_date"],
+            "ORDER" => ["mass_schedule_date" => 'ASC'],
         ]);
 
         return $data;
@@ -103,12 +103,12 @@ class Dao
         $data = $this->database->select('mass_schedule_master', [
             '[><]outstations' => ['outstation_id' => 'outstation_id']
         ], [
-            'mass_schedule_master.id',
             'mass_schedule_master.mass_schedule_date',
             'outstations.outstation_name',
             'outstations.outstation_id'
         ], [
             'mass_schedule_date[>=]' => $massDate,
+            "GROUP" => ["outstations.outstation_name"],
             "ORDER" => ["outstations.outstation_name" => 'ASC'],
         ]);
 
