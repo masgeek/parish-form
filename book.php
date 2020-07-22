@@ -48,12 +48,11 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
     <!-- end success banner-->
 
     <!-- input form -->
-    <div class="row" id="mass-card">
+    <div class="row mt-3" id="mass-card">
         <div class="col-12">
             <div class="card">
-                <div class="card-header text-center text-white bg-primary">
-                    <strong>Register for mass on <?= $displayDate ?> at <?= $station_name ?></strong>
-                    <a href="index.php" class="btn btn-dark float-left">return</a>
+                <div class="card-header text-center">
+                    <h3>Register for mass on <span class="text-info"><?= $displayDate ?></span> at <span class="text-success"><?= $station_name ?></span></h3>
                 </div>
 
                 <!--Card content-->
@@ -215,11 +214,16 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                             </div>
                         </div>
                         <!-- Register button -->
-                        <button class="btn btn-outline-success btn-rounded btn-block waves-effect btn-lg" type="button"
-                                id="btn-register">
-                            Register
-                        </button>
-
+                        <div class="row">
+                            <div class="col-md">
+                                <a href="index.php" class="btn btn-success btn-lg">Finish</a>
+                            </div>
+                            <div class="col-md">
+                                <button class="btn btn-outline-success btn-lg btn-block" type="button"
+                                        id="btn-register">
+                                    Register
+                                </button>
+                            </div>
                     </form>
                     <!-- Form -->
 

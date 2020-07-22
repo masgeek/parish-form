@@ -8,12 +8,8 @@
   "private": null,
   "dependencies": {
     "bootstrap": "^4.5.0",
-    "flatpickr": "^4.6.3",
-    "gijgo": "^1.9.13",
     "jquery": "^3.5.1",
-    "parsleyjs": "^2.9.2",
     "popper.js": "^1.16.1",
-    "smokejs": "^3.1.0",
     "sweetalert": "^2.1.2"
   }
 }
