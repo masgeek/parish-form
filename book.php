@@ -216,7 +216,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                         <!-- Register button -->
                         <div class="row">
                             <div class="col-md">
-                                <a href="index.php" class="btn btn-success btn-lg"><i class="fa fa-step-backward"></i> Return</a>
+                                <a href="index.php" class="btn btn-danger btn-lg"><i class="fa fa-step-backward"></i> Return</a>
                             </div>
                             <div class="col-md">
                                 <button class="btn btn-outline-success btn-lg btn-block" type="button"
