@@ -107,7 +107,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                             </div>
 
                             <div class="col-md">
-                                <label>Specify your gender?</label>
+                                <label>What is your gender?</label>
                                 <div class="form-group">
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
