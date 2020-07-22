@@ -119,7 +119,7 @@ class Dao
      * @param $outstation_id
      * @return array|bool
      */
-    public function getActiveScheduledMasses($outstation_id)
+    public function getActiveScheduledMasses($outstation_id, $scheduleDate)
     {
         $query = <<<SQL
 SELECT
@@ -142,6 +142,8 @@ FROM
 	INNER JOIN mass_status ON mass_schedule.mass_status_id = mass_status.mass_status_id 
 WHERE
 	mass_schedule_master.outstation_id = $outstation_id
+AND 
+    mass_schedule_master.mass_schedule_date = '$scheduleDate'
 ORDER BY
 	masses.time_to ASC
 SQL;
@@ -188,6 +190,20 @@ SQL;
         $seatsLeft = $capacity - $seatCount;
 
         return $seatsLeft;
+    }
+
+    public function isAlreadyRegistered($surname, $otherNames, $phoneNumber)
+    {
+        $data = $this->database->select('mass_schedule_master', [
+            'mass_schedule_date',
+        ], [
+            'mass_schedule_date[>=]' => Medoo\Medoo::raw('CURDATE()'),
+            "GROUP" => ["mass_schedule_date"],
+            "ORDER" => ["mass_schedule_date" => 'ASC'],
+        ]);
+
+        return $data;
+
     }
 
     /**

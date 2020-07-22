@@ -15,10 +15,11 @@ $schedule_id = isset($_GET['schedule_id']) ? $cleaner->xss_clean($_GET['schedule
 $timeStamp = isset($_GET['ts']) ? $cleaner->xss_clean($_GET['ts']) : 0;
 
 $displayDate = date('l, jS F Y', $timeStamp);
+$scheduleDate = date('Y-m-d', $timeStamp);
 
 $groups = $conn->getGroups($station_id);
 
-$scheduledMasses = $conn->getActiveScheduledMasses($station_id);
+$scheduledMasses = $conn->getActiveScheduledMasses($station_id,$scheduleDate);
 ?>
 
 <!DOCTYPE html>
