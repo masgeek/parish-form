@@ -13,7 +13,7 @@ $currentDate = date('l, jS F Y');
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
 <?php require_once 'includes/header.php'; ?>
 <body class="h-100">
 
@@ -28,9 +28,9 @@ $currentDate = date('l, jS F Y');
     </div>
 </noscript>
 <!-- Start your project here-->
-<div class="container-fluid pagecontainer h-100">
+<div class="container-fluid pagecontainer">
     <div class="row h-100 justify-content-center">
-        <div class="col-10 col-md-10 col-lg-10">
+        <div class="col-12">
             <div class="jumbotron" style="background-image: url(img/gradient1.jpg);">
                 <div class="text-white text-center mt-5">
                     <div>
