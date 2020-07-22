@@ -36,7 +36,6 @@ $currentDate = date('l, jS F Y');
                     <div>
                         <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong><?= PAGE_TITLE ?></strong></h2>
                         <h4>Select your preferred mass below</h4>
-                        <h2 class="card-title h1-responsive pt-3 mt-5 font-bold"><strong><?= $currentDate ?></strong>
                         </h2>
                     </div>
                 </div>
