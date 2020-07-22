@@ -30,7 +30,7 @@ $currentDate = date('l, jS F Y');
 <!-- Start your project here-->
 <div class="container-fluid pagecontainer">
     <div class="row h-100 justify-content-center">
-        <div class="col-12">
+        <div class="col-12 col-md-12 col-lg-8">
             <div class="jumbotron" style="background-image: url(img/gradient1.jpg);">
                 <div class="text-white text-center mt-5">
                     <div>
