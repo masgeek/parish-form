@@ -163,9 +163,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
                                 <div class="funkyradio form-group">
                                     <?php foreach ($scheduledMasses as $key => $value):
                                         $id = $value['id'];
-                                        $massId = $value['mass_id'];
                                         $capacity = $value['capacity'];
-                                        $seatsLeft = $conn->getSeatsLeft($massId, $capacity);
+                                        $seatsLeft = $conn->getSeatsLeft($id, $capacity);
 
                                         $disabled = $seatsLeft <= 0 ? 'disabled' : '';
                                         ?>
