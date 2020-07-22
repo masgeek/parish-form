@@ -19,7 +19,7 @@ $scheduleDate = date('Y-m-d', $timeStamp);
 
 $groups = $conn->getGroups($station_id);
 
-$scheduledMasses = $conn->getActiveScheduledMasses($station_id,$scheduleDate);
+$scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 ?>
 
 <!DOCTYPE html>
@@ -105,7 +105,29 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id,$scheduleDate);
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="col-md">
+                                <label>Specify your gender?</label>
+                                <div class="form-group">
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="genderFlag"
+                                                   value="FEMALE"
+                                                   required>Female
+                                        </label>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="genderFlag" value="MALE"
+                                                   required>Male
+                                        </label>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group">

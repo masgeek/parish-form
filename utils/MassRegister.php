@@ -23,6 +23,7 @@ $rules = [
     "group_id" => "required|numeric",
     "mobile" => "required|numeric",
     "adultFlag" => "required|numeric",
+    "genderFlag" => "required|string",
     "schedule_id" => "required|numeric",
     "age" => "required|numeric",
     "mass_schedule_id" => "required|numeric",
@@ -53,6 +54,7 @@ if ($isPost) {
         $otherNames = Request::post('other_names');
         $groupId = Request::post('group_id');
         $adult = Request::post('adultFlag');
+        $gender = Request::post('genderFlag');
         $age = Request::post('age');
         $mobileNo = Request::post('mobile', 0);
         $estateName = Request::post('estate_name');
@@ -99,6 +101,7 @@ if ($isPost) {
             'other_names' => strtoupper($trimmedNames),
             'adult' => $adult,
             'age' => $age,
+            'gender' => $gender,
             'group_id' => $groupId,
             'estate_name' => $estateName,
             'mobile' => $mobileNo,
