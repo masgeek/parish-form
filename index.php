@@ -44,7 +44,7 @@ $currentDate = date('l, jS F Y');
             <table class="table table-bordered">
                 <thead>
                 <tr class="bg-success text-white">
-                    <th><h3>Scheduled Mass Services</h3></th>
+                    <th><h4>Scheduled Mass Services</h4></th>
                 </tr>
                 </thead>
                 <tbody>
