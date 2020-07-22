@@ -41,11 +41,10 @@ $currentDate = date('l, jS F Y');
                 </div>
             </div>
 
-            <table class="table">
+            <table class="table table-sm">
                 <thead>
                 <tr class="bg-success text-white">
-                    <th>Outstation</th>
-                    <th class="text-right">Action</th>
+                    <th><h3>Scheduled mass and services</h3></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,7 +73,7 @@ $currentDate = date('l, jS F Y');
                                         <td class="description"><?= $stationName ?></td>
                                         <td>
                                             <a class="btn btn-primary btn-block"
-                                               href="book.php?id=<?= $stationID ?>&ts=<?= $timeStamp ?>&sn=<?=$stationName?>">
+                                               href="book.php?id=<?= $stationID ?>&ts=<?= $timeStamp ?>&sn=<?= $stationName ?>">
                                                 <i class="fas fa-clipboard-list left"></i> Register</a>
                                         </td>
                                     </tr>
