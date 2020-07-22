@@ -18,16 +18,16 @@ $displayDate = date('l, jS F Y', $timeStamp);
 
 $groups = $conn->getGroups($station_id);
 
-$scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
+$scheduledMasses = $conn->getActiveScheduledMasses($station_id);
 ?>
 
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="en">
 <?php require_once 'includes/header.php'; ?>
 
-<body class="h-100">
+<body>
 <!-- Start your project here-->
-<div class="container-fluid h-100">
+<div class="container-fluid">
 
     <!-- success banner -->
     <div class="row h-100 justify-content-center align-items-center hidden" id="success-card">
@@ -46,8 +46,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($schedule_id);
     <!-- end success banner-->
 
     <!-- input form -->
-    <div class="row h-100 justify-content-center align-items-center" id="mass-card">
-        <div class="col-12 col-md-12 col-lg-10">
+    <div class="row" id="mass-card">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header text-center text-white bg-primary">
                     <strong>Register for mas on</strong>

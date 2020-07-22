@@ -116,29 +116,62 @@ class Dao
     }
 
     /**
-     * @param $schedule_id
+     * @param $outstation_id
      * @return array|bool
      */
-    public function getActiveScheduledMasses($schedule_id)
+    public function getActiveScheduledMasses($outstation_id)
     {
-        $data = $this->database->select('mass_schedule', [
-            '[><]masses' => ['mass_id' => 'mass_id']
+        $query = <<<SQL
+SELECT
+	mass_schedule_master.mass_schedule_date,
+	mass_schedule.id,
+	mass_schedule.capacity,
+	masses.mass_id,
+	masses.mass_title,
+	masses.time_from,
+	masses.time_to,
+	mass_schedule.mass_status_id,
+	mass_status.`status`,
+	mass_status.status_description,
+	mass_schedule_master.outstation_id,
+	mass_schedule.schedule_master_id 
+FROM
+	mass_schedule_master
+	INNER JOIN mass_schedule ON mass_schedule.schedule_master_id = mass_schedule_master.id
+	INNER JOIN masses ON mass_schedule.mass_id = masses.mass_id
+	INNER JOIN mass_status ON mass_schedule.mass_status_id = mass_status.mass_status_id 
+WHERE
+	mass_schedule_master.outstation_id = $outstation_id
+ORDER BY
+	masses.time_to ASC
+SQL;
+
+        /*$data = $this->database->debug()->select('mass_schedule_master', [
+            '[><]mass_schedule' => ['schedule_master_id' => 'schedule_master_id'],
+            '[><]masses' => ['mass_id' => 'mass_id'],
+            '[><]mass_status' => ['mass_status_id' => 'mass_status_id'],
         ], [
+           'mass_schedule_master.mass_schedule_date',
             'mass_schedule.id',
-            'mass_schedule.mass_id',
-            'mass_schedule.schedule_master_id',
-            'mass_schedule.mass_status_id',
             'mass_schedule.capacity',
+            'masses.mass_id',
             'masses.mass_title',
             'masses.time_from',
-            'masses.time_to'
+            'masses.time_to',
+            'mass_schedule.mass_status_id',
+            'mass_status.status',
+            'mass_status.status_description',
+            'mass_schedule_master.outstation_id',
+            'mass_schedule.schedule_master_id'
         ],
             [
-                'mass_schedule.schedule_master_id' => $schedule_id,
+                //'mass_schedule.schedule_master_id' => $schedule_id,
                 "ORDER" => ["masses.time_from" => 'ASC'],
-            ]);
+            ]);*/
 
-        return $data;
+        $data = $this->database->query($query);
+
+        return $data->fetchAll();
     }
 
     /**
@@ -148,7 +181,7 @@ class Dao
      */
     public function getSeatsLeft($massId, $capacity, $debug = false)
     {
-        $seatCount = $this->database->debug()->count("mass_registration", [
+        $seatCount = $this->database->count("mass_registration", [
             'mass_schedule_id' => $massId
         ]);
 
