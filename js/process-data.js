@@ -1,52 +1,26 @@
 'use strict'
 
 jQuery(document).ready(function () {
-    let today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    const yyyy = today.getFullYear();
 
-    today = yyyy + '-' + mm + '-' + dd;
-    const config = {
-        altInput: true,
-        altFormat: "F j, Y",
-        dateFormat: "Y-m-d",
-        minDate: "today"
-        // minDate: today
-    };
-    // $(".datepicker").flatpickr(config);
-    // jQuery('.datepicker').datepicker({
-    //     modal: true,
-    //     showOnFocus: false,
-    //     value: today,
-    //     minDate: today,
-    //     // disableDaysOfWeek: [1,2,3,4,5,6]
-    // });
-
-    // jQuery(function ($) {
-    //     //let us call the table data
-    //     jQuery.ajax({
-    //         type: 'GET',
-    //         url: 'outstations.php',
-    //         dataType: "json",
-    //         success: function (data, textStatus, XMLHttpRequest) {
-    //
-    //             const arr = data.map(function (item) {
-    //
-    //                 console.log(item);
-    //                 return item;
-    //             })
-    //
-    //         },
-    //         error: function (XMLHttpRequest, textStatus, errorThrown) {
-    //             console.log(XMLHttpRequest);
-    //             console.log(errorThrown);
-    //         }
-    //     });
-    // });
 
     jQuery("#mass-reg-form").submit(function (e) {
         return false;
+    });
+
+    jQuery('.adult').on('change', function () {
+        const adultFlag = this.value;
+        jQuery('#adult').val(adultFlag);
+        if (adultFlag === 1) {
+            //change to adult labels
+            jQuery('#mobile-label').html("Please enter your parent's mobile number");
+            jQuery('#national-id-label').text("Please enter your parent's national id");
+            console.log("Adult here");
+        } else {
+            jQuery('#mobile-label').html("What is your mobile number?");
+            jQuery('#national-id-label').html("What is your  national id?");
+            console.log("Adult not here");
+        }
+        console.log("Age radio button", this.value);
     });
 
     jQuery('#group-id').on('change', function () {
@@ -74,7 +48,44 @@ jQuery(document).ready(function () {
     jQuery('#btn-register').on('click', function () {
 
         const myform = jQuery('#mass-reg-form');
-        if (myform[0].checkValidity() === false) {
+
+        let formValid = true;
+        const age = jQuery('#age').val();
+        let isAdult = jQuery('#adult').val();
+
+        if(isEmpty(age)){
+            return false;
+        }
+        if (isAdult===true) {
+            if (age <= 17) {
+                formValid = false;
+                swal({
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    title: "Invalid age",
+                    text: "Please provide correct age",
+                    icon: "error"
+                });
+            }
+        }
+
+        if (isAdult===false) {
+            if (age < 13 && age > 17) {
+                formValid = false;
+                swal({
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    title: "Invalid age",
+                    text: "Please provide correct age",
+                    icon: "error"
+                });
+            }
+        }
+
+
+        console.log("age is",age);
+        console.log("is adult",isAdult);
+        if (myform[0].checkValidity() === false && formValid === false) {
             myform.addClass('was-validated');
             return;
         }
@@ -87,7 +98,6 @@ jQuery(document).ready(function () {
             dataType: "json",
             data: formData,
             success: function (resp, textStatus, XMLHttpRequest) {
-                console.log(resp);
                 const scheduleId = resp.mass_schedule_id;
                 if (resp.valid === true) {
                     // swal({

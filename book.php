@@ -66,6 +66,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                     <form action="#" id="mass-reg-form" class="needs-validation" data-parsley-validate="">
 
                         <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
+                        <input type="hidden" id="adult" readonly>
                         <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"
                                readonly>
 
@@ -95,14 +96,14 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                 <div class="form-group">
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="adultFlag" value="1"
+                                            <input type="radio" class="form-check-input adult" name="adultFlag" id="adultFlag" value="1"
                                                    required>Yes
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="adultFlag" value="0"
+                                            <input type="radio" class="form-check-input adult" name="adultFlag" id="adultFlag" value="0"
                                                    required>No
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
@@ -142,10 +143,21 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                             </div>
                         </div>
 
+
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group">
-                                    <label for="mobile">What is your mobile number?</label>
+                                    <label for="national_id" id="national-id-label">What is your  national id?</label>
+                                    <input type="text" id="national_id" name="national_id" class="form-control" required>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label for="mobile" id="mobile-label">What is your mobile number?</label>
                                     <input type="text" id="mobile" name="mobile" class="form-control" required>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>

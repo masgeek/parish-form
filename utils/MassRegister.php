@@ -19,7 +19,8 @@ $rules = [
     "other_names" => "required|string",
     "estate_name" => "required|string",
     "group_id" => "required|numeric",
-    "mobile" => "required|numeric",
+    "national_id" => "required|string",
+    "mobile" => "required|string",
     "adultFlag" => "required|numeric",
     "genderFlag" => "required|string",
     "schedule_id" => "required|numeric",
@@ -50,6 +51,7 @@ if ($isPost) {
         $countryCode = '254';
         $surname = Request::post('surname');
         $otherNames = Request::post('other_names');
+        $nationalId = Request::post('national_id');
         $groupId = Request::post('group_id');
         $adult = Request::post('adultFlag');
         $gender = Request::post('genderFlag');
@@ -97,6 +99,7 @@ if ($isPost) {
             'seat_no' => $seatNo,
             'surname' => strtoupper($surname),
             'other_names' => strtoupper($trimmedNames),
+            'national_id' => $nationalId,
             'adult' => $adult,
             'age' => $age,
             'gender' => $gender,
