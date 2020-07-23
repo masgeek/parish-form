@@ -12,7 +12,6 @@ $cleaner = new \voku\helper\AntiXSS();
 $station_id = isset($_GET['id']) ? $cleaner->xss_clean($_GET['id']) : 0;
 $station_name = isset($_GET['sn']) ? $cleaner->xss_clean($_GET['sn']) : '';
 $schedule_id = isset($_GET['schedule_id']) ? $cleaner->xss_clean($_GET['schedule_id']) : 0;
-
 $timeStamp = isset($_GET['ts']) ? $cleaner->xss_clean($_GET['ts']) : 0;
 
 $displayDate = date('l, jS F Y', $timeStamp);
@@ -32,7 +31,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 <div class="container-fluid">
 
     <!-- success banner -->
-    <div class="row h-100 justify-content-center align-items-center hidden" id="success-card">
+    <div class="row h-100 justify-content-center align-items-center hidden mt-5" id="success-card">
         <div class="col-10 col-md-8 col-lg-6">
             <div class="card">
                 <div class="thank-you-pop card-body">
