@@ -85,7 +85,7 @@ jQuery(document).ready(function () {
 
         console.log("age is",age);
         console.log("is adult",isAdult);
-        if (myform[0].checkValidity() === false && formValid === false) {
+        if (myform[0].checkValidity() === false || formValid === false) {
             myform.addClass('was-validated');
             return;
         }
