@@ -8,6 +8,7 @@ jQuery(document).ready(function () {
     });
 
     jQuery('.adult').on('change', function () {
+
         const adultFlag = this.value;
         jQuery('#adult').val(adultFlag);
         if (adultFlag === 1) {
@@ -47,16 +48,14 @@ jQuery(document).ready(function () {
 
     jQuery('#btn-register').on('click', function () {
 
+
         const myform = jQuery('#mass-reg-form');
 
         let formValid = true;
-        const age = jQuery('#age').val();
+        const age = parseInt(jQuery('#age').val());
         let isAdult = jQuery('#adult').val();
 
-        if(isEmpty(age)){
-            return false;
-        }
-        if (isAdult===true) {
+        if (isAdult === '1') {
             if (age <= 17) {
                 formValid = false;
                 swal({
@@ -69,8 +68,10 @@ jQuery(document).ready(function () {
             }
         }
 
-        if (isAdult===false) {
-            if (age < 13 && age > 17) {
+        if (isAdult === '0') {
+            console.log("age is", age);
+            console.log("is adult", isAdult);
+            if (age < 13 || age > 17) {
                 formValid = false;
                 swal({
                     closeOnClickOutside: false,
@@ -82,9 +83,6 @@ jQuery(document).ready(function () {
             }
         }
 
-
-        console.log("age is",age);
-        console.log("is adult",isAdult);
         if (myform[0].checkValidity() === false || formValid === false) {
             myform.addClass('was-validated');
             return;
