@@ -11,10 +11,10 @@ jQuery(document).ready(function () {
 
         const adultFlag = this.value;
         jQuery('#adult').val(adultFlag);
-        if (adultFlag === 1) {
+        if (adultFlag === '1') {
             //change to adult labels
             jQuery('#mobile-label').html("Please enter your parent's mobile number");
-            jQuery('#national-id-label').text("Please enter your parent's national id");
+            jQuery('#national-id-label').html("Please enter your parent's national id");
             console.log("Adult here");
         } else {
             jQuery('#mobile-label').html("What is your mobile number?");
@@ -29,7 +29,7 @@ jQuery(document).ready(function () {
         const estateId = jQuery("#estate-" + groupId).val();
         jQuery('#estate_name').val(null);
         if (!isEmpty(estateId)) {
-            console.log("Estate id is", estateId)
+            console.log("Estate id is", estateId);
             jQuery.getJSON('utils/get-estates.php', {
                 group_id: groupId,
                 estate_id: estateId
@@ -51,39 +51,31 @@ jQuery(document).ready(function () {
 
         const myform = jQuery('#mass-reg-form');
 
-        let formValid = true;
+        let ageIsValid = true;
         const age = parseInt(jQuery('#age').val());
         let isAdult = jQuery('#adult').val();
 
         if (isAdult === '1') {
             if (age <= 17) {
-                formValid = false;
-                swal({
-                    closeOnClickOutside: false,
-                    closeOnEsc: false,
-                    title: "Invalid age",
-                    text: "Please provide correct age",
-                    icon: "error"
-                });
+                ageIsValid = false;
             }
         }
-
         if (isAdult === '0') {
-            console.log("age is", age);
-            console.log("is adult", isAdult);
             if (age < 13 || age > 17) {
-                formValid = false;
-                swal({
-                    closeOnClickOutside: false,
-                    closeOnEsc: false,
-                    title: "Invalid age",
-                    text: "Please provide correct age",
-                    icon: "error"
-                });
+                ageIsValid = false;
             }
         }
 
-        if (myform[0].checkValidity() === false || formValid === false) {
+        if (ageIsValid === false) {
+            swal({
+                closeOnClickOutside: false,
+                closeOnEsc: false,
+                title: "Invalid age",
+                text: "Please provide correct age",
+                icon: "error"
+            });
+        }
+        if (myform[0].checkValidity() === false || ageIsValid === false) {
             myform.addClass('was-validated');
             return;
         }
@@ -98,21 +90,11 @@ jQuery(document).ready(function () {
             success: function (resp, textStatus, XMLHttpRequest) {
                 const scheduleId = resp.mass_schedule_id;
                 if (resp.valid === true) {
-                    // swal({
-                    //     closeOnClickOutside: false,
-                    //     closeOnEsc: false,
-                    //     title: resp.data.message['title'],
-                    //     text: resp.data.message['text'],
-                    //     icon: "success",
-                    // });
                     myform.trigger('reset'); //clear the form
-
                     jQuery('#mass-card').addClass('hidden');
                     jQuery('#success-card').removeClass('hidden');
                     jQuery('#surname-summary').html(resp.data.surname);
                     jQuery('#seat-summary').html(resp.data.seatNo);
-
-                    //show a banner
                 } else {
                     swal({
                         closeOnClickOutside: false,
