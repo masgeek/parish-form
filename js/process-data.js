@@ -69,8 +69,6 @@ jQuery(document).ready(function () {
         const scheduleID = this.value;
         const massCapacity = jQuery("#mass-capacity-" + scheduleID).val();
         jQuery('#mass-capacity').val(massCapacity);
-        //check for available spaces
-        console.log(scheduleID);
     });
 
     jQuery('#btn-register').on('click', function () {
