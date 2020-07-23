@@ -90,16 +90,20 @@ jQuery(document).ready(function () {
                 console.log(resp);
                 const scheduleId = resp.mass_schedule_id;
                 if (resp.valid === true) {
-                    swal({
-                        closeOnClickOutside: false,
-                        closeOnEsc: false,
-                        title: resp.data.message['title'],
-                        text: resp.data.message['text'],
-                        icon: "success",
-                    });
-                    //myform.trigger('reset'); //clear the form
+                    // swal({
+                    //     closeOnClickOutside: false,
+                    //     closeOnEsc: false,
+                    //     title: resp.data.message['title'],
+                    //     text: resp.data.message['text'],
+                    //     icon: "success",
+                    // });
+                    myform.trigger('reset'); //clear the form
+
                     jQuery('#mass-card').addClass('hidden');
                     jQuery('#success-card').removeClass('hidden');
+                    jQuery('#surname-summary').html(resp.data.surname);
+                    jQuery('#seat-summary').html(resp.data.seatNo);
+
                     //show a banner
                 } else {
                     swal({

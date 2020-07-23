@@ -38,9 +38,14 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                 <div class="thank-you-pop card-body">
                     <img src="img/green-tick.png" alt="">
                     <h1>Thank You!</h1>
-                    <h3 class="cupon-pop">Your Mass registration has been received successfully</h3>
+                    <h3 class="cupon-pop"><span id="surname-summary">Surname</span>, your registration is successful and you have
+                        booked seat no <span id="seat-summary">x</span></h3>
                     <br/>
-                    <a href="index.php" class="btn btn-success btn-lg">Finish</a>
+                    <a href="#" class="text-danger">
+                        <strong>To cancel inform your Jumuiya Moderator</strong>
+                    </a>
+                    <br/>
+                    <a href="index.php" class="btn btn-link">View mass schedules</a>
                 </div>
             </div>
         </div>
@@ -48,11 +53,12 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
     <!-- end success banner-->
 
     <!-- input form -->
-    <div class="row h-100 justify-content-center mt-3" id="mass-card">
+    <div class="row h-100 justify-content-center mt-3 mb-5" id="mass-card">
         <div class="col-12 col-md-12 col-lg-8">
             <div class="card">
                 <div class="card-header text-center">
-                    <h3>Register for mass on <span class="text-info"><?= $displayDate ?></span> at <span class="text-success"><?= $station_name ?></span></h3>
+                    <h3>Register for mass on <span class="text-info"><?= $displayDate ?></span> at <span
+                                class="text-success"><?= $station_name ?></span></h3>
                 </div>
 
                 <!--Card content-->
@@ -216,7 +222,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                         <!-- Register button -->
                         <div class="row">
                             <div class="col-md">
-                                <a href="index.php" class="btn btn-danger btn-lg btn-block"><i class="fa fa-step-backward"></i> Return</a>
+                                <a href="index.php" class="btn btn-link"><i class="fa fa-backward"></i> Previous
+                                    page</a>
                             </div>
                             <div class="col-md">
                                 <button class="btn btn-outline-success btn-lg btn-block" type="button"

@@ -7,10 +7,6 @@
       <path value="$PROJECT_DIR$/vendor/yarn-asset/jquery" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/bootstrap" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/popper.js" />
-      <path value="$PROJECT_DIR$/vendor/yarn-asset/gijgo" />
-      <path value="$PROJECT_DIR$/vendor/yarn-asset/flatpickr" />
-      <path value="$PROJECT_DIR$/vendor/yarn-asset/parsleyjs" />
-      <path value="$PROJECT_DIR$/vendor/yarn-asset/smokejs" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php72" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-iconv" />

@@ -21,10 +21,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-utf8" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/es6-object-assign" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/flatpickr" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/parsleyjs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/promise-polyfill" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/smokejs" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/sweetalert" />
     </content>
     <orderEntry type="inheritedJdk" />

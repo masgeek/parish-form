@@ -110,7 +110,7 @@ if ($isPost) {
         $jsonResp['mass_schedule_id'] = $massScheduleId;
         $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
 
-        $isRegistered = $conn->isAlreadyRegistered($data['mass_schedule_id'],$data['surname'], $data['other_names'], $data['mobile']);
+        $isRegistered = $conn->isAlreadyRegistered($data['mass_schedule_id'], $data['surname'], $data['other_names'], $data['mobile']);
 
         if ($isRegistered) {
             $jsonResp['valid'] = false;
@@ -132,6 +132,8 @@ if ($isPost) {
                     $left = $seatsLeft - 1;
                     $jsonResp['seatsLeft'] = "{$left} seats left";
                     $jsonResp['data'] = [
+                        'surname' => $surname,
+                        'seatNo' => $seatNo,
                         'message' => [
                             'title' => 'Registration completed successfully',
                             'text' => 'Registration completed successfully'
