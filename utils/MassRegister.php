@@ -101,8 +101,11 @@ if ($isPost) {
                 $choirFull = true;
             }
         } else {
+            $choirSeatsAssigned = $conn->getChoirSeatsLeft($massScheduleId);
             $seatsLeft = $conn->getSeatsLeft($massScheduleId);
-            if ($seatsLeft <= $choirCapacity) {
+            $openSeats = $choirCapacity - $choirSeatsAssigned;
+
+            if ($seatsLeft <= $openSeats) {
                 $seatsLeft = 0;
             }
             $seatNo = $seatsLeft;
