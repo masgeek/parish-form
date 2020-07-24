@@ -117,8 +117,8 @@ jQuery(document).ready(function () {
             swal({
                 closeOnClickOutside: false,
                 closeOnEsc: false,
-                title: "Please specify correct age",
-                text: isAdult ? "You specified you are an adult but provided age as " + age : "You specified you are not an adult but provided age as " + age+", only 13-17 is allowed",
+                title: "Incorrect age provided",
+                text: isAdult ? "Sorry, age does not meet your selection for adult option" : "Booking not allowed for provided age",
                 icon: "error"
             });
             return;
