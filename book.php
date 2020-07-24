@@ -235,7 +235,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 
                         <div class="row">
                             <div class="col-md">
-                                <label>Are you a member of the choir?</label>
+                                <label>Are you a choir member for this mass?</label>
                                 <div class="form-group">
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
