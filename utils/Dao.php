@@ -226,11 +226,11 @@ SQL;
 
     /**
      * @param $massId
-     * @param $capacity
      * @return bool|int|mixed|string
      */
-    public function getSeatsLeft($massId, $capacity, $debug = false)
+    public function getSeatsLeft($massId)
     {
+        $capacity = $this->getMassScheduleCapacity($massId);
         $seatCount = $this->database->count("mass_registration", [
             'mass_schedule_id' => $massId
         ]);

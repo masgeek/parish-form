@@ -93,12 +93,13 @@ if ($isPost) {
         }
         $jsonResp['valid'] = $isValid;
 
+        $massCapacity = $conn->getMassScheduleCapacity($massScheduleId);
         $choirCapacity = $conn->getMassScheduleChoirCapacity($massScheduleId);
         if ($choirFlag == 1) {
             $seatsLeft = $conn->getChoirSeatsLeft($massScheduleId);
             $seatNo = $seatsLeft;
         } else {
-            $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity, false);
+            $seatsLeft = $conn->getSeatsLeft($massScheduleId);
             if ($seatsLeft <= $choirCapacity) {
                 $seatsLeft = 0; //15 and below are reserved
             }
