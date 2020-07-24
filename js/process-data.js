@@ -10,10 +10,10 @@ jQuery(document).ready(function () {
         const flag = parseInt(this.value);
         if (flag === 1) {
             // jQuery('.choir-seats').removeClass('hidden');
-            jQuery('.choir-seats').slideDown();
+            //jQuery('.choir-seats').slideDown();
         } else {
             // jQuery('.choir-seats').addClass('hidden');
-            jQuery('.choir-seats').slideUp();
+            //jQuery('.choir-seats').slideUp();
         }
     })
     jQuery('.adult').on('change', function () {
@@ -51,6 +51,7 @@ jQuery(document).ready(function () {
 
     jQuery('.mass_schedule').on('change', function () {
         const scheduleID = this.value;
+        jQuery('#schedule_id').val(scheduleID);
     });
 
     jQuery('#btn-register').on('click', function () {

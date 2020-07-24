@@ -129,6 +129,7 @@ SELECT
 	mass_schedule_master.mass_schedule_date,
 	mass_schedule.id,
 	mass_schedule.capacity,
+	mass_schedule.choir_capacity,
 	masses.mass_id,
 	masses.mass_title,
 	masses.time_from,
@@ -181,32 +182,30 @@ SQL;
 
     /**
      * @param $massId
+     * @param $capacity
      * @return bool|int|mixed|string
      */
-    public function getChoirSeatsLeft($massId)
+    public function getChoirSeatsLeft($massId, $capacity)
     {
-        $capacity = $this->getMassScheduleChoirCapacity($massId);
-
         $seatCount = $this->database->count("mass_registration", [
             'mass_schedule_id' => $massId,
             'is_choir' => 1
         ]);
 
-        $seatsLeft = $capacity - $seatCount;
+        return $capacity - $seatCount;
 
-        return $seatsLeft;
     }
 
     /**
-     * @param $massId
+     * @param $massScheduleId
      * @return int|mixed
      */
-    public function getMassScheduleChoirCapacity($massId)
+    public function getMassScheduleChoirCapacity($massScheduleId)
     {
         $capacity = $this->database->select("mass_schedule", [
             'choir_capacity'
         ], [
-            'id' => $massId
+            'id' => $massScheduleId
         ]);
         if ($capacity != false) {
             return ($capacity[0]['choir_capacity']);
@@ -214,12 +213,12 @@ SQL;
         return 0;
     }
 
-    public function getMassScheduleCapacity($massId)
+    public function getMassScheduleCapacity($massScheduleId)
     {
         $capacity = $this->database->select("mass_schedule", [
             'capacity'
         ], [
-            'id' => $massId
+            'id' => $massScheduleId
         ]);
         if ($capacity != false) {
             return ($capacity[0]['capacity']);
@@ -228,19 +227,17 @@ SQL;
     }
 
     /**
-     * @param $massId
+     * @param $scheduleId
+     * @param $capacity
      * @return bool|int|mixed|string
      */
-    public function getSeatsLeft($massId)
+    public function getSeatsLeft($scheduleId, $capacity)
     {
-        $capacity = $this->getMassScheduleCapacity($massId);
         $seatCount = $this->database->count("mass_registration", [
-            'mass_schedule_id' => $massId
+            'mass_schedule_id' => $scheduleId
         ]);
 
-        $seatsLeft = $capacity - $seatCount;
-
-        return $seatsLeft;
+        return $capacity - $seatCount;
     }
 
     /**
@@ -281,6 +278,36 @@ SQL;
             'hasError' => $code != 0,
             'errors' => $message
         ];
+    }
+
+    public function getSeatsArray($massCapacity)
+    {
+        $seats = [];
+        for ($x = 1; $x <= $massCapacity; $x++) {
+            $seats[] = $x;
+        }
+        return $seats;
+    }
+
+    /**
+     * @param $massScheduleId
+     * @param int $choirSeats
+     * @return mixed
+     */
+    public function getAllocatedSeats($massScheduleId, $choirSeats = 0)
+    {
+        $seatCount = $this->database->select("mass_registration", [
+            'seat_no'
+        ], [
+            'mass_schedule_id' => $massScheduleId,
+            'is_choir' => $choirSeats
+        ]);
+
+        $seats = [];
+        foreach ($seatCount as $key => $item) {
+            $seats[] = (int)$item['seat_no'];
+        }
+        return $seats;
     }
 
 }

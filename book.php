@@ -201,8 +201,9 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     <?php foreach ($scheduledMasses as $key => $value):
                                         $id = $value['id'];
                                         $totalCapacity = $value['capacity'];
-                                        $seatsLeft = $conn->getSeatsLeft($id);
-                                        $choirSeatsLeft = $conn->getChoirSeatsLeft($id);
+                                        $choirCapacity = $value['choir_capacity'];
+                                        $seatsLeft = $conn->getSeatsLeft($id, $totalCapacity);
+                                        $choirSeatsLeft = $conn->getChoirSeatsLeft($id, $choirCapacity);
 
                                         $congregationSeatsLeft = $seatsLeft - $choirSeatsLeft;
                                         $disabled = $seatsLeft <= 0 ? 'disabled' : '';
@@ -214,8 +215,10 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                             <label for="defaultChecked-<?= $key ?>">
                                                 <?= trim($value['mass_title']) ?>
                                             </label>
-                                            <span class="float-right mx-1 badge badge-dark hidden choir-seats"  id="choir-seats-left-<?= $id ?>"><?= $choirSeatsLeft ?> choir seats left</span>
-                                            <span class="float-right mx-1 badge badge-success"  id="seats-left-<?= $id ?>"><?= $congregationSeatsLeft ?> seats left</span>
+                                            <span class="float-right mx-1 badge choir-seats <?= $choirSeatsLeft == 0 ? 'badge-danger' : 'badge-primary' ?>"
+                                                  id="choir-seats-left-<?= $id ?>"><?= $choirSeatsLeft ?> choir seats left</span>
+                                            <span class="float-right mx-1 badge <?= $congregationSeatsLeft == 0 ? 'badge-danger' : 'badge-success' ?>"
+                                                  id="seats-left-<?= $id ?>"><?= $congregationSeatsLeft ?> seats left</span>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                     <?php endforeach; ?>

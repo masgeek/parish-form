@@ -94,21 +94,35 @@ if ($isPost) {
 
         $massCapacity = $conn->getMassScheduleCapacity($massScheduleId);
         $choirCapacity = $conn->getMassScheduleChoirCapacity($massScheduleId);
-        if ($choirFlag == 1) {
-            $seatsLeft = $conn->getChoirSeatsLeft($massScheduleId);
-            $seatNo = $seatsLeft;
-            if ($seatsLeft <= 0) {
-                $choirFull = true;
-            }
-        } else {
-            $choirSeatsAssigned = $conn->getChoirSeatsLeft($massScheduleId);
-            $seatsLeft = $conn->getSeatsLeft($massScheduleId);
-            $openSeats = $choirCapacity - $choirSeatsAssigned;
 
-            if ($seatsLeft <= $openSeats) {
+        $allSeatNumbersArr = $conn->getSeatsArray($massCapacity);
+        $choirSeatsArr = $conn->getSeatsArray($choirCapacity);
+        $publicSeatsArr = array_values(array_diff($allSeatNumbersArr, $choirSeatsArr));
+
+        if ($choirFlag == 1) {
+            $assignedSeatsArr = $conn->getAllocatedSeats($scheduleId, 1);
+            $seatsAvailableArr = array_values(array_diff($choirSeatsArr, $assignedSeatsArr));
+
+            if (empty($seatsAvailableArr)) {
                 $seatsLeft = 0;
+                $choirFull = true;
+            } else {
+                $seatsLeft = count($seatsAvailableArr);
+                $seatNo = $seatsAvailableArr[0];
             }
-            $seatNo = $seatsLeft;
+            $jsonResp['choirSeatsLeft'] = "{$seatsLeft} choir seats left";
+        } else {
+
+            $assignedSeatsArr = $conn->getAllocatedSeats($scheduleId);
+            $seatsAvailableArr = array_values(array_diff($publicSeatsArr, $assignedSeatsArr));
+            if (empty($seatsAvailableArr)) {
+                $seatsLeft = 0;
+            } else {
+                $seatsLeft = count($seatsAvailableArr);
+                $seatNo = $seatsAvailableArr[0];
+            }
+
+            $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
         }
 
         $data = [
@@ -127,10 +141,7 @@ if ($isPost) {
             'attended' => false
         ];
 
-        $choirSeatsLeft = $seatsLeft - $choirCapacity;
         $jsonResp['mass_schedule_id'] = $massScheduleId;
-        $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
-        $jsonResp['choirSeatsLeft'] = "{$choirSeatsLeft} seats left";
 
         $isRegistered = $conn->isAlreadyRegistered($data['mass_schedule_id'], $data['surname'], $data['other_names'], $data['mobile']);
 
