@@ -9,16 +9,16 @@ jQuery(document).ready(function () {
 
     jQuery('.adult').on('change', function () {
 
-        const adultFlag = this.value;
+        const adultFlag = parseInt(this.value);
         jQuery('#adult').val(adultFlag);
-        if (adultFlag === '1') {
+        if (adultFlag === 1) {
             //change to adult labels
-            jQuery('#mobile-label').html("Please enter your parent's mobile number");
-            jQuery('#national-id-label').html("Please enter your parent's national id");
-            console.log("Adult here");
-        } else {
             jQuery('#mobile-label').html("What is your mobile number?");
             jQuery('#national-id-label').html("What is your  national id?");
+            console.log("Adult here");
+        } else {
+            jQuery('#mobile-label').html("Please enter your parent's mobile number");
+            jQuery('#national-id-label').html("Please enter your parent's national id");
             console.log("Adult not here");
         }
         console.log("Age radio button", this.value);
