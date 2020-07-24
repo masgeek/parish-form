@@ -95,6 +95,9 @@ class Dao
             "ORDER" => ["mass_schedule_date" => 'ASC'],
         ]);
 
+        if ($data == false) {
+            return [];
+        }
         return $data;
     }
 
@@ -107,7 +110,7 @@ class Dao
             'outstations.outstation_name',
             'outstations.outstation_id'
         ], [
-            'mass_schedule_date[>=]' => $massDate,
+            'mass_schedule_date' => $massDate,
             "GROUP" => ["outstations.outstation_name"],
             "ORDER" => ["outstations.outstation_name" => 'ASC'],
         ]);
