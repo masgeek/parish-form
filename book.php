@@ -240,16 +240,14 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input choir" name="choirFlag"
-                                                   id="choirFlag" value="1"
-                                                   required>Yes
+                                                   id="choirFlag" value="1">Yes
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input choir" name="choirFlag"
-                                                   id="choirFlag" value="0"
-                                                   required>No
+                                                   id="choirFlag" value="0">No
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
