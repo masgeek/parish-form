@@ -218,7 +218,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                             <label for="defaultChecked-<?= $key ?>">
                                                 <?= trim($value['mass_title']) ?>
                                             </label>
-                                            <span class="float-right mx-1 badge badge-warning"  id="choir-seats-left-<?= $id ?>"><?= $choirSeatsLeft ?> choir seats left</span>
+                                            <span class="float-right mx-1 badge badge-warning hidden choir-seats"  id="choir-seats-left-<?= $id ?>"><?= $choirSeatsLeft ?> choir seats left</span>
                                             <span class="float-right mx-1 badge badge-info"  id="seats-left-<?= $id ?>"><?= $congregationSeatsLeft ?> seats left</span>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>

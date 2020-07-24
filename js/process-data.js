@@ -6,6 +6,14 @@ jQuery(document).ready(function () {
         return false;
     });
 
+    jQuery('.choir').on('change', function () {
+        const flag = parseInt(this.value);
+        if (flag === 1) {
+            jQuery('.choir-seats').removeClass('hidden');
+        } else {
+            jQuery('.choir-seats').addClass('hidden');
+        }
+    })
     jQuery('.adult').on('change', function () {
 
         const adultFlag = parseInt(this.value);
