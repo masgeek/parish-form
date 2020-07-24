@@ -123,13 +123,8 @@ jQuery(document).ready(function () {
             });
             return;
         }
-        if (myform[0].checkValidity() === false || ageIsValid === false) {
+        if (myform[0].checkValidity() === false) {
             myform.addClass('was-validated');
-            swal({
-                title: "Missing information",
-                text: "Please ensure all information is provided",
-                icon: "warning",
-            });
             return;
         }
 
