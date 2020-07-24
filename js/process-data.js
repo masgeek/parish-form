@@ -77,7 +77,7 @@ jQuery(document).ready(function () {
         if (myform[0].checkValidity() === false || ageIsValid === false) {
             myform.addClass('was-validated');
             swal({
-                title: "Missing values",
+                title: "Missing information",
                 text: "Please ensure all information is provided",
                 icon: "warning",
             });
