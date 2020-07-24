@@ -1,3 +1,4 @@
+
 body {
     font-family: 'Lato', sans-serif;
     /*background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);*/
@@ -7,8 +8,12 @@ body {
     background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
 }
 
-label{
+label {
     font-weight: 400;
+}
+
+.mass-label {
+@include font-size(4 rem);
 }
 
 td.description {

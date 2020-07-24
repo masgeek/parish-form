@@ -212,7 +212,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                             <input type="radio" name="mass_schedule_id" class="mass_schedule"
                                                    id="defaultChecked-<?= $key ?>"
                                                    value="<?= $id ?>" required <?= $disabled ?>/>
-                                            <label for="defaultChecked-<?= $key ?>">
+                                            <label for="defaultChecked-<?= $key ?>" class="mass-label">
                                                 <?= trim($value['mass_title']) ?>
                                             </label>
                                             <span class="float-right mx-1 badge choir-seats <?= $choirSeatsLeft == 0 ? 'badge-danger' : 'badge-primary' ?>"
