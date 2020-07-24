@@ -154,9 +154,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="mobile" id="mobile-label">What is your mobile number?</label>
@@ -185,9 +183,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="estate-name">What is your estate name?</label>
