@@ -67,6 +67,7 @@ if ($isPost) {
         $trimmedNames = preg_replace('/\s+/', ' ', $otherNames);
 
         $isValid = false;
+        $choirFull = false;
         //validate phone number
         try {
             $swissNumberProto = $phoneUtil->parse($mobileNo, "KE");
@@ -98,10 +99,13 @@ if ($isPost) {
         if ($choirFlag == 1) {
             $seatsLeft = $conn->getChoirSeatsLeft($massScheduleId);
             $seatNo = $seatsLeft;
+            if ($seatsLeft <= 0) {
+                $choirFull = true;
+            }
         } else {
             $seatsLeft = $conn->getSeatsLeft($massScheduleId);
             if ($seatsLeft <= $choirCapacity) {
-                $seatsLeft = 0; //15 and below are reserved
+                $seatsLeft = 0;
             }
             $seatNo = $seatsLeft;
         }
@@ -165,10 +169,12 @@ if ($isPost) {
                     ];
                 }
             } else {
+                $jsonResp['valid'] = false;
+
                 $jsonResp['data'] = [
                     'message' => [
-                        'title' => 'The mass is already full',
-                        'text' => 'It appears this mass is already full, please choose another one'
+                        'title' => $choirFull ? 'Choir seats full' : 'The mass is already full',
+                        'text' => $choirFull ? 'Please select non choir option to get assigned normal seats' : 'It appears this mass is already full, please choose another one'
                     ]
                 ];
             }
