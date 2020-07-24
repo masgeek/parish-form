@@ -41,9 +41,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                         you have
                         booked seat no <span id="seat-summary">x</span></h3>
                     <br/>
-                    <a href="#" class="text-danger">
-                        <strong>To cancel inform your Jumuiya Moderator</strong>
-                    </a>
+                    <strong>To cancel text <a href="tel:+254729390188" class="text-info">+254 729 390 188</a></strong>
                     <br/>
                     <a href="index.php" class="btn btn-link">View mass schedules</a>
                 </div>
