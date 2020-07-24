@@ -96,7 +96,7 @@ jQuery(document).ready(function () {
             return;
         }
 
-        let ageIsValid = false;
+        let ageIsValid = true;
         let age = parseInt(jQuery('#age').val());
 
         if (isEmpty(age) || isNaN(age)) {
