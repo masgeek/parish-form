@@ -219,7 +219,7 @@ SQL;
             'id' => $massId
         ]);
         if ($capacity != false) {
-            return ($capacity[0]['choir_capacity']);
+            return ($capacity[0]['capacity']);
         }
         return 0;
     }
