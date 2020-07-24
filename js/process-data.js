@@ -9,9 +9,11 @@ jQuery(document).ready(function () {
     jQuery('.choir').on('change', function () {
         const flag = parseInt(this.value);
         if (flag === 1) {
-            jQuery('.choir-seats').removeClass('hidden');
+            // jQuery('.choir-seats').removeClass('hidden');
+            jQuery('.choir-seats').slideDown();
         } else {
-            jQuery('.choir-seats').addClass('hidden');
+            // jQuery('.choir-seats').addClass('hidden');
+            jQuery('.choir-seats').slideUp();
         }
     })
     jQuery('.adult').on('change', function () {
