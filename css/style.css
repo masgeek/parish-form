@@ -12,10 +12,6 @@ label {
     font-weight: 400;
 }
 
-.mass-label {
-@include font-size(4 rem);
-}
-
 td.description {
     vertical-align: middle;
     width: 80%;
