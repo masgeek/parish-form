@@ -47,7 +47,10 @@ if ($isPost) {
     $conn = new Dao();
     if ($helper === true) {
         $seatNo = 0;
-        $countryCode = '254';
+        $isValid = false;
+        $choirFull = false;
+        $country = 'KE';
+
         $surname = Request::post('surname');
         $otherNames = Request::post('other_names');
         $nationalId = Request::post('national_id');
@@ -64,15 +67,12 @@ if ($isPost) {
         $surname = preg_replace('/\s+/', '', $surname);
         $trimmedNames = preg_replace('/\s+/', ' ', $otherNames);
 
-        $isValid = false;
-        $choirFull = false;
-        //validate phone number
         try {
-            $swissNumberProto = $phoneUtil->parse($mobileNo, "KE");
+            $swissNumberProto = $phoneUtil->parse($mobileNo, $country);
             $isValid = $phoneUtil->isValidNumber($swissNumberProto);
-            $countryCode = $swissNumberProto->getCountryCode();
+            $countryDiallingCode = $swissNumberProto->getCountryCode();
             $mobileNo = $swissNumberProto->getNationalNumber();
-            $mobileNo = "$countryCode$mobileNo";
+            $mobileNo = "$countryDiallingCode$mobileNo";
         } catch (\libphonenumber\NumberParseException $e) {
             $isValid = false;
             $jsonResp['data'] = [
