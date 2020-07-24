@@ -25,8 +25,7 @@ $rules = [
     "genderFlag" => "required|string",
     "schedule_id" => "required|numeric",
     "age" => "required|numeric",
-    "mass_schedule_id" => "required|numeric",
-    "mass_capacity" => "numeric:required",
+    "mass_schedule_id" => "required|numeric"
 ];
 
 $jsonResp = [
@@ -60,7 +59,6 @@ if ($isPost) {
         $mobileNo = Request::post('mobile', 0);
         $estateName = Request::post('estate_name');
         $massScheduleId = Request::post('mass_schedule_id');
-        $capacity = Request::post('mass_capacity');
         $scheduleId = Request::post('schedule_id');
 
         $surname = preg_replace('/\s+/', '', $surname);
@@ -126,8 +124,10 @@ if ($isPost) {
             'attended' => false
         ];
 
+        $choirSeatsLeft = $seatsLeft - $choirCapacity;
         $jsonResp['mass_schedule_id'] = $massScheduleId;
         $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
+        $jsonResp['choirSeatsLeft'] = "{$choirSeatsLeft} seats left";
 
         $isRegistered = $conn->isAlreadyRegistered($data['mass_schedule_id'], $data['surname'], $data['other_names'], $data['mobile']);
 

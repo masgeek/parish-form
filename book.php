@@ -178,9 +178,9 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     </select>
                                     <?php foreach ($groups as $key => $value):
                                         $id = $value['group_id'];
-                                        $capacity = $value['estate_id'];
+                                        $totalCapacity = $value['estate_id'];
                                         ?>
-                                        <input type="hidden" id="estate-<?= $id ?>" value="<?= $capacity ?>"
+                                        <input type="hidden" id="estate-<?= $id ?>" value="<?= $totalCapacity ?>"
                                                class="form-control" readonly>
                                     <?php endforeach; ?>
                                 </div>
@@ -204,9 +204,11 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                 <div class="funkyradio form-group">
                                     <?php foreach ($scheduledMasses as $key => $value):
                                         $id = $value['id'];
-                                        $capacity = $value['capacity'];
+                                        $totalCapacity = $value['capacity'];
                                         $seatsLeft = $conn->getSeatsLeft($id);
+                                        $choirSeatsLeft = $conn->getChoirSeatsLeft($id);
 
+                                        $congregationSeatsLeft = $seatsLeft - $choirSeatsLeft;
                                         $disabled = $seatsLeft <= 0 ? 'disabled' : '';
                                         ?>
                                         <div class="funkyradio-success">
@@ -216,17 +218,10 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                             <label for="defaultChecked-<?= $key ?>">
                                                 <?= trim($value['mass_title']) ?>
                                             </label>
-                                            <span class="float-right mx-1 badge badge-info"
-                                                  id="seats-left-<?= $id ?>"><?= $seatsLeft ?> seats left</span>
+                                            <span class="float-right mx-1 badge badge-info"  id="seats-left-<?= $id ?>"><?= $congregationSeatsLeft ?> seats left</span>
+                                            <span class="float-right mx-1 badge badge-warning"  id="choir-seats-left-<?= $id ?>"><?= $choirSeatsLeft ?> choir seats left</span>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
-                                    <?php endforeach; ?>
-                                    <?php foreach ($scheduledMasses as $key => $value):
-                                        $id = $value['id'];
-                                        $capacity = $value['capacity'];
-                                        ?>
-                                        <input type="hidden" id="mass-capacity-<?= $id ?>" value="<?= $capacity ?>"
-                                               readonly>
                                     <?php endforeach; ?>
                                     <input type="hidden" id="mass-capacity" name="mass_capacity" readonly>
                                 </div>

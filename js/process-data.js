@@ -41,8 +41,6 @@ jQuery(document).ready(function () {
 
     jQuery('.mass_schedule').on('change', function () {
         const scheduleID = this.value;
-        const massCapacity = jQuery("#mass-capacity-" + scheduleID).val();
-        jQuery('#mass-capacity').val(massCapacity);
     });
 
     jQuery('#btn-register').on('click', function () {
@@ -164,6 +162,7 @@ jQuery(document).ready(function () {
                 }
 
                 jQuery('#seats-left-' + scheduleId).html(resp.seatsLeft);
+                jQuery('#choir-seats-left-' + scheduleId).html(resp.choirSeatsLeft);
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest.responseText);
