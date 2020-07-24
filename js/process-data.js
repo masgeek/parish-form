@@ -50,35 +50,93 @@ jQuery(document).ready(function () {
 
         const myform = jQuery('#mass-reg-form');
 
-        let ageIsValid = true;
-        const age = parseInt(jQuery('#age').val());
-        let isAdult = jQuery('#adult').val();
+        const rbs = document.querySelectorAll('input[name="adultFlag"]');
+        const gender = document.querySelectorAll('input[name="genderFlag"]');
+        const choir = document.querySelectorAll('input[name="choirFlag"]');
 
-        if (isAdult === '1') {
+        let isAdult;
+        let genderFlag;
+        let choirFlag;
+        for (const rb of rbs) {
+            if (rb.checked) {
+                isAdult = parseInt(rb.value);
+                break;
+            }
+        }
+
+        for (const rb of gender) {
+            if (rb.checked) {
+                genderFlag = rb.value;
+                break;
+            }
+        }
+
+        for (const rb of choir) {
+            if (rb.checked) {
+                choirFlag = parseInt(rb.value);
+                break;
+            }
+        }
+
+        if (isEmpty(isAdult)) {
+            swal({
+                title: "Missing age group",
+                text: "Please indicate whether your are an adult or not",
+                icon: "warning",
+            });
+            return;
+        }
+
+        if (isEmpty(genderFlag)) {
+            swal({
+                title: "Missing gender",
+                text: "Please indicate your gender",
+                icon: "warning",
+            });
+            return;
+        }
+
+        let ageIsValid = false;
+        let age = parseInt(jQuery('#age').val());
+
+        if (isEmpty(age) || isNaN(age)) {
+            age = 0;
+        }
+        if (isAdult === 1) {
             if (age <= 17) {
                 ageIsValid = false;
             }
-        }
-        if (isAdult === '0') {
+        } else {
             if (age < 13 || age > 17) {
                 ageIsValid = false;
             }
         }
 
+
         if (ageIsValid === false) {
             swal({
                 closeOnClickOutside: false,
                 closeOnEsc: false,
-                title: "Invalid age",
-                text: "Please provide correct age",
+                title: "Please specify correct age",
+                text: isAdult ? "You specified you are an adult but provided age as " + age : "You specified you are not an adult but provided age as " + age+", only 13-17 is allowed",
                 icon: "error"
             });
+            return;
         }
         if (myform[0].checkValidity() === false || ageIsValid === false) {
             myform.addClass('was-validated');
             swal({
                 title: "Missing information",
                 text: "Please ensure all information is provided",
+                icon: "warning",
+            });
+            return;
+        }
+
+        if (isEmpty(choirFlag) || isNaN(choirFlag)) {
+            swal({
+                title: "Missing choir indication",
+                text: "Please specify if you are a choir member for this mass or not",
                 icon: "warning",
             });
             return;

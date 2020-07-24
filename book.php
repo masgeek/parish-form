@@ -205,7 +205,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     <?php foreach ($scheduledMasses as $key => $value):
                                         $id = $value['id'];
                                         $capacity = $value['capacity'];
-                                        $seatsLeft = $conn->getSeatsLeft($id, $capacity);
+                                        $seatsLeft = $conn->getSeatsLeft($id);
 
                                         $disabled = $seatsLeft <= 0 ? 'disabled' : '';
                                         ?>
