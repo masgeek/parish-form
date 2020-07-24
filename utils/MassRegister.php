@@ -53,8 +53,9 @@ if ($isPost) {
         $otherNames = Request::post('other_names');
         $nationalId = Request::post('national_id');
         $groupId = Request::post('group_id');
-        $adult = Request::post('adultFlag');
+        $adultFlag = Request::post('adultFlag');
         $gender = Request::post('genderFlag');
+        $choirFlag = Request::post('choirFlag');
         $age = Request::post('age');
         $mobileNo = Request::post('mobile', 0);
         $estateName = Request::post('estate_name');
@@ -92,15 +93,25 @@ if ($isPost) {
         }
         $jsonResp['valid'] = $isValid;
 
-        $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity, false);
+        $choirCapacity = $conn->getMassScheduleChoirCapacity($massScheduleId);
+        if ($choirFlag == 1) {
+            $seatsLeft = $conn->getChoirSeatsLeft($massScheduleId);
+            $seatNo = $seatsLeft;
+        } else {
+            $seatsLeft = $conn->getSeatsLeft($massScheduleId, $capacity, false);
+            if ($seatsLeft <= $choirCapacity) {
+                $seatsLeft = 0; //15 and below are reserved
+            }
+            $seatNo = $seatsLeft;
+        }
 
-        $seatNo = $seatsLeft;
         $data = [
             'seat_no' => $seatNo,
             'surname' => strtoupper($surname),
             'other_names' => strtoupper($trimmedNames),
             'national_id' => $nationalId,
-            'adult' => $adult,
+            'adult' => $adultFlag,
+            'is_choir' => $choirFlag,
             'age' => $age,
             'gender' => $gender,
             'group_id' => $groupId,

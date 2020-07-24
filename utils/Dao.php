@@ -178,6 +178,54 @@ SQL;
 
     /**
      * @param $massId
+     * @return bool|int|mixed|string
+     */
+    public function getChoirSeatsLeft($massId)
+    {
+        $capacity = $this->getMassScheduleChoirCapacity($massId);
+
+        $seatCount = $this->database->count("mass_registration", [
+            'mass_schedule_id' => $massId,
+            'is_choir' => 1
+        ]);
+
+        $seatsLeft = $capacity - $seatCount;
+
+        return $seatsLeft;
+    }
+
+    /**
+     * @param $massId
+     * @return int|mixed
+     */
+    public function getMassScheduleChoirCapacity($massId)
+    {
+        $capacity = $this->database->select("mass_schedule", [
+            'choir_capacity'
+        ], [
+            'id' => $massId
+        ]);
+        if ($capacity != false) {
+            return ($capacity[0]['choir_capacity']);
+        }
+        return 0;
+    }
+
+    public function getMassScheduleCapacity($massId)
+    {
+        $capacity = $this->database->select("mass_schedule", [
+            'capacity'
+        ], [
+            'id' => $massId
+        ]);
+        if ($capacity != false) {
+            return ($capacity[0]['choir_capacity']);
+        }
+        return 0;
+    }
+
+    /**
+     * @param $massId
      * @param $capacity
      * @return bool|int|mixed|string
      */

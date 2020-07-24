@@ -37,7 +37,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                 <div class="thank-you-pop card-body">
                     <img src="img/green-tick.png" alt="">
                     <h1>Thank You!</h1>
-                    <h3 class="cupon-pop"><span id="surname-summary">Surname</span>, your registration is successful and you have
+                    <h3 class="cupon-pop"><span id="surname-summary">Surname</span>, your registration is successful and
+                        you have
                         booked seat no <span id="seat-summary">x</span></h3>
                     <br/>
                     <a href="#" class="text-danger">
@@ -96,14 +97,16 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                 <div class="form-group">
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input adult" name="adultFlag" id="adultFlag" value="1"
+                                            <input type="radio" class="form-check-input adult" name="adultFlag"
+                                                   id="adultFlag" value="1"
                                                    required>Yes
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input adult" name="adultFlag" id="adultFlag" value="0"
+                                            <input type="radio" class="form-check-input adult" name="adultFlag"
+                                                   id="adultFlag" value="0"
                                                    required>No
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
@@ -147,8 +150,9 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group">
-                                    <label for="national_id" id="national-id-label">What is your  national id?</label>
-                                    <input type="text" id="national_id" name="national_id" class="form-control" required>
+                                    <label for="national_id" id="national-id-label">What is your national id?</label>
+                                    <input type="text" id="national_id" name="national_id" class="form-control"
+                                           required>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
@@ -230,6 +234,30 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md">
+                                <label>Are you a member of the choir?</label>
+                                <div class="form-group">
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input choir" name="choirFlag"
+                                                   id="choirFlag" value="1"
+                                                   required>Yes
+                                        </label>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input choir" name="choirFlag"
+                                                   id="choirFlag" value="0"
+                                                   required>No
+                                        </label>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Register button -->
                         <div class="row">
                             <div class="col-md">
@@ -242,6 +270,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     Register
                                 </button>
                             </div>
+                        </div>
                     </form>
                     <!-- Form -->
 
