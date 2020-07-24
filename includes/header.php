@@ -8,9 +8,10 @@
     <!-- Bootstrap core CSS -->
     <link href="vendor/yarn-asset/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,900;1,100;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,900;1,100;1,300&display=swap"
+          rel="stylesheet">
 
     <!-- Your custom styles (optional) -->
-    <link href="css/style.css?random=<?php echo uniqid("custom_"); ?>" rel="stylesheet">
-    <link href="css/fancy-radio-buttons.css?random=<?php echo uniqid("custom_"); ?>" rel="stylesheet">
+    <link href="css/style.css?ver=<?= md5_file('css/style.css'); ?>" rel="stylesheet">
+    <link href="css/fancy-radio-buttons.css?ver=<?= md5_file('css/fancy-radio-buttons.css'); ?>" rel="stylesheet">
 </head>

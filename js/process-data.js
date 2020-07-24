@@ -2,7 +2,6 @@
 
 jQuery(document).ready(function () {
 
-
     jQuery("#mass-reg-form").submit(function (e) {
         return false;
     });
