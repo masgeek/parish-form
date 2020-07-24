@@ -76,6 +76,11 @@ jQuery(document).ready(function () {
         }
         if (myform[0].checkValidity() === false || ageIsValid === false) {
             myform.addClass('was-validated');
+            swal({
+                title: "Missing values",
+                text: "Please ensure all information is provided",
+                icon: "danger",
+            });
             return;
         }
         //proceed with normal operations
