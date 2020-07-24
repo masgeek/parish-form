@@ -79,7 +79,7 @@ jQuery(document).ready(function () {
             swal({
                 title: "Missing values",
                 text: "Please ensure all information is provided",
-                icon: "danger",
+                icon: "warning",
             });
             return;
         }
