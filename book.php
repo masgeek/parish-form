@@ -207,18 +207,29 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 
                                         $congregationSeatsLeft = $seatsLeft - $choirSeatsLeft;
                                         $disabled = $seatsLeft <= 0 ? 'disabled' : '';
+                                        $status = $value['mass_status'];
+                                        $massTitle = trim($value['mass_title']);
+                                        if ($status != 'OPEN') {
+                                            $disabled = 'disabled';
+                                        }
+
                                         ?>
                                         <div class="funkyradio-success">
                                             <input type="radio" name="mass_schedule_id" class="mass_schedule"
                                                    id="defaultChecked-<?= $key ?>"
                                                    value="<?= $id ?>" required <?= $disabled ?>/>
                                             <label for="defaultChecked-<?= $key ?>" class="mass-label">
-                                                <?= trim($value['mass_title']) ?>
+                                                <?= $massTitle ?>
                                             </label>
-                                            <span class="float-right mx-1 badge choir-seats <?= $choirSeatsLeft == 0 ? 'badge-danger' : 'badge-primary' ?>"
-                                                  id="choir-seats-left-<?= $id ?>"><?= $choirSeatsLeft ?> choir seats left</span>
-                                            <span class="float-right mx-1 badge <?= $congregationSeatsLeft == 0 ? 'badge-danger' : 'badge-success' ?>"
-                                                  id="seats-left-<?= $id ?>"><?= $congregationSeatsLeft ?> seats left</span>
+
+                                            <?php if ($status != 'OPEN'): ?>
+                                                <span class="float-right mx-1 badge badge-danger"><?= $status ?></span>
+                                            <?php else: ?>
+                                                <span class="float-right mx-1 badge choir-seats <?= $choirSeatsLeft == 0 ? 'badge-danger' : 'badge-primary' ?>"
+                                                      id="choir-seats-left-<?= $id ?>"><?= $choirSeatsLeft ?> choir seats left</span>
+                                                <span class="float-right mx-1 badge <?= $congregationSeatsLeft == 0 ? 'badge-danger' : 'badge-success' ?>"
+                                                      id="seats-left-<?= $id ?>"><?= $congregationSeatsLeft ?> seats left</span>
+                                            <?php endif; ?>
                                             <div class="invalid-feedback">Please fill out this field.</div>
                                         </div>
                                     <?php endforeach; ?>

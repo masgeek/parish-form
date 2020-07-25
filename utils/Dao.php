@@ -124,60 +124,27 @@ class Dao
      */
     public function getActiveScheduledMasses($outstation_id, $scheduleDate)
     {
-        $query = <<<SQL
-SELECT
-	mass_schedule_master.mass_schedule_date,
-	mass_schedule.id,
-	mass_schedule.capacity,
-	mass_schedule.choir_capacity,
-	masses.mass_id,
-	masses.mass_title,
-	masses.time_from,
-	masses.time_to,
-	mass_schedule.mass_status_id,
-	mass_status.`status`,
-	mass_status.status_description,
-	mass_schedule_master.outstation_id,
-	mass_schedule.schedule_master_id 
-FROM
-	mass_schedule_master
-	INNER JOIN mass_schedule ON mass_schedule.schedule_master_id = mass_schedule_master.id
-	INNER JOIN masses ON mass_schedule.mass_id = masses.mass_id
-	INNER JOIN mass_status ON mass_schedule.mass_status_id = mass_status.mass_status_id 
-WHERE
-	mass_schedule_master.outstation_id = $outstation_id
-AND 
-    mass_schedule_master.mass_schedule_date = '$scheduleDate'
-ORDER BY
-	masses.time_to ASC
-SQL;
-
-        /*$data = $this->database->debug()->select('mass_schedule_master', [
-            '[><]mass_schedule' => ['schedule_master_id' => 'schedule_master_id'],
-            '[><]masses' => ['mass_id' => 'mass_id'],
-            '[><]mass_status' => ['mass_status_id' => 'mass_status_id'],
+        $data = $this->database->select('v_mass_schedule', [
+            'mass_schedule_date',
+            'id',
+            'capacity',
+            'choir_capacity',
+            'mass_id',
+            'mass_title',
+            'time_from',
+            'time_to',
+            'mass_status_id',
+            'mass_status',
+            'status_description',
+            'outstation_id',
+            'schedule_master_id'
         ], [
-           'mass_schedule_master.mass_schedule_date',
-            'mass_schedule.id',
-            'mass_schedule.capacity',
-            'masses.mass_id',
-            'masses.mass_title',
-            'masses.time_from',
-            'masses.time_to',
-            'mass_schedule.mass_status_id',
-            'mass_status.status',
-            'mass_status.status_description',
-            'mass_schedule_master.outstation_id',
-            'mass_schedule.schedule_master_id'
-        ],
-            [
-                //'mass_schedule.schedule_master_id' => $schedule_id,
-                "ORDER" => ["masses.time_from" => 'ASC'],
-            ]);*/
+            'outstation_id' => $outstation_id,
+            'mass_schedule_date' => $scheduleDate,
+            "ORDER" => ["time_to" => 'ASC'],
+        ]);
 
-        $data = $this->database->query($query);
-
-        return $data->fetchAll();
+        return $data;
     }
 
     /**
