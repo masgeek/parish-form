@@ -29,9 +29,9 @@ jQuery(document).ready(function () {
                     jQuery("input[name=adultFlag][value=" + adultFlag + "]").prop('checked', true).trigger('change');
 
                     //now we hide the other fields
-                    // jQuery('.prefill-section').slideUp();
+                    jQuery('.prefill-section').slideUp();
                 } else {
-                    // jQuery('.prefill-section').slideDown();
+                    jQuery('.prefill-section').slideDown();
                 }
             }, 'json');
         }
