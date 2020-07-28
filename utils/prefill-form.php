@@ -21,6 +21,7 @@ $conn = new Dao();
 
 $jsonResp = [
     'hasData' => false,
+    'multiData' => false,
     'data' => [],
 ];
 

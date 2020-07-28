@@ -23,7 +23,6 @@ jQuery(document).ready(function () {
                     const myContainer = jQuery('#multiRecordMatches');
                     myContainer.html(null);
                     if (resp.multiData) {
-
                         const defaultData = jd[0];
                         jQuery('#group-id').val(defaultData.group_id).trigger('change');
 
@@ -55,18 +54,16 @@ jQuery(document).ready(function () {
         jQuery.post('utils/get-single-record.php', data, function (resp, testStatus, jqXHR) {
             if (resp.hasData) {
                 const jd = resp.data;
-                if (resp.hasData) {
-                    const adultFlag = jd.adult;
-                    const genderFlag = jd.gender;
-                    jQuery('#surname').val(jd.surname).prop("readonly", true);
-                    jQuery('#other_names').val(jd.other_names).prop("readonly", true);
-                    jQuery('#age').val(jd.age);
-                    jQuery('#group-id').val(jd.group_id).trigger('change');
-                    jQuery("input[name=genderFlag][value=" + genderFlag + "]").prop('checked', true);
-                    jQuery("input[name=adultFlag][value=" + adultFlag + "]").prop('checked', true).trigger('change');
-                    //now we hide the other fields
-                    jQuery('.prefill-section').slideUp();
-                }
+                const adultFlag = jd.adult;
+                const genderFlag = jd.gender;
+                jQuery('#surname').val(jd.surname).prop("readonly", true);
+                jQuery('#other_names').val(jd.other_names).prop("readonly", true);
+                jQuery('#age').val(jd.age);
+                jQuery('#group-id').val(jd.group_id).trigger('change');
+                jQuery("input[name=genderFlag][value=" + genderFlag + "]").prop('checked', true);
+                jQuery("input[name=adultFlag][value=" + adultFlag + "]").prop('checked', true).trigger('change');
+                //now we hide the other fields
+                jQuery('.prefill-section').slideUp();
             } else {
                 jQuery('#surname').val(null).prop("readonly", false);
                 jQuery('#other_names').val(null).prop("readonly", false);
