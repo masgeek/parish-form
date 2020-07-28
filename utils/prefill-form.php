@@ -62,6 +62,9 @@ FROM
 WHERE
 	mass_registration.mobile = '$mobileNo' 
 	AND mass_registration.national_id = '$nationalId'
+GROUP BY
+    mass_registration.surname,
+    mass_registration.other_names
 SQL;
 
     $queryFields = [
