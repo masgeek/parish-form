@@ -1,20 +1,21 @@
 <?php
 
-use Medoo\Medoo;
 
 $root_dir = dirname(dirname(__FILE__));
 
 require_once $root_dir . '/vendor/autoload.php';
-
 require_once $root_dir . '/config/config.php';
 
 if (!defined('MyConst')) {
     die('Direct access not permitted');
 }
 
+/**
+ * Class Dao
+ */
 class Dao
 {
-    // [>] == LEFT JOIN
+// [>] == LEFT JOIN
 // [<] == RIGH JOIN
 // [<>] == FULL JOIN
 // [><] == INNER JOIN
@@ -23,7 +24,7 @@ class Dao
 
     public function __construct()
     {
-        $this->database = new Medoo([
+        $this->database = new Medoo\Medoo([
             'database_type' => 'mysql',
             'database_name' => DB_NAME,
             'server' => DB_URL,
