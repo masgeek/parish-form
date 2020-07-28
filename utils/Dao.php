@@ -290,7 +290,10 @@ class Dao
     public function selectData($tableName, array $fields, array $condition)
     {
         return $this->database->select($tableName, $fields, $condition);
-
     }
 
+    public function executeQuery($query)
+    {
+        return $this->database->query($query)->fetchAll();
+    }
 }

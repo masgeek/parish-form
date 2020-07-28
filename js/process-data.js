@@ -1,5 +1,7 @@
 'use strict'
 
+let jsonProfile
+
 jQuery(document).ready(function () {
 
     jQuery("#mass-reg-form").submit(function (e) {
@@ -19,16 +21,17 @@ jQuery(document).ready(function () {
             jQuery.post('utils/prefill-form.php', data, function (resp, testStatus, jqXHR) {
                 if (resp.hasData) {
                     const jd = resp.data;
+                    jsonProfile = jd;
                     const myContainer = jQuery('#multiRecordMatches');
                     myContainer.html(null);
                     const defaultData = jd[0];
                     jQuery('#group-id').val(defaultData.group_id).trigger('change');
 
-                    jd.forEach(function (jsonData) {
+                    jd.forEach(function (jsonData, index) {
                         const openDiv = `<div class="funkyradio-primary">`
                         const closeDiv = `</div>`;
-                        const radioLabel = `<label for="prefill-${jsonData.id}">${jsonData.surname} ${jsonData.other_names}</label>`;
-                        const radio = `<input type="radio" id="prefill-${jsonData.id}" name="recordMatches" class="record-matches" value="${jsonData.id}">`;
+                        const radioLabel = `<label for="prefill-${index}">${jsonData.surname} ${jsonData.other_names}</label>`;
+                        const radio = `<input type="radio" id="prefill-${index}" name="recordMatches" class="record-matches" value="${index}">`;
 
                         const theString = openDiv + radio + radioLabel + closeDiv;
                         myContainer.append(theString)
@@ -51,32 +54,19 @@ jQuery(document).ready(function () {
     jQuery("#multiRecordMatches").on("change", "input", function () {
         const id = parseInt(this.value);
 
-        const data = {
-            id: id
-        };
-        jQuery.post('utils/get-single-record.php', data, function (resp, testStatus, jqXHR) {
-            if (resp.hasData) {
-                const jd = resp.data;
-                const adultFlag = jd.adult;
-                const genderFlag = jd.gender;
-                jQuery('#surname').val(jd.surname).prop("readonly", true);
-                jQuery('#other_names').val(jd.other_names).prop("readonly", true);
-                jQuery('#age').val(jd.age);
-                jQuery('#group-id').val(jd.group_id).trigger('change');
-                jQuery("input[name=genderFlag][value=" + genderFlag + "]").prop('checked', true);
-                jQuery("input[name=adultFlag][value=" + adultFlag + "]").prop('checked', true).trigger('change');
-                //now we hide the other fields
-                jQuery('.prefill-section').slideUp();
-            } else {
-                jQuery('#surname').val(null).prop("readonly", false);
-                jQuery('#other_names').val(null).prop("readonly", false);
-                jQuery('#age').val(null);
-                jQuery('#group-id').val(null).trigger('change');
-                $('input[name="adultFlag"]').prop('checked', false);
-                $('input[name="genderFlag"]').prop('checked', false);
-                jQuery('.prefill-section').slideDown();
-            }
-        }, 'json');
+        const jd = jsonProfile[id];
+
+        const adultFlag = jd.adult;
+        const genderFlag = jd.gender;
+        jQuery('#surname').val(jd.surname).prop("readonly", true);
+        jQuery('#other_names').val(jd.other_names).prop("readonly", true);
+        jQuery('#age').val(jd.age);
+        jQuery('#group-id').val(jd.group_id).trigger('change');
+        jQuery("input[name=genderFlag][value=" + genderFlag + "]").prop('checked', true);
+        jQuery("input[name=adultFlag][value=" + adultFlag + "]").prop('checked', true).trigger('change');
+        //now we hide the other fields
+        jQuery('.prefill-section').slideUp();
+
     })
 
     jQuery('#add-child').on('click', function () {
