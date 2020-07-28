@@ -31,9 +31,8 @@ if ($isAjax) {
     $nationalId = Request::post('nationalId');
     $mobileNo = Request::post('mobileNumber', 0);
 
-//
-    $nationalId = '20401185';
-    $mobileNo = '254721630629';
+//    $nationalId = '20401185';
+//    $mobileNo = '254721630629';
 
     try {
         $swissNumberProto = $phoneUtil->parse($mobileNo, $country);
