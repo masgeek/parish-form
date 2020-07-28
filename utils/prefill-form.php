@@ -21,7 +21,6 @@ $conn = new Dao();
 
 $jsonResp = [
     'hasData' => false,
-    'multiData' => false,
     'data' => [],
 ];
 
@@ -71,7 +70,6 @@ if ($isAjax) {
 
     if ($data) {
         $jsonResp['hasData'] = true;
-        $jsonResp['multiData'] = count($data) > 1;
         $jsonResp['data'] = $data;
     }
 

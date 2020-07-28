@@ -19,26 +19,29 @@ jQuery(document).ready(function () {
             jQuery.post('utils/prefill-form.php', data, function (resp, testStatus, jqXHR) {
                 if (resp.hasData) {
                     const jd = resp.data;
-
                     const myContainer = jQuery('#multiRecordMatches');
                     myContainer.html(null);
-                    if (resp.multiData) {
-                        const defaultData = jd[0];
-                        jQuery('#group-id').val(defaultData.group_id).trigger('change');
+                    const defaultData = jd[0];
+                    jQuery('#group-id').val(defaultData.group_id).trigger('change');
 
-                        jd.forEach(function (jsonData) {
-                            const openDiv = `<div class="funkyradio-primary">`
-                            const closeDiv = `</div>`;
-                            const radioLabel = `<label for="prefill-${jsonData.id}">${jsonData.surname} ${jsonData.other_names}</label>`;
-                            const radio = `<input type="radio" id="prefill-${jsonData.id}" name="recordMatches" class="record-matches" value="${jsonData.id}">`;
+                    jd.forEach(function (jsonData) {
+                        const openDiv = `<div class="funkyradio-primary">`
+                        const closeDiv = `</div>`;
+                        const radioLabel = `<label for="prefill-${jsonData.id}">${jsonData.surname} ${jsonData.other_names}</label>`;
+                        const radio = `<input type="radio" id="prefill-${jsonData.id}" name="recordMatches" class="record-matches" value="${jsonData.id}">`;
 
-                            const theString = openDiv + radio + radioLabel + closeDiv;
-                            myContainer.append(theString)
-                        });
+                        const theString = openDiv + radio + radioLabel + closeDiv;
+                        myContainer.append(theString)
+                    });
 
-                        jQuery('#multiRecordModal').modal('show');
-                    }
+                    jQuery('#multiRecordModal').modal('show');
                 } else {
+                    jQuery('#surname').val(null).prop("readonly", false);
+                    jQuery('#other_names').val(null).prop("readonly", false);
+                    jQuery('#age').val(null);
+                    jQuery('#group-id').val(null).trigger('change');
+                    $('input[name="adultFlag"]').prop('checked', false);
+                    $('input[name="genderFlag"]').prop('checked', false);
                     jQuery('.prefill-section').slideDown();
                 }
             }, 'json');
