@@ -1,7 +1,6 @@
 <?php
 
 use cse\helpers\Request;
-use libphonenumber\NumberParseException;
 use Whoops\Handler\JsonResponseHandler;
 
 $root_dir = dirname(dirname(__FILE__));
@@ -27,24 +26,8 @@ $jsonResp = [
 $isAjax = Request::isAjax();
 if ($isAjax) {
 
-    $country = 'KE';
-    $nationalId = Request::post('nationalId');
-    $mobileNo = Request::post('mobileNumber', 0);
 
-//
-//    $nationalId = '20401185';
-//    $mobileNo = '254721630629';
-
-    try {
-        $swissNumberProto = $phoneUtil->parse($mobileNo, $country);
-        $isValid = $phoneUtil->isValidNumber($swissNumberProto);
-        $countryDiallingCode = $swissNumberProto->getCountryCode();
-        $mobileNo = $swissNumberProto->getNationalNumber();
-        $mobileNo = "$countryDiallingCode$mobileNo";
-    } catch (NumberParseException $e) {
-        $jsonResp['data'] = $e->getMessage();
-    }
-
+    $id = Request::post('id');
 
     $queryFields = [
         'id',
@@ -61,9 +44,7 @@ if ($isAjax) {
     ];
 
     $conditions = [
-        'mobile' => $mobileNo,
-        'national_id' => $nationalId,
-        //"LIMIT" => 1
+        'id' => $id,
     ];
 
     $data = $conn->selectData('mass_registration', $queryFields, $conditions);
@@ -71,7 +52,7 @@ if ($isAjax) {
     if ($data) {
         $jsonResp['hasData'] = true;
         $jsonResp['multiData'] = count($data) > 1;
-        $jsonResp['data'] = $data;
+        $jsonResp['data'] = $data[0];
     }
 
 }

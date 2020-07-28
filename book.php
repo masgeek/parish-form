@@ -89,26 +89,27 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                             </div>
                         </div>
 
-                        <section class="prefill-section">
-                            <div class="row">
-                                <div class="col-md">
-                                    <div class="form-group">
-                                        <label for="surname">Surname</label>
-                                        <input type="text" id="surname" name="surname" class="form-control" required>
-                                        <div class="invalid-feedback">Please fill out this field.</div>
-                                    </div>
-                                </div>
-                                <!-- Password -->
-                                <div class="col-md">
-                                    <div class="form-group">
-                                        <label for="other_names">Other names</label>
-                                        <input type="text" id="other_names" name="other_names" class="form-control"
-                                               required>
-                                        <div class="invalid-feedback">Please fill out this field.</div>
-                                    </div>
+
+                        <div class="row">
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label for="surname">Surname</label>
+                                    <input type="text" id="surname" name="surname" class="form-control" required>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
+                            <!-- Password -->
+                            <div class="col-md">
+                                <div class="form-group">
+                                    <label for="other_names">Other names</label>
+                                    <input type="text" id="other_names" name="other_names" class="form-control"
+                                           required>
+                                    <div class="invalid-feedback">Please fill out this field.</div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <section class="prefill-section">
                             <div class="row">
                                 <div class="col-md">
                                     <label>Are you an adult?</label>
@@ -116,7 +117,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
                                                 <input type="radio" class="form-check-input adult" name="adultFlag"
-                                                       id="adultFlag" value="1"
+                                                       value="1"
                                                        required>Yes
                                             </label>
                                             <div class="invalid-feedback">Please fill out this field.</div>
@@ -124,7 +125,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                         <div class="form-check-inline">
                                             <label class="form-check-label">
                                                 <input type="radio" class="form-check-input adult" name="adultFlag"
-                                                       id="adultFlag" value="0"
+                                                       value="0"
                                                        required>No
                                             </label>
                                             <div class="invalid-feedback">Please fill out this field.</div>
@@ -246,14 +247,14 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input choir" name="choirFlag"
-                                                   id="choirFlag" value="1">Yes
+                                                   value="1">Yes
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
                                             <input type="radio" class="form-check-input choir" name="choirFlag"
-                                                   id="choirFlag" value="0">No
+                                                   value="0">No
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
@@ -282,6 +283,32 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
         </div>
     </div>
     <!-- end of input form -->
+
+    <!-- bootstrap modal to handle multiple record matches -->
+    <div class="modal fade" id="multiRecordModal" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Please pick record matching your details</h4>
+                    <button type="button" class="close btn btn-outline-danger" data-dismiss="modal"><span class="fa fa-window-close"></span></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body funkyradio" id="multiRecordMatches">
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-success float-left" data-dismiss="modal">Use selected</button>
+                    <button type="button" class="btn btn-primary float-right" id="add-child">Add child?</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- bootstrap modal to handle multiple record matches -->
 </div>
 </body>
 <?php require_once 'includes/footer.php'; ?>

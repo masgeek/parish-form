@@ -19,17 +19,26 @@ jQuery(document).ready(function () {
             jQuery.post('utils/prefill-form.php', data, function (resp, testStatus, jqXHR) {
                 if (resp.hasData) {
                     const jd = resp.data;
-                    const adultFlag = jd.adult;
-                    const genderFlag = jd.gender;
-                    jQuery('#surname').val(jd.surname);
-                    jQuery('#other_names').val(jd.other_names);
-                    jQuery('#age').val(jd.age);
-                    jQuery('#group-id').val(jd.group_id).trigger('change');
-                    jQuery("input[name=genderFlag][value=" + genderFlag + "]").prop('checked', true);
-                    jQuery("input[name=adultFlag][value=" + adultFlag + "]").prop('checked', true).trigger('change');
 
-                    //now we hide the other fields
-                    jQuery('.prefill-section').slideUp();
+                    const myContainer = jQuery('#multiRecordMatches');
+                    myContainer.html(null);
+                    if (resp.multiData) {
+
+                        const defaultData = jd[0];
+                        jQuery('#group-id').val(defaultData.group_id).trigger('change');
+
+                        jd.forEach(function (jsonData) {
+                            const openDiv = `<div class="funkyradio-primary">`
+                            const closeDiv = `</div>`;
+                            const radioLabel = `<label for="prefill-${jsonData.id}">${jsonData.surname} ${jsonData.other_names}</label>`;
+                            const radio = `<input type="radio" id="prefill-${jsonData.id}" name="recordMatches" class="record-matches" value="${jsonData.id}">`;
+
+                            const theString = openDiv + radio + radioLabel + closeDiv;
+                            myContainer.append(theString)
+                        });
+
+                        jQuery('#multiRecordModal').modal('show');
+                    }
                 } else {
                     jQuery('.prefill-section').slideDown();
                 }
@@ -37,16 +46,42 @@ jQuery(document).ready(function () {
         }
     })
 
-    jQuery('.choir').on('change', function () {
-        const flag = parseInt(this.value);
-        if (flag === 1) {
-            // jQuery('.choir-seats').removeClass('hidden');
-            //jQuery('.choir-seats').slideDown();
-        } else {
-            // jQuery('.choir-seats').addClass('hidden');
-            //jQuery('.choir-seats').slideUp();
-        }
+    jQuery("#multiRecordMatches").on("change", "input", function () {
+        const id = parseInt(this.value);
+
+        const data = {
+            id: id
+        };
+        jQuery.post('utils/get-single-record.php', data, function (resp, testStatus, jqXHR) {
+            if (resp.hasData) {
+                const jd = resp.data;
+                if (resp.hasData) {
+                    const adultFlag = jd.adult;
+                    const genderFlag = jd.gender;
+                    jQuery('#surname').val(jd.surname).prop("readonly", true);
+                    jQuery('#other_names').val(jd.other_names).prop("readonly", true);
+                    jQuery('#age').val(jd.age);
+                    jQuery('#group-id').val(jd.group_id).trigger('change');
+                    jQuery("input[name=genderFlag][value=" + genderFlag + "]").prop('checked', true);
+                    jQuery("input[name=adultFlag][value=" + adultFlag + "]").prop('checked', true).trigger('change');
+                    //now we hide the other fields
+                    jQuery('.prefill-section').slideUp();
+                }
+            } else {
+                jQuery('.prefill-section').slideDown();
+            }
+        }, 'json');
     })
+
+    jQuery('#add-child').on('click', function () {
+        jQuery('#surname').val(null).prop("readonly", false);
+        jQuery('#other_names').val(null).prop("readonly", false);
+        jQuery('#age').val(null);
+        $('input[name="adultFlag"]').prop('checked', false);
+        $('input[name="genderFlag"]').prop('checked', false);
+        jQuery('.prefill-section').slideDown();
+        jQuery('#multiRecordModal').modal('hide');
+    });
     jQuery('.adult').on('change', function () {
 
         const adultFlag = parseInt(this.value);
