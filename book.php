@@ -65,91 +65,15 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                     <form action="#" id="mass-reg-form" class="needs-validation" data-parsley-validate="">
 
                         <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
-                        <input type="hidden" id="adult" readonly>
                         <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"
                                readonly>
-
-                        <!-- Email -->
-                        <div class="row">
-                            <div class="col-md">
-                                <div class="form-group">
-                                    <label for="surname">Surname</label>
-                                    <input type="text" id="surname" name="surname" class="form-control" required>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                            </div>
-                            <!-- Password -->
-                            <div class="col-md">
-                                <div class="form-group">
-                                    <label for="other_names">Other names</label>
-                                    <input type="text" id="other_names" name="other_names" class="form-control"
-                                           required>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md">
-                                <label>Are you an adult?</label>
-                                <div class="form-group">
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input adult" name="adultFlag"
-                                                   id="adultFlag" value="1"
-                                                   required>Yes
-                                        </label>
-                                        <div class="invalid-feedback">Please fill out this field.</div>
-                                    </div>
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input adult" name="adultFlag"
-                                                   id="adultFlag" value="0"
-                                                   required>No
-                                        </label>
-                                        <div class="invalid-feedback">Please fill out this field.</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md">
-                                <label>What is your gender?</label>
-                                <div class="form-group">
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="genderFlag"
-                                                   value="FEMALE"
-                                                   required>Female
-                                        </label>
-                                        <div class="invalid-feedback">Please fill out this field.</div>
-                                    </div>
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="genderFlag" value="MALE"
-                                                   required>Male
-                                        </label>
-                                        <div class="invalid-feedback">Please fill out this field.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md">
-                                <div class="form-group">
-                                    <label for="age">What is your age?</label>
-                                    <input type="number" id="age" name="age" class="form-control" required>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                            </div>
-                        </div>
-
 
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="national_id" id="national-id-label">What is your national id?</label>
-                                    <input type="text" id="national_id" name="national_id" class="form-control"
+                                    <input type="text" id="national_id" name="national_id"
+                                           class="form-control prefill-form"
                                            required>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
@@ -158,42 +82,119 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                             <div class="col-md">
                                 <div class="form-group">
                                     <label for="mobile" id="mobile-label">What is your mobile number?</label>
-                                    <input type="text" id="mobile" name="mobile" class="form-control" required>
-                                    <div class="invalid-feedback">Please fill out this field.</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md">
-                                <div class="form-group">
-                                    <label for="group-id">What is the name of your jumuia?</label>
-                                    <select class="form-control" id="group-id" name="group_id" required>
-                                        <option value="" selected>Select your jumuia</option>
-                                        <?php foreach ($groups as $key => $value): ?>
-                                            <option value="<?= $value['group_id'] ?>"><?= $value['group_name'] ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                    <?php foreach ($groups as $key => $value):
-                                        $id = $value['group_id'];
-                                        $totalCapacity = $value['estate_id'];
-                                        ?>
-                                        <input type="hidden" id="estate-<?= $id ?>" value="<?= $totalCapacity ?>"
-                                               class="form-control" readonly>
-                                    <?php endforeach; ?>
-                                </div>
-                            </div>
-
-                            <div class="col-md">
-                                <div class="form-group">
-                                    <label for="estate-name">What is your estate name?</label>
-                                    <input type="text" id="estate_name" name="estate_name" class="form-control"
+                                    <input type="text" id="mobile" name="mobile" class="form-control prefill-form"
                                            required>
                                     <div class="invalid-feedback">Please fill out this field.</div>
                                 </div>
                             </div>
                         </div>
 
+                        <section class="prefill-section">
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <label for="surname">Surname</label>
+                                        <input type="text" id="surname" name="surname" class="form-control" required>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div>
+                                <!-- Password -->
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <label for="other_names">Other names</label>
+                                        <input type="text" id="other_names" name="other_names" class="form-control"
+                                               required>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <label>Are you an adult?</label>
+                                    <div class="form-group">
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input adult" name="adultFlag"
+                                                       id="adultFlag" value="1"
+                                                       required>Yes
+                                            </label>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input adult" name="adultFlag"
+                                                       id="adultFlag" value="0"
+                                                       required>No
+                                            </label>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md">
+                                    <label>What is your gender?</label>
+                                    <div class="form-group">
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="genderFlag"
+                                                       value="FEMALE"
+                                                       required>Female
+                                            </label>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" name="genderFlag"
+                                                       value="MALE"
+                                                       required>Male
+                                            </label>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <label for="age">What is your age?</label>
+                                        <input type="number" id="age" name="age" class="form-control" required>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <label for="group-id">What is the name of your jumuia?</label>
+                                        <select class="form-control" id="group-id" name="group_id" required>
+                                            <option value="" selected>Select your jumuia</option>
+                                            <?php foreach ($groups as $key => $value): ?>
+                                                <option value="<?= $value['group_id'] ?>"><?= $value['group_name'] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <?php foreach ($groups as $key => $value):
+                                            $id = $value['group_id'];
+                                            $totalCapacity = $value['estate_id'];
+                                            ?>
+                                            <input type="hidden" id="estate-<?= $id ?>" value="<?= $totalCapacity ?>"
+                                                   class="form-control" readonly>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </div>
+
+                                <div class="col-md">
+                                    <div class="form-group">
+                                        <label for="estate-name">What is your estate name?</label>
+                                        <input type="text" id="estate_name" name="estate_name" class="form-control"
+                                               required>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
                         <div class="row">
                             <div class="col-md">
                                 <h5>Choose your preferred mass</h5>

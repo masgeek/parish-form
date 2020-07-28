@@ -6,6 +6,37 @@ jQuery(document).ready(function () {
         return false;
     });
 
+    jQuery('.prefill-form').on('change', function () {
+        const nationalId = jQuery('#national_id').val();
+        const mobileNumber = jQuery('#mobile').val();
+
+        const data = {
+            nationalId: nationalId,
+            mobileNumber: mobileNumber
+        };
+        if (!isEmpty(nationalId) && !isEmpty(mobileNumber)) {
+            //check prefill values
+            jQuery.post('utils/prefill-form.php', data, function (resp, testStatus, jqXHR) {
+                if (resp.hasData) {
+                    const jd = resp.data;
+                    const adultFlag = jd.adult;
+                    const genderFlag = jd.gender;
+                    jQuery('#surname').val(jd.surname);
+                    jQuery('#other_names').val(jd.other_names);
+                    jQuery('#age').val(jd.age);
+                    jQuery('#group-id').val(jd.group_id).trigger('change');
+                    jQuery("input[name=genderFlag][value=" + genderFlag + "]").prop('checked', true);
+                    jQuery("input[name=adultFlag][value=" + adultFlag + "]").prop('checked', true).trigger('change');
+
+                    //now we hide the other fields
+                    // jQuery('.prefill-section').slideUp();
+                } else {
+                    // jQuery('.prefill-section').slideDown();
+                }
+            }, 'json');
+        }
+    })
+
     jQuery('.choir').on('change', function () {
         const flag = parseInt(this.value);
         if (flag === 1) {
@@ -19,18 +50,14 @@ jQuery(document).ready(function () {
     jQuery('.adult').on('change', function () {
 
         const adultFlag = parseInt(this.value);
-        jQuery('#adult').val(adultFlag);
         if (adultFlag === 1) {
             //change to adult labels
             jQuery('#mobile-label').html("What is your mobile number?");
             jQuery('#national-id-label').html("What is your  national id?");
-            console.log("Adult here");
         } else {
             jQuery('#mobile-label').html("Please enter your parent's mobile number");
             jQuery('#national-id-label').html("Please enter your parent's national id");
-            console.log("Adult not here");
         }
-        console.log("Age radio button", this.value);
     });
 
     jQuery('#group-id').on('change', function () {

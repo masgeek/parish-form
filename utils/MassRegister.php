@@ -41,8 +41,8 @@ $jsonResp = [
     ]
 ];
 
-$isPost = Request::isAjax();
-if ($isPost) {
+$isAjax = Request::isAjax();
+if ($isAjax) {
     $helper = \RequestHelper\RequestHelper::validatePost($rules);
     $conn = new Dao();
     if ($helper === true) {

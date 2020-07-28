@@ -1,4 +1,7 @@
 <?php
+
+use Medoo\Medoo;
+
 $root_dir = dirname(dirname(__FILE__));
 
 require_once $root_dir . '/vendor/autoload.php';
@@ -20,7 +23,7 @@ class Dao
 
     public function __construct()
     {
-        $this->database = new Medoo\Medoo([
+        $this->database = new Medoo([
             'database_type' => 'mysql',
             'database_name' => DB_NAME,
             'server' => DB_URL,
@@ -263,7 +266,7 @@ class Dao
      */
     public function getAllocatedSeats($massScheduleId, $choirSeats = 0)
     {
-        $seatCount = $this->database->select("mass_registration", [
+        $data = $this->database->select("mass_registration", [
             'seat_no'
         ], [
             'mass_schedule_id' => $massScheduleId,
@@ -271,10 +274,22 @@ class Dao
         ]);
 
         $seats = [];
-        foreach ($seatCount as $key => $item) {
+        foreach ($data as $key => $item) {
             $seats[] = (int)$item['seat_no'];
         }
         return $seats;
+    }
+
+    /**
+     * @param $tableName
+     * @param array $fields fields to fetch
+     * @param array $condition query conditions
+     * @return array|bool
+     */
+    public function selectData($tableName, array $fields, array $condition)
+    {
+        return $this->database->select($tableName, $fields, $condition);
+
     }
 
 }
