@@ -124,6 +124,7 @@ class Dao
 
     /**
      * @param $outstation_id
+     * @param $scheduleDate
      * @return array|bool
      */
     public function getActiveScheduledMasses($outstation_id, $scheduleDate)
@@ -133,6 +134,7 @@ class Dao
             'id',
             'capacity',
             'choir_capacity',
+            'lector_seat_no',
             'mass_id',
             'mass_title',
             'time_from',
@@ -148,6 +150,9 @@ class Dao
             "ORDER" => ["time_to" => 'ASC'],
         ]);
 
+        if ($data == false) {
+            return [];
+        }
         return $data;
     }
 
@@ -164,8 +169,23 @@ class Dao
         ]);
 
         return $capacity - $seatCount;
-
     }
+
+    /**
+     * @param $massId
+     * @param $capacity
+     * @return bool
+     */
+    public function isLectorSeatAssigned($massId, $capacity)
+    {
+        $seatCount = $this->database->count("mass_registration", [
+            'mass_schedule_id' => $massId,
+            'is_lector' => 1
+        ]);
+
+        return $seatCount > 0;
+    }
+
 
     /**
      * @param $massScheduleId

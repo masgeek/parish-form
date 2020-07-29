@@ -4,7 +4,7 @@ if (!defined('MyConst')) {
 }
 define("DB_TYPE", "mysql");
 define("DB_USER", "root");
-define("DB_PASS", 'root');
+define("DB_PASS", '');
 define("DB_NAME", "parish");
 define("DB_URL", "localhost");
 define("DB_PORT", 3306);
