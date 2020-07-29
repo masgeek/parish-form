@@ -116,17 +116,41 @@ jQuery(document).ready(function () {
             if (resp.hasData) {
                 const seatData = resp.data;
                 //let us process this things now
+                const myContainer = jQuery('#choirSeatsContainer');
+                myContainer.html(null);
                 seatData.forEach(function (seat, index) {
+                    let seatRow = index + 1;
+                    let theString = `<div class="col-md-12 btn-group">`;
+                    const closeDiv = `</div>`;
+                    const radioLabel = `<label class="btn btn-success mr-2 text-left">Row ${seatRow} seats</label>`;
+                    theString = theString.concat(radioLabel);
                     console.log("Seat row number ", index);
                     seat.forEach(function (seatInfo, seatIndex) {
-                        console.log("Seat info index is ", seatInfo);
+                        const seatTaken = seatInfo.taken;
+
+                        let radioLabelOpen = `<label class="btn btn-outline-primary mr-1">`;
+                        let radioLabelClose = `Seat ${seatInfo.seatNo}</label>`;
+                        let radio = `<input type="radio" id="choir-seats-${index}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}">`;
+                        if (seatTaken) {
+                            radioLabelOpen = `<label class="btn btn-danger mr-1 disabled">`;
+                            radioLabelClose = `Seat ${seatInfo.seatNo}</label>`;
+                            radio = `<input type="radio" id="choir-seats-${index}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}" disabled>`;
+                        }
+
+                        theString = theString.concat(radioLabelOpen + radio + radioLabelClose);
                     });
+                    myContainer.append(theString.concat(closeDiv));
                 });
 
             }
         }, 'json');
 
         jQuery('#schedule_id').val(scheduleID);
+    });
+
+    jQuery('#choirSeatsContainer').on('change', "input", function () {
+        const seatNo = parseInt(this.value);
+        console.log(seatNo);
     });
 
     jQuery('#btn-register').on('click', function () {

@@ -57,7 +57,6 @@ if ($data) {
         ];
     }
     $seats = array_chunk($seatData, 4);
-
     $jsonResp['hasData'] = true;
     $jsonResp['data'] = $seats;
 }

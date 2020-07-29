@@ -265,21 +265,21 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                         </div>
 
                         <div id="choirSeatsContainer" class="row">
-                            <div class="col-xs-8 offset-4 btn-group" data-toggle="buttons">
-                                <label class="btn btn-info">Alto</label>
-                                <label class="radio-inline btn btn-primary">
-                                    <input type="radio" name="choirSeats">Seat 1
-                                </label>
-                                <label class="radio-inline btn btn-primary">
-                                    <input type="radio" name="choirSeats">Seat 2
-                                </label>
-                                <label class="radio-inline btn btn-primary">
-                                    <input type="radio" name="choirSeats">Seat 3
-                                </label>
-                                <label class="radio-inline btn btn-primary">
-                                    <input type="radio" name="choirSeats">Seat 4
-                                </label>
-                            </div>
+<!--                            <div class="col-md-12 btn-group" >-->
+<!--                                <label class="btn btn-success">Alto seats</label>-->
+<!--                                <label class="radio-inline btn btn-primary">-->
+<!--                                    <input type="radio" name="choirSeats"> 1-->
+<!--                                </label>-->
+<!--                                <label class="radio-inline btn btn-primary">-->
+<!--                                    <input type="radio" name="choirSeats"> 2-->
+<!--                                </label>-->
+<!--                                <label class="radio-inline btn btn-primary">-->
+<!--                                    <input type="radio" name="choirSeats"> 3-->
+<!--                                </label>-->
+<!--                                <label class="radio-inline btn btn-primary">-->
+<!--                                    <input type="radio" name="choirSeats"> 4-->
+<!--                                </label>-->
+<!--                            </div>-->
                         </div>
 
                         <!-- Register button -->
