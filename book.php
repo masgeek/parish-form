@@ -333,7 +333,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-outline-success float-left" data-dismiss="modal">Use selected
                     </button>
-                    <button type="button" class="btn btn-primary float-right" id="add-child">Add child?</button>
+                    <button type="button" class="btn btn-primary float-right" id="add-child">Add child</button>
                 </div>
 
             </div>
