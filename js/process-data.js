@@ -119,19 +119,33 @@ jQuery(document).ready(function () {
                 myContainer.html(null);
                 seatData.forEach(function (seat, index) {
                     let seatRow = index + 1;
+                    let rowLabel;
+                    switch (seatRow) {
+                        case 1:
+                            rowLabel = `Soprano seats `;
+                            break;
+                        case 2:
+                            rowLabel = `Alto seats `;
+                            break;
+                        case 3:
+                            rowLabel = `Tenor seats `;
+                            break;
+                        case 4:
+                            rowLabel = `Bass seats `;
+                            break;
+                        default:
+                            rowLabel = `Row ${seatRow} seats `;
+                    }
                     let theString = `<div class="col-md-12 btn-grouped radio-toolbar">`;
                     const closeDiv = `</div>`;
-                    const radioLabel = `<label class="btn btn-success mr-2 text-left">Row ${seatRow} seats</label>`;
+                    const radioLabel = `<label class="btn btn-success mr-2 text-left">${rowLabel}</label>`;
                     theString = theString.concat(radioLabel);
                     console.log("Seat row number ", index);
                     seat.forEach(function (seatInfo, seatIndex) {
                         const seatTaken = seatInfo.taken;
-
-                        let radioLabelOpen = ``;
                         let radioLabelClose = `<label class="btn btn-outline-primary mr-1" for="choir-seats-${seatInfo.seatNo}">${seatInfo.seatNo}</label>`;
                         let radio = `<input type="radio" id="choir-seats-${seatInfo.seatNo}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}">`;
                         if (seatTaken) {
-                            radioLabelOpen = `<`;
                             radioLabelClose = `<label class="btn btn-danger mr-1 disabled picked" for="choir-seats-${seatInfo.seatNo}">${seatInfo.seatNo}</label>`;
                             radio = `<input type="radio" id="choir-seats-${seatInfo.seatNo}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}" disabled>`;
                         }
