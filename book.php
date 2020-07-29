@@ -315,8 +315,12 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Please pick record matching your details</h4>
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100">Your record exists in our database.
+                        <br/>
+                        <p class="small">Please pick the record to book mass or click pn <span class="text-info">'Add child'</span>
+                            to add a child between 13-17 yrs</p>
+                    </h4>
                     <button type="button" class="close btn btn-outline-danger" data-dismiss="modal"><span
                                 class="fa fa-window-close"></span></button>
                 </div>
