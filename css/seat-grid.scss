@@ -49,6 +49,7 @@
   font-weight: $font-weight-bold;
 }
 
+
 .radio-toolbar input[type="radio"]:disabled + label, .picked {
   background-color: $danger;
   color: $white;
