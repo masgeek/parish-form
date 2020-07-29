@@ -23,6 +23,7 @@ $rules = [
     "mobile" => "required|string",
     "adultFlag" => "required|numeric",
     "genderFlag" => "required|string",
+    "lectorFlag" => "required|string",
     "schedule_id" => "required|numeric",
     "age" => "required|numeric",
     "mass_schedule_id" => "required|numeric"
@@ -59,6 +60,7 @@ if ($isAjax) {
         $adultFlag = Request::post('adultFlag');
         $gender = Request::post('genderFlag');
         $choirFlag = Request::post('choirFlag');
+        $lectorFlag = Request::post('lectorFlag');
         $age = Request::post('age');
         $mobileNo = Request::post('mobile', 0);
         $choirSeatNo = Request::post('choir_seat_no', 0);
@@ -139,6 +141,7 @@ if ($isAjax) {
             'national_id' => $nationalId,
             'adult' => $adultFlag,
             'is_choir' => $choirFlag,
+            'is_lector' => $lectorFlag,
             'age' => $age,
             'gender' => $gender,
             'group_id' => $groupId,
