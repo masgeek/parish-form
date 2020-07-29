@@ -11,12 +11,12 @@
   ],
   "require": {
     "catfan/medoo": "^1.7",
-    "ext-json": "^7.4",
     "voku/anti-xss": "^4.1",
     "lbdawkes/request-helper": "^1.0",
     "cse/helpers-request": "^1.0",
     "filp/whoops": "^2.7",
     "giggsey/libphonenumber-for-php": "^8.12",
-    "nesbot/carbon": "^2.36"
+    "nesbot/carbon": "^2.36",
+    "ext-json": "^1.7"
   }
 }

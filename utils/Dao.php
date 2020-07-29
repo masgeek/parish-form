@@ -1,17 +1,21 @@
 <?php
+
+
 $root_dir = dirname(dirname(__FILE__));
 
 require_once $root_dir . '/vendor/autoload.php';
-
 require_once $root_dir . '/config/config.php';
 
 if (!defined('MyConst')) {
     die('Direct access not permitted');
 }
 
+/**
+ * Class Dao
+ */
 class Dao
 {
-    // [>] == LEFT JOIN
+// [>] == LEFT JOIN
 // [<] == RIGH JOIN
 // [<>] == FULL JOIN
 // [><] == INNER JOIN
@@ -120,6 +124,7 @@ class Dao
 
     /**
      * @param $outstation_id
+     * @param $scheduleDate
      * @return array|bool
      */
     public function getActiveScheduledMasses($outstation_id, $scheduleDate)
@@ -129,6 +134,7 @@ class Dao
             'id',
             'capacity',
             'choir_capacity',
+            'lector_seat_no',
             'mass_id',
             'mass_title',
             'time_from',
@@ -144,6 +150,9 @@ class Dao
             "ORDER" => ["time_to" => 'ASC'],
         ]);
 
+        if ($data == false) {
+            return [];
+        }
         return $data;
     }
 
@@ -160,8 +169,37 @@ class Dao
         ]);
 
         return $capacity - $seatCount;
-
     }
+
+    /**
+     * @param $massScheduleId
+     * @param $capacity
+     * @return bool
+     */
+    public function isLectorSeatAssigned($massScheduleId)
+    {
+        $seatCount = $this->database->count("mass_registration", [
+            'mass_schedule_id' => $massScheduleId,
+            'is_lector' => 1
+        ]);
+
+        return $seatCount > 0;
+    }
+
+    public function getLectorSeat($massScheduleId)
+    {
+        $lectorSeat = $this->database->select("mass_schedule", [
+            'lector_seat_no'
+        ], [
+            'id' => $massScheduleId
+        ]);
+
+        if ($lectorSeat) {
+            return (int)$lectorSeat[0]['lector_seat_no'];
+        }
+        return 0;
+    }
+
 
     /**
      * @param $massScheduleId
@@ -247,11 +285,18 @@ class Dao
         ];
     }
 
-    public function getSeatsArray($massCapacity)
+    /**
+     * @param $massCapacity
+     * @param int $skipSeat
+     * @return array
+     */
+    public function getSeatsArray($massCapacity, $skipSeat = 0)
     {
         $seats = [];
         for ($x = 1; $x <= $massCapacity; $x++) {
-            $seats[] = $x;
+            if ($skipSeat != $x) {
+                $seats[] = $x;
+            }
         }
         return $seats;
     }
@@ -263,7 +308,7 @@ class Dao
      */
     public function getAllocatedSeats($massScheduleId, $choirSeats = 0)
     {
-        $seatCount = $this->database->select("mass_registration", [
+        $data = $this->database->select("mass_registration", [
             'seat_no'
         ], [
             'mass_schedule_id' => $massScheduleId,
@@ -271,10 +316,25 @@ class Dao
         ]);
 
         $seats = [];
-        foreach ($seatCount as $key => $item) {
+        foreach ($data as $key => $item) {
             $seats[] = (int)$item['seat_no'];
         }
         return $seats;
     }
 
+    /**
+     * @param $tableName
+     * @param array $fields fields to fetch
+     * @param array $condition query conditions
+     * @return array|bool
+     */
+    public function selectData($tableName, array $fields, array $condition)
+    {
+        return $this->database->select($tableName, $fields, $condition);
+    }
+
+    public function executeQuery($query)
+    {
+        return $this->database->query($query)->fetchAll();
+    }
 }

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="PhpIncludePathManager">
     <include_path>
-      <path value="$PROJECT_DIR$/vendor/catfan/medoo" />
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/jquery" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/bootstrap" />
@@ -28,6 +27,12 @@
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/vendor/yarn-asset/gijgo" />
+      <path value="$PROJECT_DIR$/vendor/yarn-asset/flatpickr" />
+      <path value="$PROJECT_DIR$/vendor/yarn-asset/parsleyjs" />
+      <path value="$PROJECT_DIR$/vendor/yarn-asset/smokejs" />
+      <path value="$PROJECT_DIR$/vendor/catfan/medoo" />
+      <path value="$PROJECT_DIR$/vendor/yarn-asset/ext-json" />
     </include_path>
   </component>
 </project>

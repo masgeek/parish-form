@@ -2,6 +2,7 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/vendor/catfan/medoo" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/cse/helpers-request" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/filp/whoops" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/giggsey/libphonenumber-for-php" />
@@ -21,12 +22,12 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/voku/portable-utf8" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/es6-object-assign" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/ext-json" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/promise-polyfill" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/yarn-asset/sweetalert" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="bootstrap-datepicker" level="application" />
     <orderEntry type="library" name="all" level="application" />
   </component>
 </module>

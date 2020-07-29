@@ -29,7 +29,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 <body class="h-100">
 <!-- Start your project here-->
 <div class="container-fluid">
-
+    
 
     <!-- success banner -->
     <div class="row h-100 justify-content-center align-items-center hidden mt-5" id="success-card">
@@ -63,12 +63,11 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                 <!--Card content-->
                 <div class="card-body">
                     <!-- Form -->
-                    <form action="#" id="mass-reg-form" class="needs-validation">
+                    <form action="#" id="mass-reg-form" class="needs-validation" data-parsley-validate="">
 
                         <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
                         <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"
                                readonly>
-                        <input type="hidden" id="choir_seat_no" name="choir_seat_no" class="form-control" readonly>
 
                         <div class="row">
                             <div class="col-md">
@@ -263,25 +262,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md lector hidden">
-                                <label>Are you are the lector for this mass?</label>
-                                <div class="form-group">
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="lectorFlag"
-                                                   value="1">Yes
-                                        </label>
-                                        <div class="invalid-feedback">Please fill out this field.</div>
-                                    </div>
-                                    <div class="form-check-inline">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="lectorFlag"
-                                                   value="0" checked>No
-                                        </label>
-                                        <div class="invalid-feedback">Please fill out this field.</div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                         <!-- Register button -->
                         <div class="row">
@@ -310,6 +290,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
     <div class="modal fade" id="multiRecordModal" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
+
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Please pick record matching your details</h4>
@@ -332,38 +313,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
         </div>
     </div>
     <!-- bootstrap modal to handle multiple record matches -->
-
-    <!-- bootstrap modal to handle choir seats -->
-    <div class="modal fade" id="choirSeatsModal" data-backdrop="static">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header text-center bg-dark text-white">
-                    <h4 class="modal-title w-100">Please pick your choir seat</h4>
-                </div>
-
-                <!-- Modal body -->
-
-                <div class="modal-body bg-white">
-                    <div id="choirSeatsContainer">
-                        <h3 class="text-center text-danger">Please pick a mass first</h3>
-                    </div>
-                    <ul class="list-group">
-                        <li class="list-group-item"><span class="taken circle"></span> Seats available</li>
-                        <li class="list-group-item"><span class="available circle"></span> Seats taken</li>
-                    </ul>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-outline-primary btn-lg btn-block" data-dismiss="modal">Close
-                    </button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <!-- bootstrap modal to handle choir seats -->
 </div>
 </body>
 <?php require_once 'includes/footer.php'; ?>

@@ -12,6 +12,11 @@ es6-object-assign@^1.1.0:
   resolved "https://registry.yarnpkg.com/es6-object-assign/-/es6-object-assign-1.1.0.tgz#c2c3582656247c39ea107cb1e6652b6f9f24523c"
   integrity sha1-wsNYJlYkfDnqEHyx5mUrb58kUjw=
 
+ext-json@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ext-json/-/ext-json-1.0.1.tgz#205bd788faf8093c45df2da1a98c568f663af9cf"
+  integrity sha1-IFvXiPr4CTxF3y2hqYxWj2Y6+c8=
+
 jquery@^3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.5.1.tgz#d7b4d08e1bfdb86ad2f1a3d039ea17304717abb5"

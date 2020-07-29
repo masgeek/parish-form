@@ -23,6 +23,7 @@ $rules = [
     "mobile" => "required|string",
     "adultFlag" => "required|numeric",
     "genderFlag" => "required|string",
+    "lectorFlag" => "required|string",
     "schedule_id" => "required|numeric",
     "age" => "required|numeric",
     "mass_schedule_id" => "required|numeric"
@@ -41,28 +42,32 @@ $jsonResp = [
     ]
 ];
 
-$isPost = Request::isAjax();
-if ($isPost) {
+$isAjax = Request::isAjax();
+if ($isAjax) {
     $helper = \RequestHelper\RequestHelper::validatePost($rules);
     $conn = new Dao();
     if ($helper === true) {
         $seatNo = 0;
         $isValid = false;
         $choirFull = false;
+        $seatTaken = false;
+        $lectorAssigned = false;
         $country = 'KE';
 
         $surname = Request::post('surname');
         $otherNames = Request::post('other_names');
         $nationalId = Request::post('national_id');
         $groupId = Request::post('group_id');
-        $adultFlag = Request::post('adultFlag');
+        $adultFlag = (int)Request::post('adultFlag');
         $gender = Request::post('genderFlag');
-        $choirFlag = Request::post('choirFlag');
-        $age = Request::post('age');
+        $choirFlag = (int)Request::post('choirFlag');
+        $lectorFlag = (int)Request::post('lectorFlag', 0);
+        $age = (int)Request::post('age');
         $mobileNo = Request::post('mobile', 0);
+        $choirSeatNo = (int)Request::post('choir_seat_no', 0);
         $estateName = Request::post('estate_name');
-        $massScheduleId = Request::post('mass_schedule_id');
-        $scheduleId = Request::post('schedule_id');
+        $massScheduleId = (int)Request::post('mass_schedule_id');
+        $scheduleId = (int)Request::post('schedule_id');
 
         $surname = preg_replace('/\s+/', '', $surname);
         $trimmedNames = preg_replace('/\s+/', ' ', $otherNames);
@@ -82,6 +87,7 @@ if ($isPost) {
                 ]
             ];
         }
+
         if ($isValid === false) {
             $jsonResp['data'] = [
                 'message' => [
@@ -92,27 +98,34 @@ if ($isPost) {
         }
         $jsonResp['valid'] = $isValid;
 
+        $lectorSeatNumber = $conn->getLectorSeat($massScheduleId);
         $massCapacity = $conn->getMassScheduleCapacity($massScheduleId);
         $choirCapacity = $conn->getMassScheduleChoirCapacity($massScheduleId);
 
-        $allSeatNumbersArr = $conn->getSeatsArray($massCapacity);
-        $choirSeatsArr = $conn->getSeatsArray($choirCapacity);
+        $allSeatNumbersArr = $conn->getSeatsArray($massCapacity, $lectorSeatNumber);
+        $choirSeatsArr = $conn->getSeatsArray($choirCapacity, $lectorSeatNumber);
         $publicSeatsArr = array_values(array_diff($allSeatNumbersArr, $choirSeatsArr));
 
-        if ($choirFlag == 1) {
+
+        if ($choirFlag === 1) {
             $assignedSeatsArr = $conn->getAllocatedSeats($scheduleId, 1);
             $seatsAvailableArr = array_values(array_diff($choirSeatsArr, $assignedSeatsArr));
 
             if (empty($seatsAvailableArr)) {
                 $seatsLeft = 0;
                 $choirFull = true;
+                $isValid = false;
             } else {
                 $seatsLeft = count($seatsAvailableArr);
-                $seatNo = $seatsAvailableArr[0];
+                if (in_array($choirSeatNo, $seatsAvailableArr)) {
+                    $seatNo = $choirSeatNo;
+                } else {
+                    $isValid = false;
+                    $seatTaken = true;
+                }
             }
             $jsonResp['choirSeatsLeft'] = "{$seatsLeft} choir seats left";
         } else {
-
             $assignedSeatsArr = $conn->getAllocatedSeats($scheduleId);
             $seatsAvailableArr = array_values(array_diff($publicSeatsArr, $assignedSeatsArr));
             if (empty($seatsAvailableArr)) {
@@ -125,6 +138,21 @@ if ($isPost) {
             $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
         }
 
+        if ($lectorFlag === 1) {
+            $lectorAssigned = $conn->isLectorSeatAssigned($massScheduleId);
+            $seatNo = $lectorSeatNumber;
+            if ($lectorAssigned) {
+                $jsonResp['valid'] = false;
+                $jsonResp['data'] = [
+                    'message' => [
+                        'title' => 'Lector already assigned',
+                        'text' => 'It appears the lector seat has already been assigned, please change your options'
+                    ]
+                ];
+                echo json_encode($jsonResp);
+                exit();
+            }
+        }
         $data = [
             'seat_no' => $seatNo,
             'surname' => strtoupper($surname),
@@ -132,6 +160,7 @@ if ($isPost) {
             'national_id' => $nationalId,
             'adult' => $adultFlag,
             'is_choir' => $choirFlag,
+            'is_lector' => $lectorFlag,
             'age' => $age,
             'gender' => $gender,
             'group_id' => $groupId,
@@ -184,13 +213,21 @@ if ($isPost) {
                 }
             } else {
                 $jsonResp['valid'] = false;
-
-                $jsonResp['data'] = [
-                    'message' => [
-                        'title' => $choirFull ? 'Choir seats full' : 'The mass is already full',
-                        'text' => $choirFull ? 'Please select non choir option to get assigned normal seats' : 'It appears this mass is already full, please choose another one'
-                    ]
-                ];
+                if ($seatTaken) {
+                    $jsonResp['data'] = [
+                        'message' => [
+                            'title' => "Seat taken",
+                            'text' => "The selected seat number {$choirSeatNo} has already been reserved"
+                        ]
+                    ];
+                } else {
+                    $jsonResp['data'] = [
+                        'message' => [
+                            'title' => $choirFull ? 'Choir seats full' : 'The mass is already full',
+                            'text' => $choirFull ? 'Please select non choir option to get assigned normal seats' : 'It appears this mass is already full, please choose another one'
+                        ]
+                    ];
+                }
             }
         }
     } else {

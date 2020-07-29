@@ -13,5 +13,6 @@
 
     <!-- Your custom styles (optional) -->
     <link href="css/style.css?ver=<?= md5_file('css/style.css'); ?>" rel="stylesheet">
+    <link href="css/seat-grid.css?ver=<?= md5_file('css/seat-grid.css'); ?>" rel="stylesheet">
     <link href="css/fancy-radio-buttons.css?ver=<?= md5_file('css/fancy-radio-buttons.css'); ?>" rel="stylesheet">
 </head>
