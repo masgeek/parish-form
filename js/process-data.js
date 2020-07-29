@@ -251,7 +251,7 @@ jQuery(document).ready(function () {
                 swal({
                     title: "Missing seat number",
                     text: "It appears you have not selected a seat number",
-                    icon: "danger",
+                    icon: "warning",
                 });
                 return;
             }
