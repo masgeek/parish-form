@@ -43,7 +43,7 @@ jQuery(document).ready(function () {
                     jQuery('#age').val(null);
                     jQuery('#group-id').val(null).trigger('change');
                     $('input[name="adultFlag"]').prop('checked', false);
-                    $('input[name="genderFlag"]').prop('checked', false);
+                    // $('input[name="genderFlag"]').prop('checked', false);
                     jQuery('.prefill-section').slideDown();
                 }
             }, 'json');
