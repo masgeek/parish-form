@@ -136,23 +136,27 @@ jQuery(document).ready(function () {
                         default:
                             rowLabel = `Row ${seatRow} seats `;
                     }
-                    let theString = `<div class="col-md-12 btn-grouped radio-toolbar">`;
+
+                    let theString = `<div class="row no-radio"><label>${rowLabel}</label></div>`;
                     const closeDiv = `</div>`;
-                    const radioLabel = `<label class="btn btn-success mr-2 text-left">${rowLabel}</label>`;
+                    const radioLabel = `<div class="radio-toolbar row">`;
                     theString = theString.concat(radioLabel);
-                    console.log("Seat row number ", index);
                     seat.forEach(function (seatInfo, seatIndex) {
                         const seatTaken = seatInfo.taken;
-                        let radioLabelClose = `<label class="btn btn-outline-primary mr-1" for="choir-seats-${seatInfo.seatNo}">${seatInfo.seatNo}</label>`;
+                        let seatRadioLabel = `<label for="choir-seats-${seatInfo.seatNo}">${seatInfo.seatNo}</label>`;
                         let radio = `<input type="radio" id="choir-seats-${seatInfo.seatNo}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}">`;
                         if (seatTaken) {
-                            radioLabelClose = `<label class="btn btn-danger mr-1 disabled picked" for="choir-seats-${seatInfo.seatNo}">${seatInfo.seatNo}</label>`;
+                            seatRadioLabel = `<label for="choir-seats-${seatInfo.seatNo}">${seatInfo.seatNo}</label>`;
                             radio = `<input type="radio" id="choir-seats-${seatInfo.seatNo}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}" disabled>`;
                         }
 
-                        theString = theString.concat(radio + radioLabelClose);
+                        theString = theString.concat(radio + seatRadioLabel);
                     });
-                    myContainer.append(theString.concat(closeDiv));
+
+                    const closed = theString.concat(closeDiv);
+                    myContainer.append(closed);
+
+                    console.log(closed);
                 });
             }
         }, 'json');

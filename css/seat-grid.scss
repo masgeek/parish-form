@@ -3,7 +3,7 @@
 @import "../vendor/yarn-asset/bootstrap/scss/variables";
 @import "../vendor/yarn-asset/bootstrap/scss/mixins";
 
-.radio-toolbar {
+.radio-toolbar, .no-radio {
   margin: 10px;
 }
 
@@ -13,23 +13,33 @@
   width: 0;
 }
 
-.radio-toolbar label {
+
+.no-radio label, .radio-toolbar label {
   display: inline-block;
-  background-color: $green;
   color: $white;
   padding: 10px 20px;
   border: 2px solid $white;
   border-radius: 4px;
-  font-weight: $font-weight-light;
+}
+
+.no-radio label {
+  background-color: $primary;
+  font-weight: $font-weight-bolder;
+}
+
+.radio-toolbar label {
+  background-color: $success;
+  font-weight: $font-weight-normal;
 }
 
 .radio-toolbar label:hover {
   background-color: $cyan;
   cursor: pointer;
+  border: 2px dashed $white;
 }
 
 .radio-toolbar input[type="radio"]:focus + label {
-  border: 2px dashed #444;
+  border: 2px dashed $white;
 }
 
 .radio-toolbar input[type="radio"]:checked + label {

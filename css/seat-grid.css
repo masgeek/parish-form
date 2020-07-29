@@ -1,4 +1,4 @@
-.radio-toolbar {
+.radio-toolbar, .no-radio {
   margin: 10px; }
 
 .radio-toolbar input[type="radio"] {
@@ -6,26 +6,38 @@
   position: fixed;
   width: 0; }
 
-.radio-toolbar label {
+.no-radio label, .radio-toolbar label {
   display: inline-block;
-  background-color: #adb5bd;
   color: #fff;
   padding: 10px 20px;
-  font-family: sans-serif, Arial;
-  font-size: 16px;
   border: 2px solid #fff;
-  border-radius: 4px;
-  font-weight: 300; }
+  border-radius: 4px; }
+
+.no-radio label {
+  background-color: #007bff;
+  font-weight: bolder; }
+
+.radio-toolbar label {
+  background-color: #28a745;
+  font-weight: 400; }
 
 .radio-toolbar label:hover {
   background-color: #17a2b8;
-  cursor: pointer; }
+  cursor: pointer;
+  border: 2px dashed #fff; }
 
 .radio-toolbar input[type="radio"]:focus + label {
-  border: 2px dashed #444; }
+  border: 2px dashed #fff; }
 
-.radio-toolbar input[type="radio"]:checked + label, .picked {
-  background-color: #28a745;
+.radio-toolbar input[type="radio"]:checked + label {
+  background-color: #17a2b8;
   color: #fff;
   border-color: #6610f2;
   font-weight: 700; }
+
+.radio-toolbar input[type="radio"]:disabled + label, .picked {
+  background-color: #dc3545;
+  color: #fff;
+  border-color: #fff;
+  font-weight: 400;
+  cursor: not-allowed; }
