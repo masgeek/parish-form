@@ -229,6 +229,14 @@ if ($isAjax) {
                     ];
                 }
             }
+        }else{
+            $jsonResp['valid'] = false;
+            $jsonResp['data'] = [
+                'message' => [
+                    'title' => 'Mass registration failed',
+                    'text' => 'Mass registration was not successful, please try again'
+                ]
+            ];
         }
     } else {
         $jsonResp['errors'] = $helper;
