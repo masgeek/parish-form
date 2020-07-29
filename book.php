@@ -68,7 +68,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                         <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
                         <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"
                                readonly>
-                        <input type="text" id="choir_seat_no" name="choir_seat_no" class="form-control" readonly>
+                        <input type="hidden" id="choir_seat_no" name="choir_seat_no" class="form-control" readonly>
 
                         <div class="row">
                             <div class="col-md">
