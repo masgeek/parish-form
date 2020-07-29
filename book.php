@@ -66,8 +66,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                     <form action="#" id="mass-reg-form" class="needs-validation" data-parsley-validate="">
 
                         <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
-                        <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"
-                               readonly>
+                        <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"readonly>
 
                         <div class="row">
                             <div class="col-md">
@@ -263,24 +262,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                 </div>
                             </div>
                         </div>
-
-                        <div id="choirSeatsContainer" class="row">
-<!--                            <div class="col-md-12 btn-group" >-->
-<!--                                <label class="btn btn-success">Alto seats</label>-->
-<!--                                <label class="radio-inline btn btn-primary">-->
-<!--                                    <input type="radio" name="choirSeats"> 1-->
-<!--                                </label>-->
-<!--                                <label class="radio-inline btn btn-primary">-->
-<!--                                    <input type="radio" name="choirSeats"> 2-->
-<!--                                </label>-->
-<!--                                <label class="radio-inline btn btn-primary">-->
-<!--                                    <input type="radio" name="choirSeats"> 3-->
-<!--                                </label>-->
-<!--                                <label class="radio-inline btn btn-primary">-->
-<!--                                    <input type="radio" name="choirSeats"> 4-->
-<!--                                </label>-->
-<!--                            </div>-->
-                        </div>
+                        <input type="text" id="choir_seat_no" name="choir_seat_no" class="form-control" readonly>
+                        <div id="choirSeatsContainer" class="row"></div>
 
                         <!-- Register button -->
                         <div class="row">

@@ -110,7 +110,7 @@ jQuery(document).ready(function () {
 
     jQuery('.mass_schedule').on('change', function () {
         const scheduleID = this.value;
-
+        jQuery('#choir_seat_no').val(null);
         //let us evaluate the seating
         jQuery.post('utils/sitting-chart.php', {schedule_id: scheduleID}, function (resp, testStatus, jqXHR) {
             if (resp.hasData) {
@@ -150,7 +150,7 @@ jQuery(document).ready(function () {
 
     jQuery('#choirSeatsContainer').on('change', "input", function () {
         const seatNo = parseInt(this.value);
-        console.log(seatNo);
+        jQuery('#choir_seat_no').val(seatNo);
     });
 
     jQuery('#btn-register').on('click', function () {

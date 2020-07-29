@@ -49,6 +49,7 @@ if ($isAjax) {
         $seatNo = 0;
         $isValid = false;
         $choirFull = false;
+        $seatTaken = false;
         $country = 'KE';
 
         $surname = Request::post('surname');
@@ -60,6 +61,7 @@ if ($isAjax) {
         $choirFlag = Request::post('choirFlag');
         $age = Request::post('age');
         $mobileNo = Request::post('mobile', 0);
+        $choirSeatNo = Request::post('choir_seat_no', 0);
         $estateName = Request::post('estate_name');
         $massScheduleId = Request::post('mass_schedule_id');
         $scheduleId = Request::post('schedule_id');
@@ -106,13 +108,18 @@ if ($isAjax) {
             if (empty($seatsAvailableArr)) {
                 $seatsLeft = 0;
                 $choirFull = true;
+                $isValid = false;
             } else {
                 $seatsLeft = count($seatsAvailableArr);
-                $seatNo = $seatsAvailableArr[0];
+                if (in_array($choirSeatNo, $seatsAvailableArr)) {
+                    $seatNo = $choirSeatNo;
+                } else {
+                    $isValid = false;
+                    $seatTaken = true;
+                }
             }
             $jsonResp['choirSeatsLeft'] = "{$seatsLeft} choir seats left";
         } else {
-
             $assignedSeatsArr = $conn->getAllocatedSeats($scheduleId);
             $seatsAvailableArr = array_values(array_diff($publicSeatsArr, $assignedSeatsArr));
             if (empty($seatsAvailableArr)) {
@@ -185,12 +192,21 @@ if ($isAjax) {
             } else {
                 $jsonResp['valid'] = false;
 
-                $jsonResp['data'] = [
-                    'message' => [
-                        'title' => $choirFull ? 'Choir seats full' : 'The mass is already full',
-                        'text' => $choirFull ? 'Please select non choir option to get assigned normal seats' : 'It appears this mass is already full, please choose another one'
-                    ]
-                ];
+                if ($seatTaken) {
+                    $jsonResp['data'] = [
+                        'message' => [
+                            'title' => "Seat taken",
+                            'text' => "The selected seat number {$choirSeatNo} has already been reserved"
+                        ]
+                    ];
+                } else {
+                    $jsonResp['data'] = [
+                        'message' => [
+                            'title' => $choirFull ? 'Choir seats full' : 'The mass is already full',
+                            'text' => $choirFull ? 'Please select non choir option to get assigned normal seats' : 'It appears this mass is already full, please choose another one'
+                        ]
+                    ];
+                }
             }
         }
     } else {
