@@ -70,6 +70,32 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                readonly>
                         <input type="hidden" id="choir_seat_no" name="choir_seat_no" class="form-control" readonly>
 
+                        <section class="prefill-section">
+                            <div class="row">
+                                <div class="col-md">
+                                    <label>Are you an adult?</label>
+                                    <div class="form-group">
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input adult" name="adultFlag"
+                                                       value="1"
+                                                       required>Yes
+                                            </label>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                        <div class="form-check-inline">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input adult" name="adultFlag"
+                                                       value="0"
+                                                       required>No
+                                            </label>
+                                            <div class="invalid-feedback">Please fill out this field.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
                         <div class="row">
                             <div class="col-md">
                                 <div class="form-group">
@@ -113,28 +139,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 
                         <section class="prefill-section">
                             <div class="row">
-                                <div class="col-md">
-                                    <label>Are you an adult?</label>
-                                    <div class="form-group">
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input adult" name="adultFlag"
-                                                       value="1"
-                                                       required>Yes
-                                            </label>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                        <div class="form-check-inline">
-                                            <label class="form-check-label">
-                                                <input type="radio" class="form-check-input adult" name="adultFlag"
-                                                       value="0"
-                                                       required>No
-                                            </label>
-                                            <div class="invalid-feedback">Please fill out this field.</div>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="col-md">
                                     <label>What is your gender?</label>
                                     <div class="form-group">
