@@ -63,29 +63,29 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                 <!--Card content-->
                 <div class="card-body">
 
-                    <div class="row no-radio">
-                        <label>Selection label</label>
-                    </div>
-
-                    <div class="radio-toolbar row">
-                        <input type="radio" id="radioApple" name="choirSeats" value="apple" checked>
-                        <label for="radioApple">Apple</label>
-
-                        <input type="radio" id="radioBanana" name="choirSeats" value="banana">
-                        <label for="radioBanana">Banana</label>
-
-                        <input type="radio" id="radioOrange" name="choirSeats" value="orange">
-                        <label for="radioOrange">Orange</label>
-
-                        <input type="radio" id="radioSelected" name="choirSeats" value="selected" disabled>
-                        <label for="radioSelected">Selected</label>
-
-                        <input type="radio" id="choir-seats-9" name="choirSeats" class="choir-seats" value="9">
-                        <label class="" for="choir-seats-9">9</label>
-
-                        <input type="radio" id="choir-seats-10" name="choirSeats" class="choir-seats" value="10">
-                        <label class="" for="choir-seats-10">10</label>
-                    </div
+<!--                    <div class="row no-radio">-->
+<!--                        <label>Selection label</label>-->
+<!--                    </div>-->
+<!---->
+<!--                    <div class="radio-toolbar row">-->
+<!--                        <input type="radio" id="radioApple" name="choirSeats" value="apple" checked>-->
+<!--                        <label for="radioApple">Apple</label>-->
+<!---->
+<!--                        <input type="radio" id="radioBanana" name="choirSeats" value="banana">-->
+<!--                        <label for="radioBanana">Banana</label>-->
+<!---->
+<!--                        <input type="radio" id="radioOrange" name="choirSeats" value="orange">-->
+<!--                        <label for="radioOrange">Orange</label>-->
+<!---->
+<!--                        <input type="radio" id="radioSelected" name="choirSeats" value="selected" disabled>-->
+<!--                        <label for="radioSelected">Selected</label>-->
+<!---->
+<!--                        <input type="radio" id="choir-seats-9" name="choirSeats" class="choir-seats" value="9">-->
+<!--                        <label class="" for="choir-seats-9">9</label>-->
+<!---->
+<!--                        <input type="radio" id="choir-seats-10" name="choirSeats" class="choir-seats" value="10">-->
+<!--                        <label class="" for="choir-seats-10">10</label>-->
+<!--                    </div-->
                     <!-- Form -->
                     <form action="#" id="mass-reg-form" class="needs-validation">
 
