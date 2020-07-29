@@ -24,7 +24,7 @@
 
 .no-radio label {
   width: 100%;
-  background-color: $primary;
+  background-color: $cyan;
   font-weight: $font-weight-bolder;
 }
 
@@ -59,3 +59,11 @@
   cursor: not-allowed;
 }
 
+
+.taken {
+  background-color: $danger;
+}
+
+.available {
+  background-color: $success;
+}
