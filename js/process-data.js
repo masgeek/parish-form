@@ -49,7 +49,7 @@ jQuery(document).ready(function () {
                 }
             }, 'json');
         }
-    })
+    });
 
     jQuery("#multiRecordMatches").on("change", "input", function () {
         const id = parseInt(this.value);
@@ -78,6 +78,7 @@ jQuery(document).ready(function () {
         jQuery('.prefill-section').slideDown();
         jQuery('#multiRecordModal').modal('hide');
     });
+
     jQuery('.adult').on('change', function () {
 
         const adultFlag = parseInt(this.value);
@@ -109,6 +110,22 @@ jQuery(document).ready(function () {
 
     jQuery('.mass_schedule').on('change', function () {
         const scheduleID = this.value;
+
+        //let us evaluate the seating
+        jQuery.post('utils/sitting-chart.php', {schedule_id: scheduleID}, function (resp, testStatus, jqXHR) {
+            if (resp.hasData) {
+                const seatData = resp.data;
+                //let us process this things now
+                seatData.forEach(function (seat, index) {
+                    console.log("Seat row number ", index);
+                    seat.forEach(function (seatInfo, seatIndex) {
+                        console.log("Seat info index is ", seatInfo);
+                    });
+                });
+
+            }
+        }, 'json');
+
         jQuery('#schedule_id').val(scheduleID);
     });
 

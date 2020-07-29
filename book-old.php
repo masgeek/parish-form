@@ -29,7 +29,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 <body class="h-100">
 <!-- Start your project here-->
 <div class="container-fluid">
-
+    
 
     <!-- success banner -->
     <div class="row h-100 justify-content-center align-items-center hidden mt-5" id="success-card">
@@ -263,25 +263,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                 </div>
                             </div>
                         </div>
-
-                        <div id="choirSeatsContainer" class="row">
-                            <div class="col-xs-8 offset-4 btn-group" data-toggle="buttons">
-                                <label class="btn btn-info">Alto</label>
-                                <label class="radio-inline btn btn-primary">
-                                    <input type="radio" name="choirSeats">Seat 1
-                                </label>
-                                <label class="radio-inline btn btn-primary">
-                                    <input type="radio" name="choirSeats">Seat 2
-                                </label>
-                                <label class="radio-inline btn btn-primary">
-                                    <input type="radio" name="choirSeats">Seat 3
-                                </label>
-                                <label class="radio-inline btn btn-primary">
-                                    <input type="radio" name="choirSeats">Seat 4
-                                </label>
-                            </div>
-                        </div>
-
                         <!-- Register button -->
                         <div class="row">
                             <div class="col-md">
