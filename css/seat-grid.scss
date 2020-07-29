@@ -60,6 +60,12 @@
 }
 
 
+.taken,.available{
+  color: $white;
+  font-style: italic;
+  font-weight: $font-weight-bold;
+}
+
 .taken {
   background-color: $danger;
 }

@@ -348,8 +348,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                     <div id="choirSeatsContainer">
                         <h3 class="text-center text-danger">Please pick a mass first</h3>
                     </div>
-                    <span class="badge text-white taken">Seats available</span>
-                    <span class="badge text-white available">Seats taken</span>
+                    <span class="badge taken">Seats available</span>
+                    <span class="badge available">Seats taken</span>
                 </div>
 
                 <!-- Modal footer -->
