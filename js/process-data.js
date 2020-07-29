@@ -161,11 +161,13 @@ jQuery(document).ready(function () {
         const rbs = document.querySelectorAll('input[name="adultFlag"]');
         const gender = document.querySelectorAll('input[name="genderFlag"]');
         const choir = document.querySelectorAll('input[name="choirFlag"]');
+        const lector = document.querySelectorAll('input[name="lectorFlag"]');
         const choirSeatNo = jQuery('#choir_seat_no').val();
 
         let isAdult;
         let genderFlag;
         let choirFlag;
+        let lectorFlag;
         for (const rb of rbs) {
             if (rb.checked) {
                 isAdult = parseInt(rb.value);
@@ -183,6 +185,13 @@ jQuery(document).ready(function () {
         for (const rb of choir) {
             if (rb.checked) {
                 choirFlag = parseInt(rb.value);
+                break;
+            }
+        }
+
+        for (const rb of lector) {
+            if (rb.checked) {
+                lectorFlag = parseInt(rb.value);
                 break;
             }
         }
@@ -255,6 +264,14 @@ jQuery(document).ready(function () {
                 });
                 return;
             }
+        }
+        if (isEmpty(lectorFlag) || isNaN(lectorFlag)) {
+            swal({
+                title: "Missing lector indication",
+                text: "Please specify if you are a lector for this mass or not",
+                icon: "warning",
+            });
+            return;
         }
         //proceed with normal operations
         const formData = myform.serialize();

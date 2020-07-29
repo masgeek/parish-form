@@ -63,10 +63,12 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                 <!--Card content-->
                 <div class="card-body">
                     <!-- Form -->
-                    <form action="#" id="mass-reg-form" class="needs-validation" data-parsley-validate="">
+                    <form action="#" id="mass-reg-form" class="needs-validation">
 
                         <input type="hidden" id="schedule_id" name="schedule_id" value="<?= $schedule_id ?>" readonly>
-                        <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"readonly>
+                        <input type="hidden" id="outstation_id" name="outstation_id" value="<?= $station_id ?>"
+                               readonly>
+                        <input type="text" id="choir_seat_no" name="choir_seat_no" class="form-control" readonly>
 
                         <div class="row">
                             <div class="col-md">
@@ -261,8 +263,26 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md">
+                                <label>Are you are you a lector for this mass?</label>
+                                <div class="form-group">
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input choir" name="lectorFlag"
+                                                   value="1">Yes
+                                        </label>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input choir" name="lectorFlag"
+                                                   value="0">No
+                                        </label>
+                                        <div class="invalid-feedback">Please fill out this field.</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <input type="text" id="choir_seat_no" name="choir_seat_no" class="form-control" readonly>
                         <div id="choirSeatsContainer" class="row"></div>
 
                         <!-- Register button -->
