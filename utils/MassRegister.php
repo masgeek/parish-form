@@ -51,22 +51,23 @@ if ($isAjax) {
         $isValid = false;
         $choirFull = false;
         $seatTaken = false;
+        $lectorAssigned = false;
         $country = 'KE';
 
         $surname = Request::post('surname');
         $otherNames = Request::post('other_names');
         $nationalId = Request::post('national_id');
         $groupId = Request::post('group_id');
-        $adultFlag = Request::post('adultFlag');
+        $adultFlag = (int)Request::post('adultFlag');
         $gender = Request::post('genderFlag');
-        $choirFlag = Request::post('choirFlag');
-        $lectorFlag = Request::post('lectorFlag');
-        $age = Request::post('age');
+        $choirFlag = (int)Request::post('choirFlag');
+        $lectorFlag = (int)Request::post('lectorFlag', 0);
+        $age = (int)Request::post('age');
         $mobileNo = Request::post('mobile', 0);
-        $choirSeatNo = Request::post('choir_seat_no', 0);
+        $choirSeatNo = (int)Request::post('choir_seat_no', 0);
         $estateName = Request::post('estate_name');
-        $massScheduleId = Request::post('mass_schedule_id');
-        $scheduleId = Request::post('schedule_id');
+        $massScheduleId = (int)Request::post('mass_schedule_id');
+        $scheduleId = (int)Request::post('schedule_id');
 
         $surname = preg_replace('/\s+/', '', $surname);
         $trimmedNames = preg_replace('/\s+/', ' ', $otherNames);
@@ -86,6 +87,7 @@ if ($isAjax) {
                 ]
             ];
         }
+
         if ($isValid === false) {
             $jsonResp['data'] = [
                 'message' => [
@@ -96,14 +98,15 @@ if ($isAjax) {
         }
         $jsonResp['valid'] = $isValid;
 
+        $lectorSeatNumber = $conn->getLectorSeat($massScheduleId);
         $massCapacity = $conn->getMassScheduleCapacity($massScheduleId);
         $choirCapacity = $conn->getMassScheduleChoirCapacity($massScheduleId);
 
-        $allSeatNumbersArr = $conn->getSeatsArray($massCapacity);
-        $choirSeatsArr = $conn->getSeatsArray($choirCapacity);
+        $allSeatNumbersArr = $conn->getSeatsArray($massCapacity, $lectorSeatNumber);
+        $choirSeatsArr = $conn->getSeatsArray($choirCapacity, $lectorSeatNumber);
         $publicSeatsArr = array_values(array_diff($allSeatNumbersArr, $choirSeatsArr));
 
-        if ($choirFlag == 1) {
+        if ($choirFlag === 1) {
             $assignedSeatsArr = $conn->getAllocatedSeats($scheduleId, 1);
             $seatsAvailableArr = array_values(array_diff($choirSeatsArr, $assignedSeatsArr));
 
@@ -165,6 +168,23 @@ if ($isAjax) {
             ];
             echo json_encode($jsonResp);
             exit();
+        }
+
+        if ($lectorFlag === 1) {
+            $lectorAssigned = $conn->isLectorSeatAssigned($massScheduleId);
+            $jsonResp['lectorAssigned'] = $lectorAssigned;
+            $jsonResp['lectorSeat'] = $lectorSeatNumber;
+            if ($lectorAssigned) {
+                $jsonResp['valid'] = false;
+                $jsonResp['data'] = [
+                    'message' => [
+                        'title' => 'Lector already assigned',
+                        'text' => 'It appears the lector seat has already been assigned, please change your options'
+                    ]
+                ];
+                echo json_encode($jsonResp);
+                exit();
+            }
         }
 
         if ($isValid == true) {

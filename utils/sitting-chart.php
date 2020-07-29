@@ -53,7 +53,8 @@ if ($data) {
     for ($seatNo = 1; $seatNo <= $choirCapacity; $seatNo++) {
         $seatData[] = [
             'taken' => in_array($seatNo, $assignedSeatsArr), //check to see if the seat is assigned
-            'seatNo' => $seatNo
+            'seatNo' => $seatNo,
+            'assigned' => $assignedSeatsArr
         ];
     }
     $seats = array_chunk($seatData, 4);

@@ -263,28 +263,26 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md">
+                            <div class="col-md lector hidden">
                                 <label>Are you are you a lector for this mass?</label>
                                 <div class="form-group">
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input choir" name="lectorFlag"
+                                            <input type="radio" class="form-check-input" name="lectorFlag"
                                                    value="1">Yes
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input choir" name="lectorFlag"
-                                                   value="0">No
+                                            <input type="radio" class="form-check-input" name="lectorFlag"
+                                                   value="0" checked>No
                                         </label>
                                         <div class="invalid-feedback">Please fill out this field.</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="choirSeatsContainer" class="row"></div>
-
                         <!-- Register button -->
                         <div class="row">
                             <div class="col-md">
@@ -312,7 +310,6 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
     <div class="modal fade" id="multiRecordModal" data-backdrop="static">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
                 <!-- Modal Header -->
                 <div class="modal-header">
                     <h4 class="modal-title">Please pick record matching your details</h4>
@@ -335,6 +332,34 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
         </div>
     </div>
     <!-- bootstrap modal to handle multiple record matches -->
+
+    <!-- bootstrap modal to handle choir seats -->
+    <div class="modal fade" id="choirSeatsModal" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Please pick your seat</h4>
+                </div>
+
+                <!-- Modal body -->
+
+                <div class="modal-body">
+                    <div id="choirSeatsContainer" class="row">
+                        <h3 class="text-center text-danger">Please pick a mass first</h3>
+                    </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-success float-left" data-dismiss="modal">Close
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- bootstrap modal to handle choir seats -->
 </div>
 </body>
 <?php require_once 'includes/footer.php'; ?>

@@ -16,6 +16,7 @@
     "cse/helpers-request": "^1.0",
     "filp/whoops": "^2.7",
     "giggsey/libphonenumber-for-php": "^8.12",
-    "nesbot/carbon": "^2.36"
+    "nesbot/carbon": "^2.36",
+    "ext-json": "^1.7"
   }
 }

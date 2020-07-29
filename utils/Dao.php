@@ -172,18 +172,32 @@ class Dao
     }
 
     /**
-     * @param $massId
+     * @param $massScheduleId
      * @param $capacity
      * @return bool
      */
-    public function isLectorSeatAssigned($massId, $capacity)
+    public function isLectorSeatAssigned($massScheduleId)
     {
         $seatCount = $this->database->count("mass_registration", [
-            'mass_schedule_id' => $massId,
+            'mass_schedule_id' => $massScheduleId,
             'is_lector' => 1
         ]);
 
         return $seatCount > 0;
+    }
+
+    public function getLectorSeat($massScheduleId)
+    {
+        $lectorSeat = $this->database->select("mass_schedule", [
+            'lector_seat_no'
+        ], [
+            'id' => $massScheduleId
+        ]);
+
+        if ($lectorSeat) {
+            return (int)$lectorSeat[0]['lector_seat_no'];
+        }
+        return 0;
     }
 
 
@@ -271,11 +285,18 @@ class Dao
         ];
     }
 
-    public function getSeatsArray($massCapacity)
+    /**
+     * @param $massCapacity
+     * @param int $skipSeat
+     * @return array
+     */
+    public function getSeatsArray($massCapacity, $skipSeat = 0)
     {
         $seats = [];
         for ($x = 1; $x <= $massCapacity; $x++) {
-            $seats[] = $x;
+            if ($skipSeat != $x) {
+                $seats[] = $x;
+            }
         }
         return $seats;
     }

@@ -3,7 +3,6 @@
 let jsonProfile
 
 jQuery(document).ready(function () {
-
     jQuery("#mass-reg-form").submit(function (e) {
         return false;
     });
@@ -141,12 +140,34 @@ jQuery(document).ready(function () {
                     });
                     myContainer.append(theString.concat(closeDiv));
                 });
-
             }
         }, 'json');
 
         jQuery('#schedule_id').val(scheduleID);
     });
+
+    jQuery('.choir').on('change', function () {
+        const isChoir = parseInt(this.value);
+        checkChoirSelection(isChoir);
+    }).on('click', function () {
+        const isChoir = parseInt(this.value);
+        checkChoirSelection(isChoir);
+    });
+
+    function checkChoirSelection(isChoir) {
+        if (isChoir === 1) {
+            jQuery('.lector').slideUp(function () {
+                jQuery("input[name=lectorFlag][value=" + 0 + "]").prop('checked', true);
+            });
+
+            jQuery('#choirSeatsModal').modal('show');
+
+        } else {
+            jQuery('.lector').slideDown(function () {
+                $('input[name="lectorFlag"]').prop('checked', false);
+            });
+        }
+    }
 
     jQuery('#choirSeatsContainer').on('change', "input", function () {
         const seatNo = parseInt(this.value);
@@ -154,10 +175,7 @@ jQuery(document).ready(function () {
     });
 
     jQuery('#btn-register').on('click', function () {
-
-
         const myform = jQuery('#mass-reg-form');
-
         const rbs = document.querySelectorAll('input[name="adultFlag"]');
         const gender = document.querySelectorAll('input[name="genderFlag"]');
         const choir = document.querySelectorAll('input[name="choirFlag"]');
