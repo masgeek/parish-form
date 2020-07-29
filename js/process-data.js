@@ -119,7 +119,7 @@ jQuery(document).ready(function () {
                 myContainer.html(null);
                 seatData.forEach(function (seat, index) {
                     let seatRow = index + 1;
-                    let theString = `<div class="col-md-12 btn-group">`;
+                    let theString = `<div class="col-md-12 btn-grouped radio-toolbar">`;
                     const closeDiv = `</div>`;
                     const radioLabel = `<label class="btn btn-success mr-2 text-left">Row ${seatRow} seats</label>`;
                     theString = theString.concat(radioLabel);
@@ -127,16 +127,16 @@ jQuery(document).ready(function () {
                     seat.forEach(function (seatInfo, seatIndex) {
                         const seatTaken = seatInfo.taken;
 
-                        let radioLabelOpen = `<label class="btn btn-outline-primary mr-1">`;
-                        let radioLabelClose = `${seatInfo.seatNo}</label>`;
-                        let radio = `<input type="radio" id="choir-seats-${index}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}">`;
+                        let radioLabelOpen = ``;
+                        let radioLabelClose = `<label class="btn btn-outline-primary mr-1" for="choir-seats-${seatInfo.seatNo}">${seatInfo.seatNo}</label>`;
+                        let radio = `<input type="radio" id="choir-seats-${seatInfo.seatNo}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}">`;
                         if (seatTaken) {
-                            radioLabelOpen = `<label class="btn btn-danger mr-1 disabled">`;
-                            radioLabelClose = `${seatInfo.seatNo}</label>`;
-                            radio = `<input type="radio" id="choir-seats-${index}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}" disabled>`;
+                            radioLabelOpen = `<`;
+                            radioLabelClose = `<label class="btn btn-danger mr-1 disabled picked" for="choir-seats-${seatInfo.seatNo}">${seatInfo.seatNo}</label>`;
+                            radio = `<input type="radio" id="choir-seats-${seatInfo.seatNo}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}" disabled>`;
                         }
 
-                        theString = theString.concat(radioLabelOpen + radio + radioLabelClose);
+                        theString = theString.concat(radio + radioLabelClose);
                     });
                     myContainer.append(theString.concat(closeDiv));
                 });

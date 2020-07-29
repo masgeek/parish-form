@@ -32,6 +32,7 @@
       <path value="$PROJECT_DIR$/vendor/yarn-asset/parsleyjs" />
       <path value="$PROJECT_DIR$/vendor/yarn-asset/smokejs" />
       <path value="$PROJECT_DIR$/vendor/catfan/medoo" />
+      <path value="$PROJECT_DIR$/vendor/yarn-asset/ext-json" />
     </include_path>
   </component>
 </project>
