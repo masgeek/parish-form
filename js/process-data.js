@@ -161,6 +161,7 @@ jQuery(document).ready(function () {
         const rbs = document.querySelectorAll('input[name="adultFlag"]');
         const gender = document.querySelectorAll('input[name="genderFlag"]');
         const choir = document.querySelectorAll('input[name="choirFlag"]');
+        const choirSeatNo = jQuery('#choir_seat_no').val();
 
         let isAdult;
         let genderFlag;
@@ -243,6 +244,17 @@ jQuery(document).ready(function () {
                 icon: "warning",
             });
             return;
+        }
+
+        if (choirFlag === 1) {
+            if (isEmpty(choirSeatNo) || isNaN(choirSeatNo)) {
+                swal({
+                    title: "Missing seat number",
+                    text: "It appears you have not selected a seat number",
+                    icon: "danger",
+                });
+                return;
+            }
         }
         //proceed with normal operations
         const formData = myform.serialize();
