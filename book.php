@@ -63,29 +63,29 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                 <!--Card content-->
                 <div class="card-body">
 
-<!--                    <div class="row no-radio">-->
-<!--                        <label>Selection label</label>-->
-<!--                    </div>-->
-<!---->
-<!--                    <div class="radio-toolbar row">-->
-<!--                        <input type="radio" id="radioApple" name="choirSeats" value="apple" checked>-->
-<!--                        <label for="radioApple">Apple</label>-->
-<!---->
-<!--                        <input type="radio" id="radioBanana" name="choirSeats" value="banana">-->
-<!--                        <label for="radioBanana">Banana</label>-->
-<!---->
-<!--                        <input type="radio" id="radioOrange" name="choirSeats" value="orange">-->
-<!--                        <label for="radioOrange">Orange</label>-->
-<!---->
-<!--                        <input type="radio" id="radioSelected" name="choirSeats" value="selected" disabled>-->
-<!--                        <label for="radioSelected">Selected</label>-->
-<!---->
-<!--                        <input type="radio" id="choir-seats-9" name="choirSeats" class="choir-seats" value="9">-->
-<!--                        <label class="" for="choir-seats-9">9</label>-->
-<!---->
-<!--                        <input type="radio" id="choir-seats-10" name="choirSeats" class="choir-seats" value="10">-->
-<!--                        <label class="" for="choir-seats-10">10</label>-->
-<!--                    </div-->
+                    <!--                    <div class="row no-radio">-->
+                    <!--                        <label>Selection label</label>-->
+                    <!--                    </div>-->
+                    <!---->
+                    <!--                    <div class="radio-toolbar row">-->
+                    <!--                        <input type="radio" id="radioApple" name="choirSeats" value="apple" checked>-->
+                    <!--                        <label for="radioApple">Apple</label>-->
+                    <!---->
+                    <!--                        <input type="radio" id="radioBanana" name="choirSeats" value="banana">-->
+                    <!--                        <label for="radioBanana">Banana</label>-->
+                    <!---->
+                    <!--                        <input type="radio" id="radioOrange" name="choirSeats" value="orange">-->
+                    <!--                        <label for="radioOrange">Orange</label>-->
+                    <!---->
+                    <!--                        <input type="radio" id="radioSelected" name="choirSeats" value="selected" disabled>-->
+                    <!--                        <label for="radioSelected">Selected</label>-->
+                    <!---->
+                    <!--                        <input type="radio" id="choir-seats-9" name="choirSeats" class="choir-seats" value="9">-->
+                    <!--                        <label class="" for="choir-seats-9">9</label>-->
+                    <!---->
+                    <!--                        <input type="radio" id="choir-seats-10" name="choirSeats" class="choir-seats" value="10">-->
+                    <!--                        <label class="" for="choir-seats-10">10</label>-->
+                    <!--                    </div-->
                     <!-- Form -->
                     <form action="#" id="mass-reg-form" class="needs-validation">
 
@@ -362,13 +362,13 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Please pick your seat</h4>
+                <div class="modal-header text-center bg-dark text-white">
+                    <h4 class="modal-title w-100">Please pick your seat</h4>
                 </div>
 
                 <!-- Modal body -->
 
-                <div class="modal-body">
+                <div class="modal-body bg-white">
                     <div id="choirSeatsContainer">
                         <h3 class="text-center text-danger">Please pick a mass first</h3>
                     </div>
@@ -376,7 +376,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
 
                 <!-- Modal footer -->
                 <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-outline-success float-left" data-dismiss="modal">Close
+                    <button type="button" class="btn btn-outline-primary btn-lg btn-block" data-dismiss="modal">Close
                     </button>
                 </div>
 
