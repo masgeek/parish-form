@@ -194,7 +194,6 @@ if ($isAjax) {
                 }
             } else {
                 $jsonResp['valid'] = false;
-
                 if ($seatTaken) {
                     $jsonResp['data'] = [
                         'message' => [
