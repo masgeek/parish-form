@@ -106,6 +106,23 @@ if ($isAjax) {
         $choirSeatsArr = $conn->getSeatsArray($choirCapacity, $lectorSeatNumber);
         $publicSeatsArr = array_values(array_diff($allSeatNumbersArr, $choirSeatsArr));
 
+        if ($lectorFlag === 1) {
+            $lectorAssigned = $conn->isLectorSeatAssigned($massScheduleId);
+            $jsonResp['lectorAssigned'] = $lectorAssigned;
+            $jsonResp['lectorSeat'] = $lectorSeatNumber;
+            if ($lectorAssigned) {
+                $jsonResp['valid'] = false;
+                $jsonResp['data'] = [
+                    'message' => [
+                        'title' => 'Lector already assigned',
+                        'text' => 'It appears the lector seat has already been assigned, please change your options'
+                    ]
+                ];
+                echo json_encode($jsonResp);
+                exit();
+            }
+        }
+        
         if ($choirFlag === 1) {
             $assignedSeatsArr = $conn->getAllocatedSeats($scheduleId, 1);
             $seatsAvailableArr = array_values(array_diff($choirSeatsArr, $assignedSeatsArr));
@@ -137,6 +154,9 @@ if ($isAjax) {
             $jsonResp['seatsLeft'] = "{$seatsLeft} seats left";
         }
 
+        if ($lectorFlag === 1) {
+            $seatNo = $lectorSeatNumber;
+        }
         $data = [
             'seat_no' => $seatNo,
             'surname' => strtoupper($surname),
@@ -168,23 +188,6 @@ if ($isAjax) {
             ];
             echo json_encode($jsonResp);
             exit();
-        }
-
-        if ($lectorFlag === 1) {
-            $lectorAssigned = $conn->isLectorSeatAssigned($massScheduleId);
-            $jsonResp['lectorAssigned'] = $lectorAssigned;
-            $jsonResp['lectorSeat'] = $lectorSeatNumber;
-            if ($lectorAssigned) {
-                $jsonResp['valid'] = false;
-                $jsonResp['data'] = [
-                    'message' => [
-                        'title' => 'Lector already assigned',
-                        'text' => 'It appears the lector seat has already been assigned, please change your options'
-                    ]
-                ];
-                echo json_encode($jsonResp);
-                exit();
-            }
         }
 
         if ($isValid == true) {
