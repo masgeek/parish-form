@@ -63,16 +63,23 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                 <!--Card content-->
                 <div class="card-body">
 
-<!--                    <div class="radio-toolbar row">-->
-<!--                        <input type="radio" id="radioApple" name="radioFruit" value="apple" checked>-->
-<!--                        <label for="radioApple">Apple</label>-->
-<!---->
-<!--                        <input type="radio" id="radioBanana" name="radioFruit" value="banana">-->
-<!--                        <label for="radioBanana">Banana</label>-->
-<!---->
-<!--                        <input type="radio" id="radioOrange" name="radioFruit" value="orange">-->
-<!--                        <label for="radioOrange">Orange</label>-->
-<!--                    </div-->
+                    <div class="radio-toolbar row">
+                        <label>Selection label</label>
+                    </div>
+
+                    <div class="radio-toolbar row">
+                        <input type="radio" id="radioApple" name="radioFruit" value="apple" checked>
+                        <label for="radioApple">Apple</label>
+
+                        <input type="radio" id="radioBanana" name="radioFruit" value="banana">
+                        <label for="radioBanana">Banana</label>
+
+                        <input type="radio" id="radioOrange" name="radioFruit" value="orange">
+                        <label for="radioOrange">Orange</label>
+
+                        <input type="radio" id="radioSelected" name="radioFruit" value="selected" disabled>
+                        <label for="radioSelected">Selected</label>
+                    </div
                     <!-- Form -->
                     <form action="#" id="mass-reg-form" class="needs-validation">
 

@@ -15,11 +15,9 @@
 
 .radio-toolbar label {
   display: inline-block;
-  background-color: $gray-500;
+  background-color: $green;
   color: $white;
   padding: 10px 20px;
-  font-family: sans-serif, Arial;
-  font-size: 16px;
   border: 2px solid $white;
   border-radius: 4px;
   font-weight: $font-weight-light;
@@ -34,10 +32,18 @@
   border: 2px dashed #444;
 }
 
-.radio-toolbar input[type="radio"]:checked + label, .picked {
-  background-color: $green;
+.radio-toolbar input[type="radio"]:checked + label {
+  background-color: $cyan;
   color: $white;
   border-color: $indigo;
   font-weight: $font-weight-bold;
+}
+
+.radio-toolbar input[type="radio"]:disabled + label, .picked {
+  background-color: $danger;
+  color: $white;
+  border-color: $white;
+  font-weight: $font-weight-normal;
+  cursor: not-allowed;
 }
 
