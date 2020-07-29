@@ -349,8 +349,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                         <h3 class="text-center text-danger">Please pick a mass first</h3>
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item"><span class="taken circle"></span> Seats available</li>
-                        <li class="list-group-item"><span class="available circle"></span> Seats taken</li>
+                        <li class="list-group-item"><span class="available circle"></span> Seats available</li>
+                        <li class="list-group-item"><span class="taken circle"></span> Seats taken</li>
                     </ul>
                 </div>
 
