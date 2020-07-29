@@ -132,7 +132,7 @@ jQuery(document).ready(function () {
                         let radio = `<input type="radio" id="choir-seats-${index}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}">`;
                         if (seatTaken) {
                             radioLabelOpen = `<label class="btn btn-danger mr-1 disabled">`;
-                            radioLabelClose = `Seat ${seatInfo.seatNo}</label>`;
+                            radioLabelClose = `${seatInfo.seatNo}</label>`;
                             radio = `<input type="radio" id="choir-seats-${index}" name="choirSeats" class="choir-seats" value="${seatInfo.seatNo}" disabled>`;
                         }
 
