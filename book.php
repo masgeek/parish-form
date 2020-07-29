@@ -318,8 +318,8 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                 <div class="modal-header text-center">
                     <h4 class="modal-title w-100">Your record exists in our database.
                         <br/>
-                        <p class="small">Please pick the record to book mass or click pn <span class="text-info">'Add child'</span>
-                            to add a child between 13-17 yrs</p>
+                        <span class="small">Please pick the record to book mass or click on <span class="text-info">'Add child'</span>
+                            to add a child between 13-17 yrs</span>
                     </h4>
                     <button type="button" class="close btn btn-outline-danger" data-dismiss="modal"><span
                                 class="fa fa-window-close"></span></button>
