@@ -92,7 +92,7 @@ class Dao
     public function getActiveMassDates()
     {
         $currentDate = date('Y-m-d');
-        $data = $this->database->select('mass_schedule_master', [
+        $data = $this->database->debug()->select('mass_schedule_master', [
             'mass_schedule_date',
         ], [
             'mass_schedule_date[>=]' => $currentDate,
@@ -100,9 +100,9 @@ class Dao
             "ORDER" => ["mass_schedule_date" => 'ASC'],
         ]);
 
-        if ($data == false) {
-            return [];
-        }
+//        if ($data == false) {
+//            return [];
+//        }
         return $data;
     }
 
