@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('Africa/Nairobi');
 if (!defined('MyConst')) {
     die('Direct access not permitted');
 }
