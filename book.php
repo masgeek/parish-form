@@ -347,7 +347,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
             <div class="modal-content">
                 <!-- Modal Header -->
                 <div class="modal-header text-center bg-dark text-white">
-                    <h4 class="modal-title w-100">Please pick your choir seat</h4>
+                    <h4 class="modal-title w-100">Please pick your choir seat, then click on `Close`</h4>
                 </div>
 
                 <!-- Modal body -->
