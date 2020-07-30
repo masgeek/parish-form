@@ -91,10 +91,11 @@ class Dao
 
     public function getActiveMassDates()
     {
+        $currentDate = date('Y-m-d');
         $data = $this->database->select('mass_schedule_master', [
             'mass_schedule_date',
         ], [
-            'mass_schedule_date[>=]' => Medoo\Medoo::raw('CURDATE()'),
+            'mass_schedule_date[>=]' => $currentDate,
             "GROUP" => ["mass_schedule_date"],
             "ORDER" => ["mass_schedule_date" => 'ASC'],
         ]);
