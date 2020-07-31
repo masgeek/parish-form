@@ -51,7 +51,7 @@ class Dao
 
     public function getGroups($outstation_id)
     {
-        $data = $this->database->select('groups', [
+        $data = $this->database->select('jumuiya', [
             'group_id',
             'group_name',
             'estate_id'
