@@ -41,6 +41,7 @@ $scheduledMasses = $conn->getActiveScheduledMasses($station_id, $scheduleDate);
                     <h3 class="cupon-pop"><span id="surname-summary">Surname</span>, your registration is successful and
                         you have
                         booked seat no <span id="seat-summary">x</span></h3>
+                    <h4>Kindly arrive 30 minutes before mass</h4>
                     <br/>
                     <strong>To cancel text <a href="tel:+254729390188" class="text-info">+254 729 390 188</a></strong>
                     <br/>
