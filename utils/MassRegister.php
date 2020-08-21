@@ -77,16 +77,13 @@ if ($isAjax) {
             $isValid = $phoneUtil->isValidNumber($swissNumberProto);
             $countryDiallingCode = $swissNumberProto->getCountryCode();
             $mobileNo = $swissNumberProto->getNationalNumber();
-            $mobileNo = "$countryDiallingCode$mobileNo";
+            $mobileNo = "{$countryDiallingCode}{$mobileNo}";
         } catch (\libphonenumber\NumberParseException $e) {
             $isValid = false;
-            $jsonResp['data'] = [
-                'message' => [
-                    'title' => $e->getMessage(),
-                    'text' => 'Mass registration was not successful'
-                ]
-            ];
         }
+
+
+        $jsonResp['valid'] = $isValid;
 
         if ($isValid === false) {
             $jsonResp['data'] = [
@@ -95,9 +92,9 @@ if ($isAjax) {
                     'text' => "Your phone number '${mobileNo}' appears to be invalid"
                 ]
             ];
+            echo json_encode($jsonResp);
+            exit();
         }
-        $jsonResp['valid'] = $isValid;
-
         $lectorSeatNumber = $conn->getLectorSeat($massScheduleId);
         $massCapacity = $conn->getMassScheduleCapacity($massScheduleId);
         $choirCapacity = $conn->getMassScheduleChoirCapacity($massScheduleId);
@@ -229,7 +226,7 @@ if ($isAjax) {
                     ];
                 }
             }
-        }else{
+        } else {
             $jsonResp['valid'] = false;
             $jsonResp['data'] = [
                 'message' => [
