@@ -261,7 +261,7 @@ jQuery(document).ready(function () {
                 ageIsValid = false;
             }
         } else {
-            if (age < 13 || age > 17) {
+            if (age < 6 || age > 17) {
                 ageIsValid = false;
             }
         }
