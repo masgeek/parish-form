@@ -58,9 +58,11 @@ if ($data) {
         ];
     }
 
-    $seatPerRow = round(sizeof($seatData) / 4);
+    $voiceCount = sizeof($voices);
+    $seatPerRow = round(sizeof($seatData) / $voiceCount);
     $seats = array_chunk($seatData, $seatPerRow);
     $jsonResp['hasData'] = true;
+    $jsonResp['voices'] = $voices;
     $jsonResp['seatPerRow'] = $seatPerRow;
     $jsonResp['totalSeats'] = sizeof($seatData);
     $jsonResp['data'] = $seats;
