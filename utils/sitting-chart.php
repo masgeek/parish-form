@@ -57,8 +57,12 @@ if ($data) {
             'assigned' => $assignedSeatsArr
         ];
     }
-    $seats = array_chunk($seatData, 4);
+
+    $seatPerRow = round(sizeof($seatData) / 4);
+    $seats = array_chunk($seatData, $seatPerRow);
     $jsonResp['hasData'] = true;
+    $jsonResp['seatPerRow'] = $seatPerRow;
+    $jsonResp['totalSeats'] = sizeof($seatData);
     $jsonResp['data'] = $seats;
 }
 
